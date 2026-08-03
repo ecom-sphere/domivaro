@@ -1,0 +1,26 @@
+{
+ "name": "Domivaro",
+ "short_name": "Domivaro",
+ "description": "Intendance de residences sur la Costa Blanca",
+ "start_url": "/",
+ "display": "standalone",
+ "background_color": "#F8F7F4",
+ "theme_color": "#002A54",
+ "icons": [
+  {
+   "src": "/img/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/img/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "/img/favicon.svg",
+   "sizes": "any",
+   "type": "image/svg+xml"
+  }
+ ]
+}
