@@ -253,19 +253,25 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://domivaro.com/zones/moraira/</loc>
+    <loc>https://domivaro.com/zones/albir/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://domivaro.com/zones/javea/</loc>
+    <loc>https://domivaro.com/zones/alfas-del-pi/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://domivaro.com/zones/denia/</loc>
+    <loc>https://domivaro.com/zones/la-nucia/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://domivaro.com/zones/polop/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -283,19 +289,25 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://domivaro.com/zones/moraira/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://domivaro.com/zones/benitachell/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://domivaro.com/zones/la-nucia/</loc>
+    <loc>https://domivaro.com/zones/javea/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://domivaro.com/zones/alfas-del-pi/</loc>
+    <loc>https://domivaro.com/zones/denia/</loc>
     <lastmod>2026-08-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
