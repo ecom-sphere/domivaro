@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://domivaro.com/sitemap.xml
+Sitemap: https://domivaro.speed-ecom.eu/sitemap.xml
