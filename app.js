@@ -157,7 +157,7 @@
 
   /* --- 4. Revelations. Le contenu est deja visible : on n'ajoute .js-mo que si
          l'observateur existe, et un filet de securite reaffiche tout au bout de
-         2,5 s au cas ou l'observateur ne se declencherait jamais (onglet cache,
+         2 s au cas ou l'observateur ne se declencherait jamais (onglet cache,
          rendu sans fenetre). ------------------------------------------------ */
   if (reduit || !('IntersectionObserver' in window)) return;
 
