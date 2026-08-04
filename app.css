@@ -898,3 +898,16 @@ p:last-child{margin-bottom:0}
 /* Les biographies passent a 2 paragraphes : on aere. */
 .pers p{margin-bottom:0.9rem}
 .pers p:last-child{margin-bottom:0}
+
+/* CADRAGE MOBILE. Le portrait etait cale a 20 % du haut, ce qui coupait le
+   menton sur les petits ecrans. On centre sur le visage, et on laisse la
+   photo respirer au lieu de la rogner. */
+.portrait{object-position:center 32%}
+@media (max-width:820px){
+  .portrait{max-width:100%; aspect-ratio:4/5; object-position:center 30%}
+  .duo img{aspect-ratio:4/3; object-position:center 42%}
+  .duo{margin-inline:0}
+}
+@media (max-width:520px){
+  .duo img{aspect-ratio:1/1; object-position:center 40%}
+}
