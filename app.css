@@ -843,3 +843,11 @@ p:last-child{margin-bottom:0}
 .jo b{display:block; font-size:1.16rem; font-variation-settings:'wdth' 108; margin-bottom:.5rem;
   letter-spacing:-0.015em}
 .jo p{margin:0; font-size:var(--t-fine); color:var(--ink-2)}
+
+/* Le prix, des le hero : on ne fait pas cliquer pour connaitre un tarif publie. */
+.hero-prix{margin:1.5rem 0 0; max-width:58ch; font-size:var(--t-fine); line-height:1.6;
+  color:color-mix(in oklch, var(--clair) 82%, transparent)}
+.prix-cta .btn.phare{background:var(--sable, #EDE7DC); position:relative}
+.prix-cta .badge{display:block; font-style:normal; font-size:var(--t-micro); font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--teja-700); margin-bottom:.4rem}
+.prix-cta .pp{font-size:var(--t-micro); color:var(--ink-3); opacity:.9}
