@@ -861,3 +861,34 @@ p:last-child{margin-bottom:0}
 .p38-f li{display:flex; gap:.85rem; font-size:var(--t-fine); line-height:1.5; color:var(--ink-2)}
 .p38-n{flex:none; width:1.9rem; font-variant-numeric:tabular-nums; font-weight:600;
   color:var(--ink-3); opacity:.72}
+
+/* CORRECTIF BARRE ------------------------------------------------------
+   La barre passait sur 2 lignes entre 880 et 1240 px depuis l'ajout de la
+   6e entree et du numero : elle grandissait et le titre du hero passait
+   dessous. Regle : la barre ne se replie JAMAIS, elle se resserre. */
+.nav{flex-wrap:nowrap}
+.nav-liens{flex-wrap:nowrap}
+.nav-liens a{white-space:nowrap}
+.marque b{white-space:nowrap}
+.lsel summary b{white-space:nowrap}
+
+@media (min-width:881px) and (max-width:1240px){
+  .tel-nav{display:none}
+  .nav-liens{gap:1.15rem}
+  .nav-liens a{font-size:0.875rem}
+}
+@media (min-width:881px) and (max-width:1080px){
+  .nav{gap:0.7rem; padding-inline:1.2rem}
+  .nav-liens{gap:0.82rem}
+  .nav-liens a{font-size:0.83rem}
+  .marque{font-size:1.1rem}
+  .lsel summary b{display:none}
+}
+/* Le hero garde toujours l'espace de la barre au-dessus du titre. */
+.hero{padding-block:max(clamp(6rem,14vh,9rem), calc(var(--navh, 60px) + 2.6rem)) clamp(3rem,8vh,5.4rem)}
+
+/* La photographie des 2 associes, pleine largeur, sous le pli equipe. */
+.duo{margin:var(--sp-l) 0 0; width:100%}
+.duo img{width:100%; height:auto; display:block; aspect-ratio:3/2; object-fit:cover}
+.duo figcaption{max-width:var(--shell); margin:1.1rem auto 0;
+  padding-inline:clamp(1.3rem,4vw,2.6rem); font-size:var(--t-fine); color:var(--ink-2)}
