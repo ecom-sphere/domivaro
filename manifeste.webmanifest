@@ -1,7 +1,7 @@
 {
  "name": "Domivaro",
  "short_name": "Domivaro",
- "description": "Intendance de residences sur la Costa Blanca",
+ "description": "Intendance de résidences secondaires sur la Costa Blanca",
  "start_url": "/",
  "display": "standalone",
  "background_color": "#F8F7F4",
