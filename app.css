@@ -751,3 +751,12 @@ p:last-child{margin-bottom:0}
 .pied-tel a:hover{text-decoration:underline; text-underline-offset:3px}
 
 
+
+/* Confirmation d'envoi du formulaire. */
+.form-ok{grid-column:1/-1; display:flex; gap:1rem; align-items:flex-start;
+  padding:1.6rem 1.7rem; border:1px solid color-mix(in oklch, currentColor 26%, transparent);
+  border-radius:10px; background:color-mix(in oklch, currentColor 5%, transparent)}
+.form-ok svg{width:26px; height:26px; flex:none; margin-top:2px; color:var(--teja-600)}
+.form-ok b{display:block; font-size:1.12rem; font-variation-settings:'wdth' 108; margin-bottom:.35rem}
+.form-ok p{margin:0; font-size:var(--t-fine); color:var(--ink-2); max-width:52ch}
+.form-ok:focus{outline:none}
