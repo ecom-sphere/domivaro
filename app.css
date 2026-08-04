@@ -806,3 +806,40 @@ p:last-child{margin-bottom:0}
 .ariane a:hover{color:var(--clair)}
 .ariane span{color:color-mix(in oklch, var(--clair) 34%, transparent)}
 .ariane b{color:oklch(0.820 0.120 74); font-weight:600}
+
+/* ---------------------------------------------------- 14 bis. la FAQ */
+.faq{margin-top:var(--sp-l); border-top:1px solid var(--ligne)}
+.faq details{border-bottom:1px solid var(--ligne)}
+.faq summary{display:flex; gap:1.4rem; align-items:flex-start; justify-content:space-between;
+  padding:1.5rem 0; cursor:pointer; list-style:none;
+  font-size:clamp(1.04rem,0.98rem+0.34vw,1.24rem); line-height:1.34;
+  font-variation-settings:'wdth' 108; letter-spacing:-0.012em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary span{max-width:56ch}
+.faq summary svg{width:20px; height:20px; flex:none; margin-top:.28rem; color:var(--teja-600);
+  transition:transform .26s var(--e-quart)}
+.faq details[open] summary svg{transform:rotate(45deg)}
+.faq summary:hover{color:var(--teja-700)}
+.faq details p{margin:0 0 1.6rem; max-width:70ch; font-size:var(--t-fine); line-height:1.66; color:var(--ink-2)}
+@media (prefers-reduced-motion:reduce){.faq summary svg{transition:none}}
+
+/* Un bouton par formule, sous la grille de prix. */
+.prix-cta{display:grid; gap:1px; margin-top:var(--sp-m); background:var(--ligne); border:1px solid var(--ligne)}
+@media (min-width:640px){.prix-cta{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
+.prix-cta .btn{border:0; border-radius:0; background:var(--clair); padding:1.25rem 1.1rem;
+  display:flex; flex-direction:column; gap:.28rem; align-items:flex-start; text-align:left}
+.prix-cta .btn b{font-size:.95rem; font-variation-settings:'wdth' 108}
+.prix-cta .btn span{font-size:var(--t-fine); color:var(--ink-3)}
+.prix-cta .btn:hover{background:var(--sable, #EDE7DC)}
+
+/* Les 3 voies pour joindre l'equipe. */
+.joindre{display:grid; gap:1px; background:var(--ligne); border:1px solid var(--ligne); margin-top:var(--sp-m)}
+@media (min-width:820px){.joindre{grid-template-columns:repeat(3,1fr)}}
+.jo{display:block; background:var(--clair); padding:1.8rem 1.6rem; text-decoration:none; color:inherit;
+  transition:background .2s var(--e-quart)}
+.jo:hover{background:var(--sable, #EDE7DC)}
+.jk{display:block; font-size:var(--t-micro); font-weight:600; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--teja-700); margin-bottom:.6rem}
+.jo b{display:block; font-size:1.16rem; font-variation-settings:'wdth' 108; margin-bottom:.5rem;
+  letter-spacing:-0.015em}
+.jo p{margin:0; font-size:var(--t-fine); color:var(--ink-2)}
