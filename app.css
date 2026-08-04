@@ -793,3 +793,16 @@ p:last-child{margin-bottom:0}
 .form-consent input{width:1.15rem; height:1.15rem; margin-top:.18rem; flex:none;
   accent-color:var(--teja-600); cursor:pointer}
 .form-consent label:has(input:focus-visible){outline:2px solid var(--teja-600); outline-offset:4px}
+
+/* Bandeau de titre des pages interieures. Porte le h1 et le fil d'Ariane. */
+.ban{background:var(--azul-950); color:var(--clair); padding:clamp(4.5rem,9vw,7.5rem) 0 clamp(3rem,6vw,4.5rem)}
+.ban h1{font-size:clamp(2.1rem,1.1rem+3.9vw,3.9rem); line-height:1.04; letter-spacing:-0.028em;
+  font-variation-settings:'wdth' 112; max-width:19ch; margin:0 0 1.1rem; text-wrap:balance}
+.ban-lede{font-size:clamp(1.02rem,0.96rem+0.36vw,1.22rem); line-height:1.58; max-width:62ch;
+  color:color-mix(in oklch, var(--clair) 78%, transparent); margin:0}
+.ariane{display:flex; gap:.55rem; align-items:center; margin-bottom:1.6rem;
+  font-size:var(--t-micro); letter-spacing:.04em; text-transform:uppercase; font-weight:600}
+.ariane a{color:color-mix(in oklch, var(--clair) 62%, transparent); text-decoration:none}
+.ariane a:hover{color:var(--clair)}
+.ariane span{color:color-mix(in oklch, var(--clair) 34%, transparent)}
+.ariane b{color:oklch(0.820 0.120 74); font-weight:600}
