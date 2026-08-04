@@ -1,3 +1,9 @@
+@font-face{
+  font-family:'Fraunces'; font-style:normal; font-weight:100 900;
+  font-display:swap; src:url(/police/fraunces.woff2) format('woff2');
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
 /* Archivo variable, servie depuis le domaine. Sous-ensemble latin d'abord :
    les pages FR, ES et EN n'ont besoin de rien d'autre pour s'afficher. */
 @font-face{
@@ -169,14 +175,15 @@ p:last-child{margin-bottom:0}
   color:var(--ink);
   box-shadow:0 1px 0 var(--ligne);
 }
-.marque{display:flex; align-items:center; gap:0.40em; text-decoration:none; color:inherit;
+.marque{display:flex; align-items:center; gap:0.294em; text-decoration:none; color:inherit;
   font-size:1.245rem; line-height:1}
-.marque svg{height:1.35em; width:auto; flex:none; display:block; color:var(--teja-600)}
+.marque svg{height:1.015em; width:auto; flex:none; display:block; color:var(--teja-600)}
 .pied .marque svg{color:oklch(0.780 0.130 68)}
 .marque b{
-  font-size:1em; font-weight:700; line-height:1;
-  font-variation-settings:'wdth' 108;
-  letter-spacing:-0.018em;
+  font-family:'Fraunces',Georgia,serif;
+  font-size:1em; font-weight:600; line-height:1;
+  font-variation-settings:'SOFT' 30, 'WONK' 0, 'opsz' 24;
+  letter-spacing:-0.020em;
 }
 .nav-liens{display:flex; align-items:center; gap:1.7rem}
 .nav-liens a{
