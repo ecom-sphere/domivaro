@@ -851,3 +851,13 @@ p:last-child{margin-bottom:0}
 .prix-cta .badge{display:block; font-style:normal; font-size:var(--t-micro); font-weight:700;
   letter-spacing:.06em; text-transform:uppercase; color:var(--teja-700); margin-bottom:.4rem}
 .prix-cta .pp{font-size:var(--t-micro); color:var(--ink-3); opacity:.9}
+
+/* Les 38 points, publies. Numerotation continue sur 6 familles. */
+.p38{list-style:none; margin-top:var(--sp-l); display:grid; gap:var(--sp-m)}
+@media (min-width:900px){.p38{grid-template-columns:1fr 1fr; gap:var(--sp-m) clamp(2rem,4vw,3.4rem)}}
+.p38-f h3{font-size:var(--t-micro); font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+  color:var(--teja-700); margin-bottom:.9rem; padding-bottom:.6rem; border-bottom:1px solid var(--ligne)}
+.p38-f ol{list-style:none; display:grid; gap:.62rem}
+.p38-f li{display:flex; gap:.85rem; font-size:var(--t-fine); line-height:1.5; color:var(--ink-2)}
+.p38-n{flex:none; width:1.9rem; font-variant-numeric:tabular-nums; font-weight:600;
+  color:var(--ink-3); opacity:.72}
