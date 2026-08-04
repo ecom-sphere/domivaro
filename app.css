@@ -43,6 +43,7 @@
 
   /* Terre cuite : accent unique, tuiles et façades de la Marina Alta. */
   --teja-700: oklch(0.480 0.115 40);
+  --sable: oklch(0.945 0.012 250);
   --teja-600: oklch(0.550 0.125 42);
   --teja-500: oklch(0.630 0.135 45);
 
@@ -232,7 +233,6 @@ p:last-child{margin-bottom:0}
 .hero > .shell{position:relative; z-index:var(--z-contenu)}
 .hero h1{
   max-width:none; text-wrap:initial;
-  text-shadow:0 2px 30px color-mix(in oklch, var(--azul-950) 62%, transparent);
 }
 /* Terre cuite plus claire sur le hero : elle se pose sur de la photo, pas sur du blanc. */
 .hero .accent{color:oklch(0.700 0.140 47)}
@@ -289,7 +289,7 @@ p:last-child{margin-bottom:0}
              box-shadow .35s var(--e-expo);
 }
 .btn-plein{background:var(--teja-600); color:#fff; box-shadow:0 2px 8px color-mix(in oklch, var(--teja-700) 34%, transparent)}
-.btn-plein:hover{background:var(--teja-500); transform:translateY(-2px); box-shadow:0 6px 16px color-mix(in oklch, var(--teja-700) 38%, transparent)}
+.btn-plein:hover{background:var(--teja-700); transform:translateY(-2px); box-shadow:0 6px 16px color-mix(in oklch, var(--teja-700) 38%, transparent)}
 .btn-clair{background:#fff; color:var(--azul-900)}
 .btn-clair:hover{transform:translateY(-2px); background:var(--clair)}
 .btn-fant{background:transparent; color:inherit; box-shadow:inset 0 0 0 1.5px color-mix(in oklch, currentColor 42%, transparent)}
@@ -426,7 +426,7 @@ p:last-child{margin-bottom:0}
 .portrait{
   display:block; width:100%; max-width:340px; height:auto; aspect-ratio:4/5;
   object-fit:cover; object-position:center 20%;
-  border-radius:12px; margin-bottom:1.5rem; background:var(--sable, #EDE7DC);
+  border-radius:12px; margin-bottom:1.5rem; background:var(--sable);
   box-shadow:0 16px 36px -18px color-mix(in oklch, var(--azul-950) 42%, transparent);
 }
 @media (min-width:820px){.portrait{max-width:100%}}
@@ -838,14 +838,14 @@ p:last-child{margin-bottom:0}
   display:flex; flex-direction:column; gap:.28rem; align-items:flex-start; text-align:left}
 .prix-cta .btn b{font-size:.95rem; font-variation-settings:'wdth' 108}
 .prix-cta .btn span{font-size:var(--t-fine); color:var(--ink-3)}
-.prix-cta .btn:hover{background:var(--sable, #EDE7DC)}
+.prix-cta .btn:hover{background:var(--sable)}
 
 /* Les 3 voies pour joindre l'equipe. */
 .joindre{display:grid; gap:1px; background:var(--ligne); border:1px solid var(--ligne); margin-top:var(--sp-m)}
 @media (min-width:820px){.joindre{grid-template-columns:repeat(3,1fr)}}
 .jo{display:block; background:var(--clair); padding:1.8rem 1.6rem; text-decoration:none; color:inherit;
   transition:background .2s var(--e-quart)}
-.jo:hover{background:var(--sable, #EDE7DC)}
+.jo:hover{background:var(--sable)}
 .jk{display:block; font-size:var(--t-micro); font-weight:600; letter-spacing:.05em;
   text-transform:uppercase; color:var(--teja-700); margin-bottom:.6rem}
 .jo b{display:block; font-size:1.16rem; font-variation-settings:'wdth' 108; margin-bottom:.5rem;
@@ -855,7 +855,7 @@ p:last-child{margin-bottom:0}
 /* Le prix, des le hero : on ne fait pas cliquer pour connaitre un tarif publie. */
 .hero-prix{margin:1.5rem 0 0; max-width:58ch; font-size:var(--t-fine); line-height:1.6;
   color:color-mix(in oklch, var(--clair) 82%, transparent)}
-.prix-cta .btn.phare{background:var(--sable, #EDE7DC); position:relative}
+.prix-cta .btn.phare{background:var(--sable); position:relative}
 .prix-cta .badge{display:block; font-style:normal; font-size:var(--t-micro); font-weight:700;
   letter-spacing:.06em; text-transform:uppercase; color:var(--teja-700); margin-bottom:.4rem}
 .prix-cta .pp{font-size:var(--t-micro); color:var(--ink-3); opacity:.9}
