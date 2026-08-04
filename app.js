@@ -99,24 +99,59 @@
   })();
 
 
-  /* --- 7. Formulaire de la maquette. Aucun serveur derriere : on intercepte
-         l envoi, on valide comme un vrai formulaire, puis on affiche la
-         confirmation. Le jour ou le formulaire aura une vraie destination,
-         l attribut data-demo disparait et ce bloc ne fait plus rien. ------- */
+  /* --- 7. Formulaire. Envoi reel vers la fonction domivaro-form. Sans
+         JavaScript, le formulaire poste en HTML et la fonction renvoie sur
+         la page avec ?envoye=1 : la confirmation s affiche au retour. ---- */
   (function () {
     var f = document.getElementById('form-contact');
-    if (!f || f.getAttribute('data-demo') !== '1') return;
-    f.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!f.reportValidity()) return;
-      var ok = document.getElementById('form-ok');
-      [].forEach.call(f.querySelectorAll('.champ'), function (el) {
+    if (!f) return;
+    var ok = document.getElementById('form-ok');
+    function confirme() {
+      [].forEach.call(f.querySelectorAll('.champ, .pot'), function (el) {
         el.style.display = 'none';
       });
+      var err = document.getElementById('form-err');
+      if (err) err.remove();
       ok.hidden = false;
       ok.scrollIntoView({ block: 'center', behavior: reduit ? 'auto' : 'smooth' });
       ok.setAttribute('tabindex', '-1');
       ok.focus({ preventScroll: true });
+    }
+    if (/[?&]envoye=1/.test(location.search)) { confirme(); }
+    var m = location.search.match(/[?&]f=([^&]+)/);
+    if (m) {
+      var sel = document.getElementById('f-formule');
+      if (sel) { try { sel.value = decodeURIComponent(m[1]); } catch (e) {} }
+    }
+    f.addEventListener('submit', function (e) {
+      if (!window.fetch) return;
+      e.preventDefault();
+      if (!f.reportValidity()) return;
+      var btn = f.querySelector('button[type="submit"]');
+      var avant = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = f.getAttribute('data-envoi') || avant;
+      var d = {};
+      [].forEach.call(f.elements, function (el) {
+        if (el.name) d[el.name] = el.type === 'checkbox' ? (el.checked ? '1' : '') : el.value;
+      });
+      d.page = location.pathname;
+      fetch(f.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(confirme)
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = avant;
+          var err = document.getElementById('form-err');
+          if (!err) {
+            err = document.createElement('p');
+            err.id = 'form-err';
+            err.className = 'form-err';
+            err.setAttribute('role', 'alert');
+            f.insertBefore(err, f.querySelector('.form-pied'));
+          }
+          err.textContent = f.getAttribute('data-err') || 'Erreur.';
+        });
     });
   })();
 
