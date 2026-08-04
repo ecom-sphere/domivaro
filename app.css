@@ -169,9 +169,10 @@ p:last-child{margin-bottom:0}
   color:var(--ink);
   box-shadow:0 1px 0 var(--ligne);
 }
-.marque{display:flex; align-items:center; gap:0.284em; text-decoration:none; color:inherit;
+.marque{display:flex; align-items:center; gap:0.40em; text-decoration:none; color:inherit;
   font-size:1.245rem; line-height:1}
-.marque svg{height:0.811em; width:auto; flex:none; display:block}
+.marque svg{height:1.35em; width:auto; flex:none; display:block; color:var(--teja-600)}
+.pied .marque svg{color:oklch(0.780 0.130 68)}
 .marque b{
   font-size:1em; font-weight:700; line-height:1;
   font-variation-settings:'wdth' 108;
