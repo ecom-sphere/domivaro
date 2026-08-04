@@ -402,6 +402,18 @@ p:last-child{margin-bottom:0}
 }
 .preuves .k{font-size:var(--t-fine); line-height:1.5; max-width:30ch; margin:0}
 
+/* ------------------------------------------------- 12 bis. les garanties */
+.garanties{display:grid; gap:1px; margin-top:var(--sp-l);
+  background:var(--ligne); border:1px solid var(--ligne)}
+@media (min-width:700px){.garanties{grid-template-columns:1fr 1fr}}
+@media (min-width:1060px){.garanties{grid-template-columns:repeat(4,1fr)}}
+.gar{background:var(--clair); padding:1.9rem 1.6rem}
+.gk{display:block; font-size:var(--t-micro); font-weight:600; letter-spacing:0.05em;
+  text-transform:uppercase; color:var(--teja-700); margin-bottom:0.7rem}
+.gar b{display:block; font-size:clamp(1.35rem,2.4vw,1.72rem); line-height:1.08;
+  font-variation-settings:'wdth' 112; letter-spacing:-0.02em; margin-bottom:0.7rem}
+.gar p{font-size:var(--t-fine); color:var(--ink-2); margin:0}
+
 /* --------------------------------------------------------- 13. l'équipe */
 .portrait{
   display:block; width:100%; max-width:340px; height:auto; aspect-ratio:4/5;
@@ -774,3 +786,10 @@ p:last-child{margin-bottom:0}
 .form-ok b{display:block; font-size:1.12rem; font-variation-settings:'wdth' 108; margin-bottom:.35rem}
 .form-ok p{margin:0; font-size:var(--t-fine); color:var(--ink-2); max-width:52ch}
 .form-ok:focus{outline:none}
+
+/* Case de consentement du formulaire. */
+.form-consent label{display:flex; gap:.75rem; align-items:flex-start; cursor:pointer;
+  font-size:var(--t-fine); color:var(--ink-2); line-height:1.55}
+.form-consent input{width:1.15rem; height:1.15rem; margin-top:.18rem; flex:none;
+  accent-color:var(--teja-600); cursor:pointer}
+.form-consent label:has(input:focus-visible){outline:2px solid var(--teja-600); outline-offset:4px}
