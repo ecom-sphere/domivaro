@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /apercu/
 
 Sitemap: https://domivaro.com/sitemap.xml
