@@ -889,8 +889,12 @@ p:last-child{margin-bottom:0}
 
 /* La photographie des 2 associes. Contenue dans la colonne de texte, pas en
    pleine largeur : en pleine largeur elle ecrasait tout le reste de la page. */
-.duo{margin:var(--sp-l) auto 0; max-width:min(100%, 760px)}
+.duo{margin:var(--sp-l) 0 var(--sp-l); max-width:min(100%, 860px)}
 .duo img{width:100%; height:auto; display:block; aspect-ratio:3/2; object-fit:cover;
   border-radius:12px;
   box-shadow:0 18px 40px -22px color-mix(in oklch, var(--azul-950) 46%, transparent)}
 .duo figcaption{margin:1rem 0 0; font-size:var(--t-fine); line-height:1.6; color:var(--ink-2); max-width:62ch}
+
+/* Les biographies passent a 2 paragraphes : on aere. */
+.pers p{margin-bottom:0.9rem}
+.pers p:last-child{margin-bottom:0}
