@@ -98,6 +98,28 @@
     boite.hidden = false;
   })();
 
+
+  /* --- 7. Formulaire de la maquette. Aucun serveur derriere : on intercepte
+         l envoi, on valide comme un vrai formulaire, puis on affiche la
+         confirmation. Le jour ou le formulaire aura une vraie destination,
+         l attribut data-demo disparait et ce bloc ne fait plus rien. ------- */
+  (function () {
+    var f = document.getElementById('form-contact');
+    if (!f || f.getAttribute('data-demo') !== '1') return;
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!f.reportValidity()) return;
+      var ok = document.getElementById('form-ok');
+      [].forEach.call(f.querySelectorAll('.champ'), function (el) {
+        el.style.display = 'none';
+      });
+      ok.hidden = false;
+      ok.scrollIntoView({ block: 'center', behavior: reduit ? 'auto' : 'smooth' });
+      ok.setAttribute('tabindex', '-1');
+      ok.focus({ preventScroll: true });
+    });
+  })();
+
   /* --- 4. Revelations. Le contenu est deja visible : on n'ajoute .js-mo que si
          l'observateur existe, et un filet de securite reaffiche tout au bout de
          2,5 s au cas ou l'observateur ne se declencherait jamais (onglet cache,
