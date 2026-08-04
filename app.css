@@ -718,16 +718,28 @@ p:last-child{margin-bottom:0}
 .commune:hover .lien-fleche{gap:0.66rem}
 
 /* ============================ 23. AVIS CLIENTS ============================ */
-.avis{display:grid; gap:0; margin-top:var(--sp-l); grid-template-columns:1fr;
+/* Bandeau de synthese du mur d'avis. */
+.av-stats{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; margin-top:var(--sp-m);
+  background:color-mix(in oklch, currentColor 20%, transparent);
+  border:1px solid color-mix(in oklch, currentColor 20%, transparent)}
+@media (min-width:760px){.av-stats{grid-template-columns:repeat(4,1fr)}}
+.av-stats div{background:var(--azul-950); padding:1.5rem 1.2rem; text-align:center}
+.av-stats b{display:block; font-size:clamp(1.7rem,3.4vw,2.3rem); line-height:1;
+  font-variation-settings:'wdth' 112; letter-spacing:-.02em; color:oklch(0.820 0.120 74)}
+.av-stats span{display:block; margin-top:.5rem; font-size:var(--t-micro); line-height:1.45;
+  color:color-mix(in oklch, #fff 66%, transparent)}
+
+/* Le mur : colonnes typographiques, les cartes ne se coupent jamais. */
+.avis{margin-top:var(--sp-l); columns:1; column-gap:0;
   border-top:1px solid color-mix(in oklch, currentColor 22%, transparent)}
-@media (min-width:900px){.avis{grid-template-columns:repeat(3,1fr)}}
-.avis figure{margin:0; padding:2rem 0;
-  border-bottom:1px solid color-mix(in oklch, currentColor 22%, transparent)}
-@media (min-width:900px){
-  .avis figure{padding:2.2rem clamp(1.2rem,2.6vw,2.2rem) 2.2rem 0}
-  .avis figure + figure{border-left:1px solid color-mix(in oklch, currentColor 22%, transparent);
-    padding-left:clamp(1.2rem,2.6vw,2.2rem)}
-}
+@media (min-width:760px){.avis{columns:2; column-gap:clamp(1.4rem,3vw,2.6rem)}}
+@media (min-width:1080px){.avis{columns:3}}
+.avis figure{margin:0; padding:1.9rem 0; break-inside:avoid; -webkit-column-break-inside:avoid;
+  border-bottom:1px solid color-mix(in oklch, currentColor 18%, transparent)}
+.av-lang{display:inline-block; margin-top:.5rem; padding:.18rem .5rem; border-radius:2px;
+  font-size:calc(var(--t-micro) * .94); letter-spacing:.04em; text-transform:uppercase;
+  color:color-mix(in oklch, #fff 62%, transparent);
+  border:1px solid color-mix(in oklch, currentColor 26%, transparent)}
 .et5{display:flex; gap:2px; margin-bottom:1.1rem; color:oklch(0.780 0.130 72)}
 .et5 svg{width:15px; height:15px}
 .avis blockquote{margin:0 0 1.3rem; font-size:1.03rem; line-height:1.56;
