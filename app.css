@@ -179,6 +179,7 @@ p:last-child{margin-bottom:0}
 .marque{display:flex; align-items:center; gap:0.294em; text-decoration:none; color:inherit;
   font-size:1.245rem; line-height:1}
 .marque svg{height:1.015em; width:auto; flex:none; display:block; color:var(--teja-600)}
+.nav:not([data-pose="pose"]) .marque svg{color:oklch(0.780 0.130 68)}
 .pied .marque svg{color:oklch(0.780 0.130 68)}
 .marque b{
   font-family:'Fraunces',Georgia,serif;
@@ -945,3 +946,30 @@ p:last-child{margin-bottom:0}
 
 .pot{position:absolute !important;left:-9999px;width:1px;height:1px;overflow:hidden}
 .form-err{grid-column:1/-1;color:oklch(0.400 0.150 26);background:oklch(0.970 0.020 26);border:1px solid oklch(0.820 0.070 26);border-radius:9px;padding:.75rem 1rem;font-size:.93rem}
+
+/* ---- boucle 2 : rapport cas reel, minute par minute, carte des zones ---- */
+.gar.st-warn{border-left:3px solid oklch(0.620 0.120 80)}
+.gar.st-act{border-left:3px solid oklch(0.520 0.140 32)}
+.gar.st-fait{border-left:3px solid oklch(0.520 0.100 155)}
+.fam-liste{list-style:none; margin:0 0 var(--sp-m); padding:0; max-width:56rem}
+.fam-liste li{display:flex; gap:1rem; align-items:baseline; padding:.55rem 0; border-bottom:1px solid var(--ligne)}
+.fam-liste b{flex:1}
+.fam-liste span{color:var(--ink-2); font-size:.92rem; white-space:nowrap}
+.fam-liste .fam-r{color:var(--ink); font-weight:600}
+.minute{list-style:none; margin:0; padding:0; max-width:44rem}
+.minute li{position:relative; padding:0 0 1.3rem 5.4rem}
+.minute li::before{content:""; position:absolute; left:2.05rem; top:.45rem; bottom:-.45rem; width:2px; background:var(--ligne)}
+.minute li:last-child::before{display:none}
+.minute .mn-h{position:absolute; left:0; top:.02rem; font-variant-numeric:tabular-nums; font-weight:700; color:var(--teja-600); font-size:.95rem}
+.minute b{display:block; margin-bottom:.15rem}
+.minute p{color:var(--ink-2); font-size:.95rem; margin:0}
+.zmap{margin:var(--sp-m) 0}
+.zmap svg{width:100%; height:auto; display:block; background:color-mix(in oklch, var(--azul-950) 4%, var(--clair)); border-radius:14px}
+.zm-cote{fill:none; stroke:color-mix(in oklch, var(--azul-900) 34%, transparent); stroke-width:3; stroke-linecap:round}
+.zm-p{fill:var(--teja-600)}
+.zm-s{fill:var(--azul-900)}
+.zmap a{cursor:pointer}
+.zmap a:hover .zm-p, .zmap a:hover .zm-s{fill:var(--teja-700)}
+.zm-n{font:600 15px/1 inherit; font-family:inherit; fill:var(--ink)}
+.zm-m{font:12px/1 inherit; font-family:inherit; fill:var(--ink-2)}
+.zmap figcaption{color:var(--ink-2); font-size:.92rem; margin-top:.6rem}
