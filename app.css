@@ -537,7 +537,9 @@ p:last-child{margin-bottom:0}
   .nav-liens a{padding:0.85rem 0; border-bottom:1px solid var(--ligne); font-size:1.04rem; opacity:1}
   .nav-liens .langue{border-bottom:0; padding-top:0.9rem; justify-content:flex-start}
   .hero{min-height:92svh}
-  .marque b{font-size:1.14rem}
+  /* Sur mobile on reduit le bloc marque ENTIER, pas seulement le mot :
+     sinon le signe reste a la taille du grand ecran et ecrase le nom. */
+  .marque{font-size:1.14rem}
 }
 @media (max-width:520px){
   .shell{width:min(100% - 2.1rem, var(--shell))}
