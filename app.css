@@ -973,3 +973,5 @@ p:last-child{margin-bottom:0}
 .zm-n{font:600 15px/1 inherit; font-family:inherit; fill:var(--ink)}
 .zm-m{font:12px/1 inherit; font-family:inherit; fill:var(--ink-2)}
 .zmap figcaption{color:var(--ink-2); font-size:.92rem; margin-top:.6rem}
+
+.av-depart{display:block; margin-top:.45rem; color:oklch(0.560 0.100 80); font-size:.86rem}
