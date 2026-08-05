@@ -31,6 +31,7 @@
     var bascule = function (ouvrir) {
       liens.setAttribute('data-ouvert', ouvrir ? '1' : '0');
       burger.setAttribute('aria-expanded', ouvrir ? 'true' : 'false');
+      if (!ouvrir && liens.contains(document.activeElement)) burger.focus();
       if (ouvrir) nav.setAttribute('data-pose', 'pose');
     };
     burger.addEventListener('click', function () {
