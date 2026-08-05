@@ -62,7 +62,7 @@ print("2. valeurs chiffrees des 11 fiches identiques dans les 3 langues : OK")
 # --- 3. les pourcentages se recalculent depuis le nombre de ventes ----------
 for s in SLUGS:
     h = PAGES[U["fr"] % s]
-    p = float(re.search(r'chiffre">([\d,]+) %<', h).group(1).replace(",", "."))
+    p = float(re.search('chiffre">([\\d,]+)[  ]%<', h).group(1).replace(",", "."))
     v = int(re.search(r"sur (\d+) ventes", h).group(1))
     e = round(p * v / 100)
     ck(abs(round(100 * e / v, 1) - p) < 1e-9, f"3 pourcentage non recalculable sur {s} : {p} % de {v} ventes")
@@ -73,7 +73,8 @@ LEX = {
  "en": [("TVA espagnole", [r"\bVAT\b", r"\bIVA\b"]), ("registre", [r"\bthe register\b", r"\bthe log\b"]),
         ("local technique", [r"utility room", r"plant room"]), ("groupe de securite", [r"safety group", r"safety valve"]),
         ("les 38 points", [r"38 checkpoints", r"38 points"]), ("formule phare", [r"[Mm]ost chosen", r"[Mm]ost popular"]),
-        ("visite offerte", [r"check visit", r"first inspection"]), ("armoire a cles", [r"sealed safe", r"sealed key cabinet"])],
+        ("visite offerte", [r"check visit", r"first inspection"]),
+        ("syndic", [r"building managers", r"residents association"]), ("armoire a cles", [r"sealed safe", r"sealed key cabinet"])],
  "es": [("armoire a cles", [r"caja fuerte", r"caja sellada", r"armario de llaves"]),
         ("formule", [r"la fórmula", r"el plan"]), ("statut du rapport", [r"a resolver", r"a tratar"])],
  "fr": [("armoire a cles", [r"coffre scellé", r"armoire à clés"])],
@@ -153,9 +154,74 @@ for p, h in PAGES.items():
 ck(not morts, f"10 liens internes hors sitemap : {sorted(morts)[:5]}")
 print(f"10. sitemap sans doublon, {len(LOCS)} adresses, aucun lien interne inconnu : OK")
 
+# --- 11. typographie : espaces insecables poses, aucun espace secable restant --
+insec = sum(h.count("\u00a0") for h in PAGES.values())
+ck(insec >= 320, f"11 seulement {insec} espaces insecables sur les 63 pages")
+for p, h in PAGES.items():
+    corps = " ".join(re.split(r"<[^>]+>", re.sub(r"<script.*?</script>|<style.*?</style>", " ", h, flags=re.S)))
+    fuite = re.findall(r"\d (?:€|%|m²|km)", corps)
+    ck(not fuite, f"11 espace secable avant unite sur {p} : {sorted(set(fuite))[:3]}")
+    if lang(p) == "fr":
+        f2 = re.findall(r"\w [:;!?»]", corps)
+        ck(not f2, f"11 espace secable avant ponctuation double sur {p} : {sorted(set(f2))[:3]}")
+print(f"11. {insec} espaces insecables, aucun espace secable avant unite ni ponctuation double : OK")
+
+# --- 12. attributs de langue : uniquement les 4 langues du site ---------------
+for p, h in PAGES.items():
+    for a in set(re.findall(r'(?<![a-z])lang="([a-zA-Z-]+)"', h)):
+        ck(a in ("fr", "es", "en", "nl"), f"12 lang={a} sur {p}")
+    for m in re.finditer(r'(?<![a-z])lang="(fr|es|en|nl)">([^<]{1,20})</span>', h):
+        mot, val = m.group(1), m.group(2).strip()
+        DICO = {"fr": "Français Complet Écrit", "es": "Español Completo Escrito",
+                "en": "English Full Written", "nl": "Nederlands Binnenkort"}
+        ck(val in DICO[mot].split(), f"12 {val!r} annonce en {mot} sur {p}")
+print("12. attributs de langue coherents avec le texte qu ils portent : OK")
+
+# --- 13. une seule base de consentement sur les 3 formulaires ----------------
+for p, h in PAGES.items():
+    if 'name="consentement"' not in h: continue
+    nb = h.count('name="consentement"')
+    ck(nb == 1, f"13 {nb} cases de consentement sur {p}")
+    ck("required" in h.split('name="consentement"')[1][:40], f"13 case de consentement non obligatoire sur {p}")
+    pied = re.search(r'class="champ large form-pied">(.*?)</p>', h, re.S)
+    ck(pied and "<small>" not in pied.group(1), f"13 second consentement implicite sous le bouton sur {p}")
+print("13. une seule base de consentement, explicite et obligatoire : OK")
+
+# --- 14. separateur des milliers espagnol ------------------------------------
+for p, h in PAGES.items():
+    if lang(p) != "es": continue
+    f = re.findall(r"\d{1,3}[  ]\d{3}[  ]?(?:€|euros)", h)
+    ck(not f, f"14 separateur des milliers francais sur {p} : {sorted(set(f))[:3]}")
+print("14. separateur des milliers espagnol sur les 21 pages ES : OK")
+
+# --- 15. le sitemap dit la meme chose que les pages --------------------------
+blocs = re.findall(r"<url>.*?</url>", sm, re.S)
+ck(len(blocs) == len(LOCS), "15 sitemap mal forme")
+for b in blocs:
+    en_ = re.search(r'hreflang="en" href="([^"]+)"', b)
+    xd = re.search(r'hreflang="x-default" href="([^"]+)"', b)
+    ck(en_ and xd and en_.group(1) == xd.group(1),
+       f"15 x-default different de l alternate anglais : {re.search(r'<loc>([^<]+)', b).group(1)}")
+print("15. x-default du sitemap identique a l alternate anglais sur les 63 adresses : OK")
+
+# --- 16. les alt ne decrivent pas ce que l image ne montre pas ---------------
+INTERDIT = [(r"volets fermés|shutters closed|contraventanas cerradas", "volets fermes sur une image qui en montre d ouverts"),
+            (r"(Fabrizio|Krystelle).{0,30}(sur la terrasse|en la terraza|on the terrace)", "portrait annonce sur une terrasse")]
+for p, h in PAGES.items():
+    for a in re.findall(r'alt="([^"]*)"', h):
+        for rx, quoi in INTERDIT:
+            ck(not re.search(rx, a), f"16 {quoi} sur {p} : {a[:70]}")
+print("16. aucun alt ne decrit ce que l image ne montre pas : OK")
+
+# --- 17. la police du logotype reste minuscule -------------------------------
+import urllib.request as _u
+_f = _u.urlopen(D + "/police/fraunces.woff2", timeout=45).read()
+ck(len(_f) < 20000, f"17 fraunces.woff2 pese {len(_f)} octets")
+print(f"17. police du logotype : {len(_f)} octets : OK")
+
 print()
 if ERR:
     print(f"=== {len(ERR)} DEFAUT(S) ===")
     for e in ERR[:40]: print("  -", e)
     sys.exit(1)
-print("=== 10 controles passes sur les 63 pages servies. ===")
+print("=== 17 controles passes sur les 63 pages servies. ===")
