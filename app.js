@@ -82,6 +82,7 @@
     var refus;
     try { refus = localStorage.getItem('dv-langue-refus'); } catch (e) { refus = null; }
     if (!cible || voulue === courante || refus === voulue) return;
+  if (cible.u && cible.u === location.pathname) return;
 
     var titre = boite.querySelector('.sug-t');
     titre.textContent = cible.t;
