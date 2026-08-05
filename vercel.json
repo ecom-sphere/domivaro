@@ -61,6 +61,26 @@
       "source": "/zones/",
       "destination": "/nos-zones/",
       "permanent": true
+    },
+    {
+      "source": "/es/zonas",
+      "destination": "/es/nuestras-zonas/",
+      "permanent": true
+    },
+    {
+      "source": "/es/zonas/",
+      "destination": "/es/nuestras-zonas/",
+      "permanent": true
+    },
+    {
+      "source": "/en/areas",
+      "destination": "/en/our-area/",
+      "permanent": true
+    },
+    {
+      "source": "/en/areas/",
+      "destination": "/en/our-area/",
+      "permanent": true
     }
   ]
 }
