@@ -143,7 +143,7 @@ p:last-child{margin-bottom:0}
   font-weight:400;
   max-width:60ch;
 }
-.fine{font-size:var(--t-fine); color:var(--ink-3); line-height:1.58}
+.fine{font-size:var(--t-fine); color:var(--ink-3); line-height:1.58; max-width:64ch}
 .legende{
   font-size:var(--t-micro);
   font-weight:550;
@@ -195,6 +195,7 @@ p:last-child{margin-bottom:0}
 }
 .nav[data-pose="pose"]::before{opacity:0}
 
+.nav[data-pose="pose"] .btn-plein{background:var(--teja-700); font-size:var(--t0); font-weight:600}
 .nav[data-pose="pose"]{
   background:color-mix(in oklch, var(--clair) 88%, transparent);
   backdrop-filter:saturate(1.6) blur(14px);
@@ -483,7 +484,7 @@ p:last-child{margin-bottom:0}
 
 /* ------------------------------------------------------- 14. les prix */
 .prix{width:100%; border-collapse:collapse; margin-top:var(--sp-l); font-size:var(--t0)}
-.prix caption{text-align:left; font-size:var(--t-fine); color:var(--ink-3); padding-bottom:0.9rem}
+.prix caption{text-align:left; font-size:var(--t-fine); color:var(--ink-3); padding-bottom:0.9rem; max-width:72ch}
 @media (max-width:720px){.prix caption{display:block; width:100%; text-align:left}}
 .prix th,.prix td{padding:1.05rem 0.9rem; text-align:left; vertical-align:top; border-bottom:1px solid var(--ligne)}
 .prix thead th{
@@ -542,6 +543,10 @@ p:last-child{margin-bottom:0}
 .pied-bas{display:flex; flex-wrap:wrap; gap:0.6rem 1.6rem; justify-content:space-between; padding-top:var(--sp-m); font-size:var(--t-micro); color:color-mix(in oklch, #fff 55%, var(--azul-300))}
 .pied .marque b{color:#fff}
 .pied .fine{color:color-mix(in oklch, #fff 78%, var(--azul-300))}
+/* La banniere de langue est en position fixe en bas : on lui reserve sa place
+   sous le pied, sinon elle recouvre les 2 liens legaux obligatoires. */
+html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
+@media (max-width:880px){html:has(.sug:not([hidden])) .pied{padding-bottom:11rem}}
 
 /* ---------------------------------------------------------- 17. mouvement
    Règle : le contenu est visible par défaut. Les révélations n'améliorent
@@ -595,10 +600,11 @@ p:last-child{margin-bottom:0}
     background:var(--clair); color:var(--ink);
     box-shadow:0 18px 40px -14px color-mix(in oklch, var(--azul-950) 26%, transparent);
     padding:0.5rem 1.4rem 1.4rem;
-    transform:translateY(-8px); opacity:0; pointer-events:none;
-    transition:opacity .28s var(--e-quart), transform .28s var(--e-quart);
+    transform:translateY(-8px); opacity:0; pointer-events:none; visibility:hidden;
+    transition:opacity .28s var(--e-quart), transform .28s var(--e-quart), visibility 0s linear .28s;
   }
-  .nav-liens[data-ouvert="1"]{opacity:1; transform:none; pointer-events:auto}
+  .nav-liens[data-ouvert="1"]{opacity:1; transform:none; pointer-events:auto;
+    visibility:visible; transition-delay:0s}
   .nav-liens a{padding:0.85rem 0; border-bottom:1px solid var(--ligne); font-size:var(--t0); opacity:1}
   .hero{min-height:92svh}
   /* Sur mobile on reduit le bloc marque ENTIER, pas seulement le mot :
@@ -690,6 +696,7 @@ p:last-child{margin-bottom:0}
 }
 @keyframes sugEntre{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
 @media (prefers-reduced-motion: reduce){.sug{animation:none}}
+[hidden]{display:none !important}
 .sug[hidden]{display:none}
 .sug-t{flex:1 1 12rem}
 .sug-oui{
@@ -764,7 +771,7 @@ p:last-child{margin-bottom:0}
   .faits > div{padding:1.9rem clamp(1rem,2.4vw,2rem) 1.9rem 0}
   .faits > div + div{border-left:1px solid var(--ligne); padding-left:clamp(1rem,2.4vw,2rem)}
 }
-.faits .v{display:block; font-size:clamp(2rem,1.3rem+2.4vw,3rem); font-weight:700;
+.faits .v{display:block; font-size:clamp(2rem, 1.3rem + 2.4vw, 3rem); font-weight:700;
   font-variation-settings:'wdth' 114; letter-spacing:-0.03em; line-height:1; margin-bottom:0.55rem;
   font-variant-numeric:tabular-nums; color:var(--teja-700)}
 .faits .k{font-size:var(--t-body); color:var(--ink-2); line-height:1.5; max-width:32ch; margin:0}
@@ -848,9 +855,9 @@ p:last-child{margin-bottom:0}
 
 /* Bandeau de titre des pages interieures. Porte le h1 et le fil d'Ariane. */
 .ban{background:var(--azul-950); color:var(--clair); padding:clamp(4.5rem,9vw,7.5rem) 0 clamp(3rem,6vw,4.5rem)}
-.ban h1{font-size:clamp(2.1rem,1.1rem+3.9vw,3.9rem); line-height:1.04; letter-spacing:-0.028em;
+.ban h1{font-size:clamp(2.1rem, 1.1rem + 3.9vw, 3.9rem); line-height:1.04; letter-spacing:-0.028em;
   font-variation-settings:'wdth' 112; max-width:19ch; margin:0 0 1.1rem; text-wrap:balance}
-.ban-lede{font-size:clamp(1.02rem,0.96rem+0.36vw,1.22rem); line-height:1.58; max-width:51ch;
+.ban-lede{font-size:clamp(1.02rem, 0.96rem + 0.36vw, 1.22rem); line-height:1.58; max-width:51ch;
   color:color-mix(in oklch, var(--clair) 78%, transparent); margin:0}
 .ariane{display:flex; gap:.55rem; align-items:center; margin-bottom:1.6rem;
   font-size:var(--t-micro); letter-spacing:.04em; text-transform:uppercase; font-weight:600}
@@ -864,7 +871,7 @@ p:last-child{margin-bottom:0}
 .faq details{border-bottom:1px solid var(--ligne)}
 .faq summary{display:flex; gap:1.4rem; align-items:flex-start; justify-content:space-between;
   padding:1.5rem 0; cursor:pointer; list-style:none;
-  font-size:clamp(1.04rem,0.98rem+0.34vw,1.24rem); line-height:1.34;
+  font-size:clamp(1.04rem, 0.98rem + 0.34vw, 1.24rem); line-height:1.34;
   font-variation-settings:'wdth' 108; letter-spacing:-0.012em}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary span{max-width:56ch}
@@ -945,7 +952,8 @@ p:last-child{margin-bottom:0}
 .lsel summary b{white-space:nowrap}
 
 @media (min-width:881px) and (max-width:1240px){
-  .tel-nav{display:none}
+  .tel-nav{display:inline-flex}
+  .tel-nav b{display:none}
   .nav-liens{gap:1.15rem}
   .nav-liens a{font-size:var(--t-1)}
 }
@@ -958,7 +966,7 @@ p:last-child{margin-bottom:0}
   .nav{gap:0.7rem; padding-inline:1.2rem}
   .nav-liens{gap:0.72rem}
   .nav-liens a{font-size:var(--t-2)}
-  .marque{font-size:1.2rem}
+  .marque{font-size:1.32rem}
   .lsel summary b{font-size:var(--t-2)}
 }
 /* Le hero garde toujours l'espace de la barre au-dessus du titre. */
@@ -1042,8 +1050,8 @@ p:last-child{margin-bottom:0}
 .zm-s{fill:var(--azul-900)}
 .zmap a{cursor:pointer}
 .zmap a:hover .zm-p, .zmap a:hover .zm-s{fill:var(--teja-700)}
-.zm-n{font:600 15px/1 inherit; font-family:inherit; fill:var(--ink)}
-.zm-m{font:12px/1 inherit; font-family:inherit; fill:var(--ink-2)}
+.zm-n{font-family:inherit; font-size:15px; font-weight:600; line-height:1; fill:var(--ink)}
+.zm-m{font-family:inherit; font-size:12px; font-weight:400; line-height:1; fill:var(--ink-2)}
 .zmap figcaption{color:var(--ink-2); font-size:var(--t-1); margin-top:.6rem}
 
 .av-depart{display:block; margin-top:.45rem; color:oklch(0.470 0.095 80); font-size:var(--t0)}
