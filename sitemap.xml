@@ -352,36 +352,60 @@
   </url>
   <url>
     <loc>https://domivaro.speed-ecom.eu/mentions-legales/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/mentions-legales/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/aviso-legal/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/legal-notice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/mentions-legales/"/>
     <lastmod>2026-08-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
     <loc>https://domivaro.speed-ecom.eu/confidentialite/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/confidentialite/"/>
     <lastmod>2026-08-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
     <loc>https://domivaro.speed-ecom.eu/es/aviso-legal/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/mentions-legales/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/aviso-legal/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/legal-notice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/mentions-legales/"/>
     <lastmod>2026-08-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
     <loc>https://domivaro.speed-ecom.eu/es/privacidad/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/confidentialite/"/>
     <lastmod>2026-08-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
     <loc>https://domivaro.speed-ecom.eu/en/legal-notice/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/mentions-legales/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/aviso-legal/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/legal-notice/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/mentions-legales/"/>
     <lastmod>2026-08-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
     <loc>https://domivaro.speed-ecom.eu/en/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/confidentialite/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/confidentialite/"/>
     <lastmod>2026-08-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
