@@ -177,8 +177,8 @@ p:last-child{margin-bottom:0}
   box-shadow:0 1px 0 var(--ligne);
 }
 .marque{display:flex; align-items:center; gap:0.294em; text-decoration:none; color:inherit;
-  font-size:1.245rem; line-height:1}
-.marque svg{height:1.015em; width:auto; flex:none; display:block; color:var(--teja-600)}
+  font-size:1.45rem; line-height:1}
+.marque svg{height:1.47em; width:auto; flex:none; display:block; color:var(--teja-600)}
 .nav:not([data-pose="pose"]) .marque svg{color:oklch(0.780 0.130 68)}
 .pied .marque svg{color:oklch(0.780 0.130 68)}
 .marque b{
@@ -555,7 +555,7 @@ p:last-child{margin-bottom:0}
   .hero{min-height:92svh}
   /* Sur mobile on reduit le bloc marque ENTIER, pas seulement le mot :
      sinon le signe reste a la taille du grand ecran et ecrase le nom. */
-  .marque{font-size:1.14rem}
+  .marque{font-size:1.32rem}
 }
 @media (max-width:520px){
   .shell{width:min(100% - 2.1rem, var(--shell))}
@@ -881,11 +881,17 @@ p:last-child{margin-bottom:0}
   .nav-liens{gap:1.15rem}
   .nav-liens a{font-size:0.875rem}
 }
+/* Le bloc de marque a grandi de 16 pourcent le 05/08 : sous 1320 px le nom de
+   la langue disparait, il ne reste que le globe et le chevron. */
+@media (min-width:881px) and (max-width:1400px){
+  .lsel summary b{display:none}
+  .nav-liens{gap:1rem}
+}
 @media (min-width:881px) and (max-width:1080px){
   .nav{gap:0.7rem; padding-inline:1.2rem}
-  .nav-liens{gap:0.82rem}
-  .nav-liens a{font-size:0.83rem}
-  .marque{font-size:1.1rem}
+  .nav-liens{gap:0.72rem}
+  .nav-liens a{font-size:0.8rem}
+  .marque{font-size:1.2rem}
   .lsel summary b{display:none}
 }
 /* Le hero garde toujours l'espace de la barre au-dessus du titre. */
