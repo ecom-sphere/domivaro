@@ -63,7 +63,7 @@
   --t-h3:      clamp(1.32rem, 1.02rem + 1.15vw, 1.72rem);
   --t-lede:    clamp(1.12rem, 0.97rem + 0.62vw, 1.42rem);
   --t-body:    clamp(1rem, 0.955rem + 0.19vw, 1.115rem);
-  --t-fine:    var(--t-1);
+  --t-fine:    var(--t0);
   --t-micro:   var(--t-2);
   --t-3:0.75rem;
   --t-2:0.7901rem;
@@ -133,7 +133,7 @@ h3{
   font-variation-settings:'wdth' 106;
   letter-spacing:-0.015em; line-height:1.22;
 }
-p{margin:0 0 1.15em; text-wrap:pretty; max-width:68ch}
+p{margin:0 0 1.15em; text-wrap:pretty; max-width:56ch}
 p:last-child{margin-bottom:0}
 
 .lede{
@@ -163,12 +163,12 @@ p:last-child{margin-bottom:0}
 
 /* Plis gorgés de bleu : la couleur porte la marque, sans neutres autour. */
 .drench{background:var(--azul-900); color:#fff}
-.drench h1,.drench h2,.drench h3{color:#fff}
-.drench p{color:color-mix(in oklch, #fff 82%, var(--azul-300))}
-.drench .lede{color:color-mix(in oklch, #fff 86%, var(--azul-300)); line-height:1.56}
-.drench .fine{color:color-mix(in oklch, #fff 70%, var(--azul-300))}
-.drench .legende{color:var(--azul-300)}
-.drench .accent{color:oklch(0.760 0.115 48)}
+:is(.drench,.drench-noir) :is(h1,h2,h3){color:#fff}
+:is(.drench,.drench-noir) p{color:color-mix(in oklch, #fff 82%, var(--azul-300))}
+:is(.drench,.drench-noir) .lede{color:color-mix(in oklch, #fff 86%, var(--azul-300)); line-height:1.56}
+:is(.drench,.drench-noir) .fine{color:color-mix(in oklch, #fff 70%, var(--azul-300))}
+:is(.drench,.drench-noir) .legende{color:var(--azul-300)}
+:is(.drench,.drench-noir) .accent{color:oklch(0.760 0.115 48)}
 .drench-noir{background:var(--azul-950); color:#fff}
 
 /* ------------------------------------------------ 4. navigation */
@@ -220,10 +220,6 @@ p:last-child{margin-bottom:0}
 }
 .nav-liens a:hover{opacity:1}
 
-  text-decoration:none; padding:0.24rem 0.44rem; border-radius:5px;
-  opacity:.6; transition:opacity .2s var(--e-quart), background .2s var(--e-quart);
-}
-
 .nav:not([data-pose="pose"]) .btn-plein{
   background:transparent; box-shadow:inset 0 0 0 1.5px color-mix(in oklch, #fff 46%, transparent);
 }
@@ -250,7 +246,7 @@ p:last-child{margin-bottom:0}
       color-mix(in oklch, var(--azul-950) 84%, transparent) 22%,
       color-mix(in oklch, var(--azul-950) 73%, transparent) 42%,
       color-mix(in oklch, var(--azul-950) 52%, transparent) 62%,
-      color-mix(in oklch, var(--azul-950) 20%, transparent) 84%,
+      color-mix(in oklch, var(--azul-950) 58%, transparent) 84%,
       color-mix(in oklch, var(--azul-950) 42%, transparent) 100%);
 }
 .hero > .shell{position:relative; z-index:var(--z-contenu)}
@@ -258,7 +254,14 @@ p:last-child{margin-bottom:0}
   max-width:none; text-wrap:initial;
 }
 /* Terre cuite plus claire sur le hero : elle se pose sur de la photo, pas sur du blanc. */
-.hero .accent{color:oklch(0.700 0.140 47)}
+.hero .accent{color:oklch(0.862 0.092 58)}
+@media (max-width:880px){
+  .hero::after{background:linear-gradient(to top,
+    color-mix(in oklch, var(--azul-950) 80%, transparent) 0%,
+    color-mix(in oklch, var(--azul-950) 70%, transparent) 42%,
+    color-mix(in oklch, var(--azul-950) 52%, transparent) 76%,
+    color-mix(in oklch, var(--azul-950) 40%, transparent) 100%)}
+}
 .hero .lede{
   color:color-mix(in oklch, #fff 90%, var(--azul-300));
   margin-top:1.5rem; max-width:54ch;
@@ -282,6 +285,12 @@ p:last-child{margin-bottom:0}
 .pli-photo img{
   position:absolute; inset:0; z-index:var(--z-fond);
   width:100%; height:100%; object-fit:cover;
+}
+@media (max-width:880px){
+  .pli-photo::after{background:linear-gradient(to top,
+    color-mix(in oklch, var(--azul-950) 88%, transparent) 0%,
+    color-mix(in oklch, var(--azul-950) 76%, transparent) 55%,
+    color-mix(in oklch, var(--azul-950) 62%, transparent) 100%) !important}
 }
 .pli-photo::after{
   content:''; position:absolute; inset:0; z-index:1;
@@ -327,7 +336,7 @@ p:last-child{margin-bottom:0}
   padding-bottom:1px; transition:border-color .25s var(--e-quart), gap .3s var(--e-expo);
 }
 .lien-fleche:hover{border-color:var(--teja-600); gap:0.66rem}
-.drench .lien-fleche{color:oklch(0.780 0.110 50); border-bottom-color:color-mix(in oklch, oklch(0.780 0.110 50) 40%, transparent)}
+:is(.drench,.drench-noir) .lien-fleche{color:oklch(0.780 0.110 50); border-bottom-color:color-mix(in oklch, oklch(0.780 0.110 50) 40%, transparent)}
 
 /* ------------------------------------------------- 8. en-tête de pli */
 .tete{max-width:22ch}
@@ -345,7 +354,7 @@ p:last-child{margin-bottom:0}
 }
 .situ .q{
   font-size:var(--t-2); font-weight:700; letter-spacing:0.06em;
-  color:color-mix(in oklch, currentColor 55%, transparent); padding-top:0.42rem;
+  color:color-mix(in oklch, currentColor 82%, transparent); padding-top:0.42rem;
 }
 .situ p{margin:0; font-size:var(--t-h3); font-weight:450; line-height:1.34; letter-spacing:-0.012em; max-width:34ch}
 
@@ -357,11 +366,11 @@ p:last-child{margin-bottom:0}
   font-size:var(--t-3); font-weight:700; letter-spacing:0.07em;
   color:var(--teja-700); display:block; margin-bottom:0.7rem;
 }
-.drench .flow > div{border-top-color:oklch(0.760 0.115 48)}
-.drench .flow .n{color:oklch(0.780 0.110 50)}
+:is(.drench,.drench-noir) .flow > div{border-top-color:oklch(0.760 0.115 48)}
+:is(.drench,.drench-noir) .flow .n{color:oklch(0.780 0.110 50)}
 .flow h3{margin-bottom:0.6rem}
 .flow p{font-size:var(--t-fine); color:var(--ink-2); max-width:38ch}
-.drench .flow p{color:color-mix(in oklch, #fff 78%, var(--azul-300))}
+:is(.drench,.drench-noir) .flow p{color:color-mix(in oklch, #fff 78%, var(--azul-300))}
 
 /* ------------------------------------ 11. le rapport, artefact produit */
 .rapport-pli{position:relative; overflow:hidden}
@@ -373,6 +382,12 @@ p:last-child{margin-bottom:0}
 }
 .rapport-pli > .shell{position:relative; z-index:var(--z-contenu)}
 .rapport-grille{display:grid; gap:var(--sp-l); align-items:start; margin-top:var(--sp-l)}
+.rapport-grille > *{min-width:0}
+.doc{max-width:100%}
+@media (max-width:520px){
+  .doc-ligne{grid-template-columns:1fr; gap:0.25rem}
+  .doc-ligne i{white-space:normal}
+}
 @media (min-width:960px){.rapport-grille{grid-template-columns:1.12fr 0.88fr; gap:clamp(2.6rem,5vw,4.6rem); align-items:start}}
 
 .doc{
@@ -404,6 +419,8 @@ p:last-child{margin-bottom:0}
   display:grid; grid-template-columns:repeat(3, 1fr); gap:4px;
   padding:0.4rem 1.35rem 1.35rem;
 }
+.doc-photo > *{min-width:0}
+.doc-vig span{overflow-wrap:anywhere}
 .doc-photo img{aspect-ratio:4/3; object-fit:cover; border-radius:4px}
 .doc-pied{
   background:var(--clair-2); padding:0.82rem 1.35rem;
@@ -431,7 +448,7 @@ p:last-child{margin-bottom:0}
   letter-spacing:-0.035em; line-height:0.94; margin-bottom:0.6rem;
   font-variant-numeric:tabular-nums;
 }
-.preuves .k{font-size:var(--t-fine); line-height:1.5; max-width:30ch; margin:0}
+.preuves .k{font-size:var(--t-body); line-height:1.5; max-width:30ch; margin:0}
 
 /* ------------------------------------------------- 12 bis. les garanties */
 .garanties{display:grid; gap:1px; margin-top:var(--sp-l);
@@ -443,7 +460,7 @@ p:last-child{margin-bottom:0}
   text-transform:uppercase; color:var(--teja-700); margin-bottom:0.7rem}
 .gar b{display:block; font-size:clamp(1.35rem,2.4vw,1.72rem); line-height:1.08;
   font-variation-settings:'wdth' 112; letter-spacing:-0.02em; margin-bottom:0.7rem}
-.gar p{font-size:var(--t-fine); color:var(--ink-2); margin:0}
+.gar p{font-size:var(--t-body); color:var(--ink-2); margin:0}
 
 /* --------------------------------------------------------- 13. l'équipe */
 .portrait{
@@ -462,11 +479,12 @@ p:last-child{margin-bottom:0}
   text-transform:uppercase; color:var(--teja-700); display:block; margin-bottom:0.5rem;
 }
 .pers h3{margin-bottom:0.75rem}
-.pers p{font-size:var(--t-fine); color:var(--ink-2)}
+.pers p{font-size:var(--t-body); color:var(--ink-2)}
 
 /* ------------------------------------------------------- 14. les prix */
-.prix{width:100%; border-collapse:collapse; margin-top:var(--sp-l); font-size:var(--t-1)}
+.prix{width:100%; border-collapse:collapse; margin-top:var(--sp-l); font-size:var(--t0)}
 .prix caption{text-align:left; font-size:var(--t-fine); color:var(--ink-3); padding-bottom:0.9rem}
+@media (max-width:720px){.prix caption{display:block; width:100%; text-align:left}}
 .prix th,.prix td{padding:1.05rem 0.9rem; text-align:left; vertical-align:top; border-bottom:1px solid var(--ligne)}
 .prix thead th{
   border-bottom:1.5px solid var(--ligne-f); font-size:var(--t-micro);
@@ -508,7 +526,7 @@ p:last-child{margin-bottom:0}
 .lang .s[data-ok]{background:color-mix(in oklch, oklch(0.560 0.115 152) 16%, transparent); color:oklch(0.395 0.100 152)}
 .lang .s[data-part]{background:color-mix(in oklch, var(--teja-600) 17%, transparent); color:var(--teja-700)}
 .lang .s[data-no]{background:var(--sur-1); color:var(--ink-3)}
-.lang .d{font-size:var(--t-fine); color:var(--ink-2); margin:0; max-width:52ch}
+.lang .d{font-size:var(--t-body); color:var(--ink-2); margin:0; max-width:43ch}
 
 /* ------------------------------------------------------ 16. pied de page */
 .pied{background:var(--azul-950); color:color-mix(in oklch, #fff 76%, var(--azul-300)); padding-block:var(--sp-l) var(--sp-m)}
@@ -517,9 +535,13 @@ p:last-child{margin-bottom:0}
 .pied-haut{display:grid; gap:var(--sp-m); padding-bottom:var(--sp-m); border-bottom:1px solid color-mix(in oklch, #fff 15%, transparent)}
 @media (min-width:760px){.pied-haut{grid-template-columns:1.5fr 1fr 1fr; gap:2.4rem}}
 .pied h4{margin:0 0 0.8rem; font-size:var(--t-micro); letter-spacing:0.055em; text-transform:uppercase; color:var(--azul-300); font-weight:600}
-.pied ul{list-style:none; margin:0; padding:0; display:grid; gap:0.5rem; font-size:var(--t-1)}
+.pied ul{list-style:none; margin:0; padding:0; display:grid; gap:0.35rem; font-size:var(--t0)}
+.pied ul a{display:inline-block; padding-block:0.45rem}
+.pied-tel a{display:inline-block; padding-block:0.3rem}
+.pied-bas a{display:inline-block; padding-block:0.4rem}
 .pied-bas{display:flex; flex-wrap:wrap; gap:0.6rem 1.6rem; justify-content:space-between; padding-top:var(--sp-m); font-size:var(--t-micro); color:color-mix(in oklch, #fff 55%, var(--azul-300))}
 .pied .marque b{color:#fff}
+.pied .fine{color:color-mix(in oklch, #fff 78%, var(--azul-300))}
 
 /* ---------------------------------------------------------- 17. mouvement
    Règle : le contenu est visible par défaut. Les révélations n'améliorent
@@ -606,7 +628,7 @@ p:last-child{margin-bottom:0}
 @media print{
   .nav,.burger,.hero-actions{display:none}
   body{background:#fff; color:#000}
-  .drench,.pli-photo{background:#fff; color:#000}
+  .drench,.drench-noir,.pli-photo{background:#fff; color:#000}
 }
 
 /* ==========================================================================
@@ -704,7 +726,7 @@ p:last-child{margin-bottom:0}
   box-shadow:0 0 0 3px color-mix(in oklch, var(--teja-600) 20%, transparent);
 }
 .champ input:user-invalid{border-color:oklch(0.500 0.170 26)}
-.champ small{font-size:var(--t-1); color:var(--ink-3); line-height:1.45}
+.champ small{font-size:var(--t0); color:var(--ink-3); line-height:1.45}
 .form-pied{display:grid; gap:0.9rem; justify-items:start}
 .form-pied small{max-width:52ch}
 .btn-vert{background:oklch(0.520 0.130 152); color:#fff}
@@ -745,7 +767,7 @@ p:last-child{margin-bottom:0}
 .faits .v{display:block; font-size:clamp(2rem,1.3rem+2.4vw,3rem); font-weight:700;
   font-variation-settings:'wdth' 114; letter-spacing:-0.03em; line-height:1; margin-bottom:0.55rem;
   font-variant-numeric:tabular-nums; color:var(--teja-700)}
-.faits .k{font-size:var(--t-fine); color:var(--ink-2); line-height:1.5; max-width:32ch; margin:0}
+.faits .k{font-size:var(--t-body); color:var(--ink-2); line-height:1.5; max-width:32ch; margin:0}
 
 .communes{display:grid; gap:1px; margin-top:var(--sp-l); background:var(--ligne);
   border-block:1px solid var(--ligne); grid-template-columns:1fr}
@@ -788,7 +810,7 @@ p:last-child{margin-bottom:0}
   color:color-mix(in oklch, #fff 90%, var(--azul-300)); max-width:38ch}
 .avis blockquote::before{content:'\201C'}
 .avis blockquote::after{content:'\201D'}
-.avis figcaption{display:grid; gap:0.18rem; font-size:var(--t-1);
+.avis figcaption{display:grid; gap:0.18rem; font-size:var(--t0);
   color:color-mix(in oklch, #fff 62%, var(--azul-300))}
 .avis figcaption b{font-size:var(--t0); font-weight:650; color:#fff;
   font-variation-settings:'wdth' 104}
@@ -814,7 +836,7 @@ p:last-child{margin-bottom:0}
   border-radius:10px; background:color-mix(in oklch, currentColor 5%, transparent)}
 .form-ok svg{width:26px; height:26px; flex:none; margin-top:2px; color:var(--teja-600)}
 .form-ok b{display:block; font-size:var(--t1); font-variation-settings:'wdth' 108; margin-bottom:.35rem}
-.form-ok p{margin:0; font-size:var(--t-fine); color:var(--ink-2); max-width:52ch}
+.form-ok p{margin:0; font-size:var(--t-body); color:var(--ink-2); max-width:43ch}
 .form-ok:focus{outline:none}
 
 /* Case de consentement du formulaire. */
@@ -828,7 +850,7 @@ p:last-child{margin-bottom:0}
 .ban{background:var(--azul-950); color:var(--clair); padding:clamp(4.5rem,9vw,7.5rem) 0 clamp(3rem,6vw,4.5rem)}
 .ban h1{font-size:clamp(2.1rem,1.1rem+3.9vw,3.9rem); line-height:1.04; letter-spacing:-0.028em;
   font-variation-settings:'wdth' 112; max-width:19ch; margin:0 0 1.1rem; text-wrap:balance}
-.ban-lede{font-size:clamp(1.02rem,0.96rem+0.36vw,1.22rem); line-height:1.58; max-width:62ch;
+.ban-lede{font-size:clamp(1.02rem,0.96rem+0.36vw,1.22rem); line-height:1.58; max-width:51ch;
   color:color-mix(in oklch, var(--clair) 78%, transparent); margin:0}
 .ariane{display:flex; gap:.55rem; align-items:center; margin-bottom:1.6rem;
   font-size:var(--t-micro); letter-spacing:.04em; text-transform:uppercase; font-weight:600}
@@ -850,7 +872,7 @@ p:last-child{margin-bottom:0}
   transition:transform .26s var(--e-quart)}
 .faq details[open] summary svg{transform:rotate(45deg)}
 .faq summary:hover{color:var(--teja-700)}
-.faq details p{margin:0 0 1.6rem; max-width:70ch; font-size:var(--t-fine); line-height:1.66; color:var(--ink-2)}
+.faq details p{margin:0 0 1.6rem; max-width:57ch; font-size:var(--t-body); line-height:1.66; color:var(--ink-2)}
 @media (prefers-reduced-motion:reduce){.faq summary svg{transition:none}}
 
 /* Un bouton par formule, sous la grille de prix. */
@@ -880,7 +902,7 @@ p:last-child{margin-bottom:0}
 .prix-cta .btn.phare{background:var(--sable); position:relative}
 .prix-cta .badge{display:block; font-style:normal; font-size:var(--t-micro); font-weight:700;
   letter-spacing:.06em; text-transform:uppercase; color:var(--teja-700); margin-bottom:.4rem}
-.prix-cta .pp{font-size:var(--t-micro); color:var(--ink-3); opacity:.9}
+.prix-cta .pp{font-size:var(--t-1); color:var(--ink-2)}
 
 /* Les 38 points, publies. Numerotation continue sur 6 familles. */
 .p38{list-style:none; margin-top:var(--sp-l); display:grid; gap:var(--sp-m)}
@@ -890,7 +912,7 @@ p:last-child{margin-bottom:0}
 .p38-f ol{list-style:none; display:grid; gap:.62rem}
 .p38-f li{display:flex; gap:.85rem; font-size:var(--t-fine); line-height:1.5; color:var(--ink-2)}
 .p38-n{flex:none; width:1.9rem; font-variant-numeric:tabular-nums; font-weight:600;
-  color:var(--ink-3); opacity:.72}
+  color:var(--ink-2)}
 
 /* CIBLES TACTILES. Sous 880 px, tout element actionnable fait au moins 44 px
    de haut, seuil des recommandations Apple. Mesure avant : 178 cibles sous 44,
@@ -930,7 +952,6 @@ p:last-child{margin-bottom:0}
 /* Le bloc de marque a grandi de 16 pourcent le 05/08 : sous 1320 px le nom de
    la langue disparait, il ne reste que le globe et le chevron. */
 @media (min-width:881px) and (max-width:1400px){
-  .lsel summary b{display:none}
   .nav-liens{gap:1rem}
 }
 @media (min-width:881px) and (max-width:1080px){
@@ -938,7 +959,7 @@ p:last-child{margin-bottom:0}
   .nav-liens{gap:0.72rem}
   .nav-liens a{font-size:var(--t-2)}
   .marque{font-size:1.2rem}
-  .lsel summary b{display:none}
+  .lsel summary b{font-size:var(--t-2)}
 }
 /* Le hero garde toujours l'espace de la barre au-dessus du titre. */
 .hero{padding-block:max(clamp(6rem,14vh,9rem), calc(var(--navh, 60px) + 2.6rem)) clamp(3rem,8vh,5.4rem)}
@@ -949,7 +970,7 @@ p:last-child{margin-bottom:0}
 .duo img{width:100%; height:auto; display:block; aspect-ratio:3/2; object-fit:cover;
   border-radius:12px;
   box-shadow:0 18px 40px -22px color-mix(in oklch, var(--azul-950) 46%, transparent)}
-.duo figcaption{margin:1rem 0 0; font-size:var(--t-fine); line-height:1.6; color:var(--ink-2); max-width:62ch}
+.duo figcaption{margin:1rem 0 0; font-size:var(--t-body); line-height:1.6; color:var(--ink-2); max-width:51ch}
 
 /* Les biographies passent a 2 paragraphes : on aere. */
 .pers p{margin-bottom:0.9rem}
@@ -1001,13 +1022,17 @@ p:last-child{margin-bottom:0}
 .fam-liste{list-style:none; margin:0 0 var(--sp-m); padding:0; max-width:56rem}
 .fam-liste li{display:flex; gap:1rem; align-items:baseline; padding:.55rem 0; border-bottom:1px solid var(--ligne)}
 .fam-liste b{flex:1}
-.fam-liste span{color:var(--ink-2); font-size:var(--t-1); white-space:nowrap}
+.fam-liste span{color:var(--ink-2); font-size:var(--t0); white-space:nowrap}
+@media (max-width:640px){
+  .fam-liste li{flex-wrap:wrap; gap:0.1rem 1rem}
+  .fam-liste span{white-space:normal}
+}
 .fam-liste .fam-r{color:var(--ink); font-weight:600}
 .minute{list-style:none; margin:0; padding:0; max-width:44rem}
 .minute li{position:relative; padding:0 0 1.3rem 5.4rem}
 .minute li::before{content:""; position:absolute; left:2.05rem; top:.45rem; bottom:-.45rem; width:2px; background:var(--ligne)}
 .minute li:last-child::before{display:none}
-.minute .mn-h{position:absolute; left:0; top:.02rem; font-variant-numeric:tabular-nums; font-weight:700; color:var(--teja-600); font-size:var(--t0)}
+.minute .mn-h{position:absolute; left:0; top:.02rem; font-variant-numeric:tabular-nums; font-weight:700; color:var(--teja-700); font-size:var(--t0)}
 .minute b{display:block; margin-bottom:.15rem}
 .minute p{color:var(--ink-2); font-size:var(--t0); margin:0}
 .zmap{margin:var(--sp-m) 0}
@@ -1021,4 +1046,5 @@ p:last-child{margin-bottom:0}
 .zm-m{font:12px/1 inherit; font-family:inherit; fill:var(--ink-2)}
 .zmap figcaption{color:var(--ink-2); font-size:var(--t-1); margin-top:.6rem}
 
-.av-depart{display:block; margin-top:.45rem; color:oklch(0.560 0.100 80); font-size:var(--t-1)}
+.av-depart{display:block; margin-top:.45rem; color:oklch(0.470 0.095 80); font-size:var(--t0)}
+:is(.drench,.drench-noir) .av-depart{color:oklch(0.845 0.095 82)}
