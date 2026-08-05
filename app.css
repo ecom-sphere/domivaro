@@ -194,13 +194,9 @@ p:last-child{margin-bottom:0}
 }
 .nav-liens a:hover{opacity:1}
 
-.langue{display:flex; gap:0.1rem; align-items:center; font-size:0.8rem; font-weight:600}
-.langue a{
   text-decoration:none; padding:0.24rem 0.44rem; border-radius:5px;
   opacity:.6; transition:opacity .2s var(--e-quart), background .2s var(--e-quart);
 }
-.langue a:hover{opacity:1; background:color-mix(in oklch, currentColor 12%, transparent)}
-.langue a[aria-current="true"]{opacity:1; background:color-mix(in oklch, currentColor 15%, transparent)}
 
 .nav:not([data-pose="pose"]) .btn-plein{
   background:transparent; box-shadow:inset 0 0 0 1.5px color-mix(in oklch, #fff 46%, transparent);
@@ -470,7 +466,7 @@ p:last-child{margin-bottom:0}
 
 /* --------------------------------------------------- 15. zones, langues */
 .zones{display:flex; flex-wrap:wrap; gap:0.55rem; margin-top:var(--sp-m)}
-.zones span{
+.zones > a{text-decoration:none; 
   padding:0.44rem 0.86rem; border-radius:7px;
   background:color-mix(in oklch, currentColor 10%, transparent);
   font-size:0.885rem; font-weight:500;
@@ -556,7 +552,6 @@ p:last-child{margin-bottom:0}
   }
   .nav-liens[data-ouvert="1"]{opacity:1; transform:none; pointer-events:auto}
   .nav-liens a{padding:0.85rem 0; border-bottom:1px solid var(--ligne); font-size:1.04rem; opacity:1}
-  .nav-liens .langue{border-bottom:0; padding-top:0.9rem; justify-content:flex-start}
   .hero{min-height:92svh}
   /* Sur mobile on reduit le bloc marque ENTIER, pas seulement le mot :
      sinon le signe reste a la taille du grand ecran et ecrase le nom. */
