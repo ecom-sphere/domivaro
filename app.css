@@ -169,6 +169,21 @@ p:last-child{margin-bottom:0}
   transition:background .45s var(--e-quart), backdrop-filter .45s var(--e-quart),
              color .45s var(--e-quart), box-shadow .45s var(--e-quart);
 }
+/* ECRAN DE PROTECTION. La barre est transparente au-dessus du pli, posee sur
+   une photographie dont la luminance monte a 1,00 sous les libelles : du blanc
+   sur du blanc, contraste 1,00:1 mesure au navigateur le 05/08. Un degrade
+   sombre, invisible a l oeil, garantit le contraste quelle que soit la photo. */
+.nav::before{
+  content:""; position:absolute; inset:0 0 auto 0; height:230%;
+  background:linear-gradient(to bottom,
+    oklch(0.215 0.030 250 / 0.62) 0%,
+    oklch(0.215 0.030 250 / 0.42) 45%,
+    oklch(0.215 0.030 250 / 0.00) 100%);
+  pointer-events:none; z-index:-1;
+  transition:opacity .45s var(--e-quart);
+}
+.nav[data-pose="pose"]::before{opacity:0}
+
 .nav[data-pose="pose"]{
   background:color-mix(in oklch, var(--clair) 88%, transparent);
   backdrop-filter:saturate(1.6) blur(14px);
