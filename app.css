@@ -63,8 +63,19 @@
   --t-h3:      clamp(1.32rem, 1.02rem + 1.15vw, 1.72rem);
   --t-lede:    clamp(1.12rem, 0.97rem + 0.62vw, 1.42rem);
   --t-body:    clamp(1rem, 0.955rem + 0.19vw, 1.115rem);
-  --t-fine:    0.905rem;
-  --t-micro:   0.775rem;
+  --t-fine:    var(--t-1);
+  --t-micro:   var(--t-2);
+  --t-3:0.75rem;
+  --t-2:0.7901rem;
+  --t-1:0.8889rem;
+  --t0:1.0rem;
+  --t1:1.125rem;
+  --t2:1.2656rem;
+  --t3:1.4238rem;
+  --t4:1.6018rem;
+  --t5:1.802rem;
+  --t6:2.0273rem
+  /* echelle 1,125, base 16px, plancher 12px */;
 
   --sp-pli:  clamp(5.5rem, 3.2rem + 9.5vw, 10.5rem);
   --sp-l:    clamp(2.6rem, 1.8rem + 3.2vw, 4.4rem);
@@ -204,7 +215,7 @@ p:last-child{margin-bottom:0}
 }
 .nav-liens{display:flex; align-items:center; gap:1.7rem}
 .nav-liens a{
-  text-decoration:none; font-size:0.925rem; font-weight:500;
+  text-decoration:none; font-size:var(--t-1); font-weight:500;
   opacity:.86; transition:opacity .2s var(--e-quart);
 }
 .nav-liens a:hover{opacity:1}
@@ -287,7 +298,7 @@ p:last-child{margin-bottom:0}
 }
 .credit{
   position:absolute; right:0.85rem; bottom:0.7rem; z-index:var(--z-contenu);
-  font-size:0.66rem; letter-spacing:0.03em;
+  font-size:var(--t-3); letter-spacing:0.03em;
   color:color-mix(in oklch, #fff 52%, transparent);
 }
 
@@ -295,7 +306,7 @@ p:last-child{margin-bottom:0}
 .btn{
   display:inline-flex; align-items:center; gap:0.55rem;
   padding:0.92rem 1.65rem; border-radius:9px;
-  font-size:1.005rem; font-weight:600; font-variation-settings:'wdth' 102;
+  font-size:var(--t0); font-weight:600; font-variation-settings:'wdth' 102;
   letter-spacing:-0.005em; text-decoration:none; border:0; cursor:pointer;
   transition:transform .35s var(--e-expo), background .25s var(--e-quart),
              box-shadow .35s var(--e-expo);
@@ -333,7 +344,7 @@ p:last-child{margin-bottom:0}
   display:grid; grid-template-columns:2.3rem 1fr; gap:0 1.15rem; align-items:start;
 }
 .situ .q{
-  font-size:0.78rem; font-weight:700; letter-spacing:0.06em;
+  font-size:var(--t-2); font-weight:700; letter-spacing:0.06em;
   color:color-mix(in oklch, currentColor 55%, transparent); padding-top:0.42rem;
 }
 .situ p{margin:0; font-size:var(--t-h3); font-weight:450; line-height:1.34; letter-spacing:-0.012em; max-width:34ch}
@@ -343,7 +354,7 @@ p:last-child{margin-bottom:0}
 @media (min-width:880px){.flow{grid-template-columns:repeat(3, 1fr); gap:clamp(2rem,4vw,3.4rem)}}
 .flow > div{position:relative; padding-top:1.5rem; border-top:2.5px solid var(--teja-600)}
 .flow .n{
-  font-size:0.755rem; font-weight:700; letter-spacing:0.07em;
+  font-size:var(--t-3); font-weight:700; letter-spacing:0.07em;
   color:var(--teja-700); display:block; margin-bottom:0.7rem;
 }
 .drench .flow > div{border-top-color:oklch(0.760 0.115 48)}
@@ -374,17 +385,17 @@ p:last-child{margin-bottom:0}
   background:var(--azul-900); color:#fff; padding:1.05rem 1.35rem;
   display:flex; align-items:baseline; justify-content:space-between; gap:1rem; flex-wrap:wrap;
 }
-.doc-tete b{font-size:1.02rem; font-weight:650; font-variation-settings:'wdth' 106; letter-spacing:-0.012em}
-.doc-tete span{font-size:0.755rem; color:var(--azul-300); letter-spacing:0.045em; text-transform:uppercase; font-weight:550}
+.doc-tete b{font-size:var(--t0); font-weight:650; font-variation-settings:'wdth' 106; letter-spacing:-0.012em}
+.doc-tete span{font-size:var(--t-3); color:var(--azul-300); letter-spacing:0.045em; text-transform:uppercase; font-weight:550}
 .doc-corps{padding:0.4rem 1.35rem 1.15rem}
 .doc-ligne{
   display:grid; grid-template-columns:1fr auto; gap:0.7rem; align-items:center;
   padding:0.68rem 0; border-bottom:1px solid var(--ligne);
-  font-size:0.895rem; color:var(--ink-2);
+  font-size:var(--t-1); color:var(--ink-2);
 }
 .doc-ligne:last-of-type{border-bottom:0}
 .doc-ligne i{
-  font-style:normal; font-size:0.735rem; font-weight:650; letter-spacing:0.035em;
+  font-style:normal; font-size:var(--t-3); font-weight:650; letter-spacing:0.035em;
   padding:0.2rem 0.52rem; border-radius:99px; white-space:nowrap;
 }
 .ok{background:color-mix(in oklch, oklch(0.560 0.115 152) 15%, transparent); color:oklch(0.400 0.100 152)}
@@ -396,7 +407,7 @@ p:last-child{margin-bottom:0}
 .doc-photo img{aspect-ratio:4/3; object-fit:cover; border-radius:4px}
 .doc-pied{
   background:var(--clair-2); padding:0.82rem 1.35rem;
-  font-size:0.755rem; color:var(--ink-3); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
+  font-size:var(--t-3); color:var(--ink-3); display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap;
 }
 
 /* ------------------------------------------------------- 12. les preuves */
@@ -454,7 +465,7 @@ p:last-child{margin-bottom:0}
 .pers p{font-size:var(--t-fine); color:var(--ink-2)}
 
 /* ------------------------------------------------------- 14. les prix */
-.prix{width:100%; border-collapse:collapse; margin-top:var(--sp-l); font-size:0.925rem}
+.prix{width:100%; border-collapse:collapse; margin-top:var(--sp-l); font-size:var(--t-1)}
 .prix caption{text-align:left; font-size:var(--t-fine); color:var(--ink-3); padding-bottom:0.9rem}
 .prix th,.prix td{padding:1.05rem 0.9rem; text-align:left; vertical-align:top; border-bottom:1px solid var(--ligne)}
 .prix thead th{
@@ -463,12 +474,12 @@ p:last-child{margin-bottom:0}
 }
 .prix th:first-child,.prix td:first-child{padding-left:0}
 .prix tbody th{
-  font-size:1.08rem; font-weight:650; font-variation-settings:'wdth' 106;
+  font-size:var(--t1); font-weight:650; font-variation-settings:'wdth' 106;
   letter-spacing:-0.012em; color:var(--ink);
 }
 .prix tbody th small{display:block; font-size:var(--t-fine); font-weight:400; color:var(--ink-3); margin-top:0.28rem; letter-spacing:0}
 .prix .p{
-  font-size:1.42rem; font-weight:700; font-variation-settings:'wdth' 110;
+  font-size:var(--t3); font-weight:700; font-variation-settings:'wdth' 110;
   letter-spacing:-0.028em; white-space:nowrap; font-variant-numeric:tabular-nums;
 }
 .prix .p em{display:block; font-style:normal; font-size:var(--t-micro); font-weight:500; color:var(--ink-3); letter-spacing:0.02em; margin-top:0.2rem}
@@ -484,7 +495,7 @@ p:last-child{margin-bottom:0}
 .zones > a{text-decoration:none; 
   padding:0.44rem 0.86rem; border-radius:7px;
   background:color-mix(in oklch, currentColor 10%, transparent);
-  font-size:0.885rem; font-weight:500;
+  font-size:var(--t-1); font-weight:500;
 }
 .langs{display:grid; gap:0; margin-top:var(--sp-l); border-top:1px solid var(--ligne)}
 .lang{
@@ -492,8 +503,8 @@ p:last-child{margin-bottom:0}
   align-items:baseline; padding:1.1rem 0; border-bottom:1px solid var(--ligne);
 }
 @media (max-width:640px){.lang{grid-template-columns:1fr auto}.lang .d{grid-column:1/-1}}
-.lang .n{font-size:1.08rem; font-weight:650; font-variation-settings:'wdth' 106}
-.lang .s{font-size:0.735rem; font-weight:650; letter-spacing:0.04em; padding:0.2rem 0.55rem; border-radius:99px; white-space:nowrap}
+.lang .n{font-size:var(--t1); font-weight:650; font-variation-settings:'wdth' 106}
+.lang .s{font-size:var(--t-3); font-weight:650; letter-spacing:0.04em; padding:0.2rem 0.55rem; border-radius:99px; white-space:nowrap}
 .lang .s[data-ok]{background:color-mix(in oklch, oklch(0.560 0.115 152) 16%, transparent); color:oklch(0.395 0.100 152)}
 .lang .s[data-part]{background:color-mix(in oklch, var(--teja-600) 17%, transparent); color:var(--teja-700)}
 .lang .s[data-no]{background:var(--sur-1); color:var(--ink-3)}
@@ -506,7 +517,7 @@ p:last-child{margin-bottom:0}
 .pied-haut{display:grid; gap:var(--sp-m); padding-bottom:var(--sp-m); border-bottom:1px solid color-mix(in oklch, #fff 15%, transparent)}
 @media (min-width:760px){.pied-haut{grid-template-columns:1.5fr 1fr 1fr; gap:2.4rem}}
 .pied h4{margin:0 0 0.8rem; font-size:var(--t-micro); letter-spacing:0.055em; text-transform:uppercase; color:var(--azul-300); font-weight:600}
-.pied ul{list-style:none; margin:0; padding:0; display:grid; gap:0.5rem; font-size:0.895rem}
+.pied ul{list-style:none; margin:0; padding:0; display:grid; gap:0.5rem; font-size:var(--t-1)}
 .pied-bas{display:flex; flex-wrap:wrap; gap:0.6rem 1.6rem; justify-content:space-between; padding-top:var(--sp-m); font-size:var(--t-micro); color:color-mix(in oklch, #fff 55%, var(--azul-300))}
 .pied .marque b{color:#fff}
 
@@ -566,7 +577,7 @@ p:last-child{margin-bottom:0}
     transition:opacity .28s var(--e-quart), transform .28s var(--e-quart);
   }
   .nav-liens[data-ouvert="1"]{opacity:1; transform:none; pointer-events:auto}
-  .nav-liens a{padding:0.85rem 0; border-bottom:1px solid var(--ligne); font-size:1.04rem; opacity:1}
+  .nav-liens a{padding:0.85rem 0; border-bottom:1px solid var(--ligne); font-size:var(--t0); opacity:1}
   .hero{min-height:92svh}
   /* Sur mobile on reduit le bloc marque ENTIER, pas seulement le mot :
      sinon le signe reste a la taille du grand ecran et ecrase le nom. */
@@ -574,7 +585,7 @@ p:last-child{margin-bottom:0}
 }
 @media (max-width:520px){
   .shell{width:min(100% - 2.1rem, var(--shell))}
-  .hero-pied{gap:0.4rem 1.1rem; font-size:0.7rem}
+  .hero-pied{gap:0.4rem 1.1rem; font-size:var(--t-3)}
   .doc-tete,.doc-corps,.doc-photo,.doc-pied{padding-inline:1rem}
 }
 
@@ -589,7 +600,7 @@ p:last-child{margin-bottom:0}
     content:attr(data-l) ' '; font-size:var(--t-micro); letter-spacing:0.045em;
     text-transform:uppercase; color:var(--ink-3); font-weight:600; display:block; margin-bottom:0.15rem;
   }
-  .prix .p{font-size:1.62rem}
+  .prix .p{font-size:var(--t4)}
 }
 
 @media print{
@@ -608,7 +619,7 @@ p:last-child{margin-bottom:0}
   list-style:none; cursor:pointer;
   display:inline-flex; align-items:center; gap:0.42rem;
   padding:0.5rem 0.7rem; border-radius:8px;
-  font-size:0.875rem; font-weight:550;
+  font-size:var(--t-1); font-weight:550;
   min-height:44px;                      /* cible tactile conforme */
   transition:background .2s var(--e-quart);
 }
@@ -635,7 +646,7 @@ p:last-child{margin-bottom:0}
 .lsel-menu a{
   display:flex; align-items:center; justify-content:space-between; gap:1rem;
   padding:0.66rem 0.72rem; border-radius:7px;
-  text-decoration:none; font-size:0.94rem; font-weight:500; min-height:44px;
+  text-decoration:none; font-size:var(--t-1); font-weight:500; min-height:44px;
   transition:background .16s var(--e-quart);
 }
 .lsel-menu a:hover{background:var(--sur-1)}
@@ -652,7 +663,7 @@ p:last-child{margin-bottom:0}
   padding:0.85rem 1rem; border-radius:12px;
   background:var(--azul-900); color:#fff;
   box-shadow:0 16px 40px -12px color-mix(in oklch, var(--azul-950) 55%, transparent);
-  font-size:0.9rem;
+  font-size:var(--t-1);
   animation:sugEntre .5s var(--e-expo) .8s backwards;
 }
 @keyframes sugEntre{from{opacity:0; transform:translateY(14px)} to{opacity:1; transform:none}}
@@ -679,9 +690,9 @@ p:last-child{margin-bottom:0}
 @media (min-width:680px){.form{grid-template-columns:1fr 1fr}}
 .champ{margin:0; display:grid; gap:0.4rem}
 .champ.large{grid-column:1/-1}
-.champ label{font-size:0.925rem; font-weight:600; color:var(--ink)}
+.champ label{font-size:var(--t-1); font-weight:600; color:var(--ink)}
 .champ input,.champ select,.champ textarea{
-  font:inherit; font-size:1.02rem; color:var(--ink);
+  font:inherit; font-size:var(--t0); color:var(--ink);
   padding:0.78rem 0.9rem; border-radius:9px;
   background:#fff; border:1.5px solid var(--ligne-f);
   transition:border-color .18s var(--e-quart), box-shadow .18s var(--e-quart);
@@ -693,7 +704,7 @@ p:last-child{margin-bottom:0}
   box-shadow:0 0 0 3px color-mix(in oklch, var(--teja-600) 20%, transparent);
 }
 .champ input:user-invalid{border-color:oklch(0.500 0.170 26)}
-.champ small{font-size:0.845rem; color:var(--ink-3); line-height:1.45}
+.champ small{font-size:var(--t-1); color:var(--ink-3); line-height:1.45}
 .form-pied{display:grid; gap:0.9rem; justify-items:start}
 .form-pied small{max-width:52ch}
 .btn-vert{background:oklch(0.520 0.130 152); color:#fff}
@@ -718,7 +729,7 @@ p:last-child{margin-bottom:0}
 }
 
 /* ============================ 22. PAGES PAR COMMUNE ======================== */
-.fil{font-size:0.82rem; display:flex; flex-wrap:wrap; gap:0.45rem; align-items:center;
+.fil{font-size:var(--t-2); display:flex; flex-wrap:wrap; gap:0.45rem; align-items:center;
   color:color-mix(in oklch, #fff 74%, var(--azul-300))}
 .fil a{text-decoration:none; opacity:.85} .fil a:hover{opacity:1; text-decoration:underline; text-underline-offset:3px}
 .fil b{font-weight:600; color:#fff}
@@ -743,9 +754,9 @@ p:last-child{margin-bottom:0}
 .commune{background:var(--clair); padding:1.6rem 1.4rem 1.5rem; text-decoration:none; display:grid;
   gap:0.5rem; align-content:start; transition:background .22s var(--e-quart)}
 .commune:hover{background:#fff}
-.commune h2{font-size:1.42rem; letter-spacing:-0.02em}
+.commune h2{font-size:var(--t3); letter-spacing:-0.02em}
 .commune .fine{margin:0}
-.commune .lien-fleche{border:0; padding:0; margin-top:0.5rem; font-size:0.9rem}
+.commune .lien-fleche{border:0; padding:0; margin-top:0.5rem; font-size:var(--t-1)}
 .commune:hover .lien-fleche{gap:0.66rem}
 
 /* ============================ 23. AVIS CLIENTS ============================ */
@@ -768,30 +779,30 @@ p:last-child{margin-bottom:0}
 .avis figure{margin:0; padding:1.9rem 0; break-inside:avoid; -webkit-column-break-inside:avoid;
   border-bottom:1px solid color-mix(in oklch, currentColor 18%, transparent)}
 .av-lang{display:inline-block; margin-top:.5rem; padding:.18rem .5rem; border-radius:2px;
-  font-size:calc(var(--t-micro) * .94); letter-spacing:.04em; text-transform:uppercase;
+  font-size:var(--t-3); letter-spacing:.04em; text-transform:uppercase;
   color:color-mix(in oklch, #fff 62%, transparent);
   border:1px solid color-mix(in oklch, currentColor 26%, transparent)}
 .et5{display:flex; gap:2px; margin-bottom:1.1rem; color:oklch(0.780 0.130 72)}
 .et5 svg{width:15px; height:15px}
-.avis blockquote{margin:0 0 1.3rem; font-size:1.03rem; line-height:1.56;
+.avis blockquote{margin:0 0 1.3rem; font-size:var(--t0); line-height:1.56;
   color:color-mix(in oklch, #fff 90%, var(--azul-300)); max-width:38ch}
 .avis blockquote::before{content:'\201C'}
 .avis blockquote::after{content:'\201D'}
-.avis figcaption{display:grid; gap:0.18rem; font-size:0.855rem;
+.avis figcaption{display:grid; gap:0.18rem; font-size:var(--t-1);
   color:color-mix(in oklch, #fff 62%, var(--azul-300))}
-.avis figcaption b{font-size:0.97rem; font-weight:650; color:#fff;
+.avis figcaption b{font-size:var(--t0); font-weight:650; color:#fff;
   font-variation-settings:'wdth' 104}
 
 /* Le numero dans la barre de navigation et le pied. */
 .tel-nav{display:inline-flex; align-items:center; gap:0.45rem; text-decoration:none;
-  font-size:0.925rem; font-weight:600; padding:0.5rem 0.55rem; border-radius:8px; min-height:44px;
+  font-size:var(--t-1); font-weight:600; padding:0.5rem 0.55rem; border-radius:8px; min-height:44px;
   transition:background .2s var(--e-quart)}
 .tel-nav:hover{background:color-mix(in oklch, currentColor 12%, transparent)}
 .tel-nav svg{width:16px; height:16px; opacity:.8; flex:none}
 .tel-nav b{font-weight:600; font-variant-numeric:tabular-nums; letter-spacing:-0.005em}
 @media (max-width:1180px){.tel-nav b{display:none} .tel-nav{padding-inline:0.5rem}}
 @media (max-width:880px){.tel-nav b{display:inline}}
-.pied-tel{margin-top:1.1rem; font-size:0.925rem; line-height:1.8}
+.pied-tel{margin-top:1.1rem; font-size:var(--t-1); line-height:1.8}
 .pied-tel a{text-decoration:none; color:#fff; font-variant-numeric:tabular-nums}
 .pied-tel a:hover{text-decoration:underline; text-underline-offset:3px}
 
@@ -802,7 +813,7 @@ p:last-child{margin-bottom:0}
   padding:1.6rem 1.7rem; border:1px solid color-mix(in oklch, currentColor 26%, transparent);
   border-radius:10px; background:color-mix(in oklch, currentColor 5%, transparent)}
 .form-ok svg{width:26px; height:26px; flex:none; margin-top:2px; color:var(--teja-600)}
-.form-ok b{display:block; font-size:1.12rem; font-variation-settings:'wdth' 108; margin-bottom:.35rem}
+.form-ok b{display:block; font-size:var(--t1); font-variation-settings:'wdth' 108; margin-bottom:.35rem}
 .form-ok p{margin:0; font-size:var(--t-fine); color:var(--ink-2); max-width:52ch}
 .form-ok:focus{outline:none}
 
@@ -847,7 +858,7 @@ p:last-child{margin-bottom:0}
 @media (min-width:640px){.prix-cta{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
 .prix-cta .btn{border:0; border-radius:0; background:var(--clair); padding:1.25rem 1.1rem;
   display:flex; flex-direction:column; gap:.28rem; align-items:flex-start; text-align:left}
-.prix-cta .btn b{font-size:.95rem; font-variation-settings:'wdth' 108}
+.prix-cta .btn b{font-size:var(--t0); font-variation-settings:'wdth' 108}
 .prix-cta .btn span{font-size:var(--t-fine); color:var(--ink-3)}
 .prix-cta .btn:hover{background:var(--sable)}
 
@@ -859,7 +870,7 @@ p:last-child{margin-bottom:0}
 .jo:hover{background:var(--sable)}
 .jk{display:block; font-size:var(--t-micro); font-weight:600; letter-spacing:.05em;
   text-transform:uppercase; color:var(--teja-700); margin-bottom:.6rem}
-.jo b{display:block; font-size:1.16rem; font-variation-settings:'wdth' 108; margin-bottom:.5rem;
+.jo b{display:block; font-size:var(--t1); font-variation-settings:'wdth' 108; margin-bottom:.5rem;
   letter-spacing:-0.015em}
 .jo p{margin:0; font-size:var(--t-fine); color:var(--ink-2)}
 
@@ -881,6 +892,26 @@ p:last-child{margin-bottom:0}
 .p38-n{flex:none; width:1.9rem; font-variant-numeric:tabular-nums; font-weight:600;
   color:var(--ink-3); opacity:.72}
 
+/* CIBLES TACTILES. Sous 880 px, tout element actionnable fait au moins 44 px
+   de haut, seuil des recommandations Apple. Mesure avant : 178 cibles sous 44,
+   dont le bouton de menu a 37x37, qui est le controle principal du mobile. */
+@media (max-width:880px){
+  .burger{width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center}
+  .nav .marque{min-height:44px}
+  .avis figcaption a,.commune{min-height:44px}
+  .nav-liens a{min-height:44px; display:flex; align-items:center}
+  .nav-liens .btn{min-height:44px; display:inline-flex; align-items:center; justify-content:center}
+  .lsel summary{min-height:44px; display:flex; align-items:center}
+  .lsel-menu a{min-height:44px; display:flex; align-items:center}
+  .zones > a{min-height:44px; display:inline-flex; align-items:center}
+  .lien-fleche{min-height:44px; display:inline-flex; align-items:center}
+  .sug-oui,.sug-non{min-height:44px; display:inline-flex; align-items:center}
+  .pied ul a{min-height:44px; display:inline-flex; align-items:center}
+  .pied-bas a{min-height:44px; display:inline-flex; align-items:center}
+  .fil a,.ariane a{min-height:44px; display:inline-flex; align-items:center}
+  .btn{min-height:44px}
+}
+
 /* CORRECTIF BARRE ------------------------------------------------------
    La barre passait sur 2 lignes entre 880 et 1240 px depuis l'ajout de la
    6e entree et du numero : elle grandissait et le titre du hero passait
@@ -894,7 +925,7 @@ p:last-child{margin-bottom:0}
 @media (min-width:881px) and (max-width:1240px){
   .tel-nav{display:none}
   .nav-liens{gap:1.15rem}
-  .nav-liens a{font-size:0.875rem}
+  .nav-liens a{font-size:var(--t-1)}
 }
 /* Le bloc de marque a grandi de 16 pourcent le 05/08 : sous 1320 px le nom de
    la langue disparait, il ne reste que le globe et le chevron. */
@@ -905,7 +936,7 @@ p:last-child{margin-bottom:0}
 @media (min-width:881px) and (max-width:1080px){
   .nav{gap:0.7rem; padding-inline:1.2rem}
   .nav-liens{gap:0.72rem}
-  .nav-liens a{font-size:0.8rem}
+  .nav-liens a{font-size:var(--t-2)}
   .marque{font-size:1.2rem}
   .lsel summary b{display:none}
 }
@@ -961,7 +992,7 @@ p:last-child{margin-bottom:0}
 .doc-vig span{font-size:calc(var(--t-micro) * .98); line-height:1.3; font-variant-numeric:tabular-nums}
 
 .pot{position:absolute !important;left:-9999px;width:1px;height:1px;overflow:hidden}
-.form-err{grid-column:1/-1;color:oklch(0.400 0.150 26);background:oklch(0.970 0.020 26);border:1px solid oklch(0.820 0.070 26);border-radius:9px;padding:.75rem 1rem;font-size:.93rem}
+.form-err{grid-column:1/-1;color:oklch(0.400 0.150 26);background:oklch(0.970 0.020 26);border:1px solid oklch(0.820 0.070 26);border-radius:9px;padding:.75rem 1rem;font-size:var(--t-1)}
 
 /* ---- boucle 2 : rapport cas reel, minute par minute, carte des zones ---- */
 .gar.st-warn{border-left:3px solid oklch(0.620 0.120 80)}
@@ -970,15 +1001,15 @@ p:last-child{margin-bottom:0}
 .fam-liste{list-style:none; margin:0 0 var(--sp-m); padding:0; max-width:56rem}
 .fam-liste li{display:flex; gap:1rem; align-items:baseline; padding:.55rem 0; border-bottom:1px solid var(--ligne)}
 .fam-liste b{flex:1}
-.fam-liste span{color:var(--ink-2); font-size:.92rem; white-space:nowrap}
+.fam-liste span{color:var(--ink-2); font-size:var(--t-1); white-space:nowrap}
 .fam-liste .fam-r{color:var(--ink); font-weight:600}
 .minute{list-style:none; margin:0; padding:0; max-width:44rem}
 .minute li{position:relative; padding:0 0 1.3rem 5.4rem}
 .minute li::before{content:""; position:absolute; left:2.05rem; top:.45rem; bottom:-.45rem; width:2px; background:var(--ligne)}
 .minute li:last-child::before{display:none}
-.minute .mn-h{position:absolute; left:0; top:.02rem; font-variant-numeric:tabular-nums; font-weight:700; color:var(--teja-600); font-size:.95rem}
+.minute .mn-h{position:absolute; left:0; top:.02rem; font-variant-numeric:tabular-nums; font-weight:700; color:var(--teja-600); font-size:var(--t0)}
 .minute b{display:block; margin-bottom:.15rem}
-.minute p{color:var(--ink-2); font-size:.95rem; margin:0}
+.minute p{color:var(--ink-2); font-size:var(--t0); margin:0}
 .zmap{margin:var(--sp-m) 0}
 .zmap svg{width:100%; height:auto; display:block; background:color-mix(in oklch, var(--azul-950) 4%, var(--clair)); border-radius:14px}
 .zm-cote{fill:none; stroke:color-mix(in oklch, var(--azul-900) 34%, transparent); stroke-width:3; stroke-linecap:round}
@@ -988,6 +1019,6 @@ p:last-child{margin-bottom:0}
 .zmap a:hover .zm-p, .zmap a:hover .zm-s{fill:var(--teja-700)}
 .zm-n{font:600 15px/1 inherit; font-family:inherit; fill:var(--ink)}
 .zm-m{font:12px/1 inherit; font-family:inherit; fill:var(--ink-2)}
-.zmap figcaption{color:var(--ink-2); font-size:.92rem; margin-top:.6rem}
+.zmap figcaption{color:var(--ink-2); font-size:var(--t-1); margin-top:.6rem}
 
-.av-depart{display:block; margin-top:.45rem; color:oklch(0.560 0.100 80); font-size:.86rem}
+.av-depart{display:block; margin-top:.45rem; color:oklch(0.560 0.100 80); font-size:var(--t-1)}
