@@ -1,0 +1,161 @@
+# -*- coding: utf-8 -*-
+"""GARDE-FOU TRILINGUE DOMIVARO.
+Se lance sur la PRODUCTION et echoue bruyamment. Il verifie ce que 5 audits
+successifs ont trouve a la main : chiffres divergents entre langues, lexique
+a plusieurs mots, jetons de gabarit, tirets cadratins, nombres en toutes
+lettres, hreflang, plancher typographique. A relancer avant chaque annonce.
+   python3 garde.py
+"""
+import json, re, sys, time, urllib.request
+from collections import Counter
+D = "https://domivaro.speed-ecom.eu"
+SLUGS = ["altea","albir","alfas-del-pi","la-nucia","polop","calpe","benissa",
+         "moraira","benitachell","javea","denia"]
+U = {"fr": "/zones/%s/", "es": "/es/zonas/%s/", "en": "/en/areas/%s/"}
+ERR = []
+def ck(c, m):
+    if not c: ERR.append(m)
+
+def get(u):
+    return urllib.request.urlopen(D + u + f"?v={int(time.time())}", timeout=45).read().decode()
+
+print("Lecture du sitemap...")
+sm = get("/sitemap.xml")
+LOCS = re.findall(r"<loc>([^<]+)</loc>", sm)
+PAGES = {u.replace(D, "") or "/": get(u.replace(D, "")) for u in LOCS}
+print(f"{len(PAGES)} pages lues en production\n")
+def lang(p): return "es" if p.startswith("/es/") else "en" if p.startswith("/en/") else "fr"
+
+# --- 1. jetons, cadratins, domaine mort ------------------------------------
+for p, h in PAGES.items():
+    ck("%(" not in h, f"1 jeton de gabarit sur {p}")
+    ck("—" not in h and "–" not in h, f"1 tiret cadratin sur {p}")
+    ck(len(re.findall(r"domivaro\.com", h)) == h.count("contact@domivaro.com"), f"1 domaine mort sur {p}")
+print("1. jetons, tirets cadratins, domaine mort : OK")
+
+# --- 2. les valeurs chiffrees des fiches, identiques dans les 3 langues -----
+ORD = [(r"\b(\d+)(?:e|er|ère|ème)\b", r"#\1"), (r"\b(\d+)\.[ºª]", r"#\1"), (r"\b(\d+)(?:st|nd|rd|th)\b", r"#\1")]
+def nombres(h, lg):
+    x = re.sub(r"<script.*?</script>", "\x00", h, flags=re.S)
+    out = []
+    for noeud in re.split(r"<[^>]+>|\x00", x):
+        n = noeud.replace(" ", " ").replace(" ", " ")
+        for a, b in ORD: n = re.sub(a, b, n)
+        n = re.sub(r"[.,](?=\s|$)", " ", n)
+        for m in re.finditer(r"\d{1,3}(?:[ .,]\d{3})+(?:[.,]\d+)?|\d+(?:[.,]\d+)?", n):
+            raw = m.group(0)
+            if lg == "en": v = raw.replace(",", "")
+            elif lg == "es": v = raw.replace(".", "") if re.search(r"\.\d{3}\b", raw) else raw.replace(",", ".")
+            else: v = raw.replace(" ", "").replace(",", ".")
+            try: out.append(round(float(v.replace(" ", "")), 4))
+            except ValueError: pass
+    return sorted(out)
+for s in SLUGS:
+    n = {}
+    for lg in ("fr", "es", "en"):
+        h = PAGES.get(U[lg] % s, "")
+        ck(h, f"2 fiche absente : {U[lg] % s}")
+        n[lg] = nombres(h[h.find("<main"):h.find("</main>")], lg)
+    ck(n["fr"] == n["es"] == n["en"], f"2 CHIFFRES divergents sur {s} : fr={n['fr']} es={n['es']} en={n['en']}")
+print("2. valeurs chiffrees des 11 fiches identiques dans les 3 langues : OK")
+
+# --- 3. les pourcentages se recalculent depuis le nombre de ventes ----------
+for s in SLUGS:
+    h = PAGES[U["fr"] % s]
+    p = float(re.search(r'chiffre">([\d,]+) %<', h).group(1).replace(",", "."))
+    v = int(re.search(r"sur (\d+) ventes", h).group(1))
+    e = round(p * v / 100)
+    ck(abs(round(100 * e / v, 1) - p) < 1e-9, f"3 pourcentage non recalculable sur {s} : {p} % de {v} ventes")
+print("3. les 11 pourcentages se recalculent a l entier pres : OK")
+
+# --- 4. un seul mot par objet et par langue --------------------------------
+LEX = {
+ "en": [("TVA espagnole", [r"\bVAT\b", r"\bIVA\b"]), ("registre", [r"\bthe register\b", r"\bthe log\b"]),
+        ("local technique", [r"utility room", r"plant room"]), ("groupe de securite", [r"safety group", r"safety valve"]),
+        ("les 38 points", [r"38 checkpoints", r"38 points"]), ("formule phare", [r"[Mm]ost chosen", r"[Mm]ost popular"]),
+        ("visite offerte", [r"check visit", r"first inspection"]), ("armoire a cles", [r"sealed safe", r"sealed key cabinet"])],
+ "es": [("armoire a cles", [r"caja fuerte", r"caja sellada", r"armario de llaves"]),
+        ("formule", [r"la fórmula", r"el plan"]), ("statut du rapport", [r"a resolver", r"a tratar"])],
+ "fr": [("armoire a cles", [r"coffre scellé", r"armoire à clés"])],
+}
+for lg, objets in LEX.items():
+    corpus = "".join(h for p, h in PAGES.items() if lang(p) == lg)
+    for nom, variantes in objets:
+        presents = [v for v in variantes if re.search(v, corpus)]
+        ck(len(presents) <= 1, f"4 [{lg}] l objet {nom!r} porte {len(presents)} mots : {presents}")
+print("4. lexique : un seul mot par objet et par langue : OK")
+
+# --- 5. nombres en toutes lettres ------------------------------------------
+MOTS = {"fr": r"\b(deux|trois|quatre|cinq|six|sept|huit|neuf|dix|douze|quinze|vingt)\b",
+        "es": r"\b(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|doce|quince|veinte)\b",
+        "en": r"\b(two|three|four|five|six|seven|eight|nine|ten|twelve|fifteen|twenty)\b"}
+for p, h in PAGES.items():
+    t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", re.sub(r"<script.*?</script>", " ", h, flags=re.S)))
+    m = re.findall(MOTS[lang(p)], t, re.I)
+    ck(not m, f"5 nombre en toutes lettres sur {p} : {sorted(set(m))}")
+print("5. aucun nombre en toutes lettres : OK")
+
+# --- 6. hreflang reciproques et x-default vers l anglais --------------------
+for s in SLUGS:
+    for lg in ("fr", "es", "en"):
+        h = PAGES[U[lg] % s]
+        for k in ("fr", "es", "en"):
+            ck(f'hreflang="{k}" href="{D}{U[k] % s}"' in h, f"6 hreflang {k} manquant sur {U[lg] % s}")
+        ck(f'hreflang="x-default" href="{D}{U["en"] % s}"' in h, f"6 x-default non anglais sur {U[lg] % s}")
+for p, h in PAGES.items():
+    ck('hreflang="x-default"' in h, f"6 x-default absent sur {p}")
+print("6. hreflang reciproques et x-default vers l anglais : OK")
+
+# --- 7. structure identique entre les 3 langues d une meme fiche ------------
+def squelette(h):
+    return re.findall(r'<(section|h1|h2|main|footer|header|figure|div class="faits"|div class="situ"|div class="zones")\b', h)
+for s in SLUGS:
+    sk = {lg: squelette(PAGES[U[lg] % s]) for lg in ("fr", "es", "en")}
+    ck(sk["fr"] == sk["es"] == sk["en"], f"7 structure differente entre langues sur {s}")
+print("7. structure identique fr/es/en sur les 11 fiches : OK")
+
+# --- 8. 1 h1, main ferme, titre et description uniques ---------------------
+titres, descs = Counter(), Counter()
+for p, h in PAGES.items():
+    ck(h.count("<h1") == 1, f"8 {h.count('<h1')} h1 sur {p}")
+    ck(h.count("<main") == 1 and h.count("</main>") == 1, f"8 main mal ferme sur {p}")
+    t = re.search(r"<title>(.*?)</title>", h); d = re.search(r'name="description" content="([^"]*)"', h)
+    ck(t and d, f"8 titre ou description absent sur {p}")
+    if t: titres[t.group(1)] += 1
+    if d:
+        descs[d.group(1)] += 1
+        ck(len(d.group(1)) <= 165, f"8 description de {len(d.group(1))} caracteres sur {p}")
+for v, c in titres.items(): ck(c == 1, f"8 titre en double ({c}) : {v[:60]}")
+for v, c in descs.items(): ck(c == 1, f"8 description en double ({c}) : {v[:60]}")
+print("8. 1 h1, main ferme, titres et descriptions uniques et sous 165 caracteres : OK")
+
+# --- 9. le mot banni hors negation legale ----------------------------------
+BAN = {"fr": r"surveillance|surveill\w*", "es": r"vigilancia|vigilar\w*", "en": r"monitoring|surveillance"}
+OKNEG = r"5/2014|aucune activité|n'exerce|no ejerce|No ejercemos|No se ofrece|carries out no|actividad reservada|reserved activity"
+for p, h in PAGES.items():
+    t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", h))
+    for m in re.finditer(BAN[lang(p)], t, re.I):
+        fen = t[max(0, m.start()-260):m.start()+120]
+        frag = t[max(0, m.start()-3):m.start()+len(m.group(0))].strip()
+        if re.search(OKNEG, fen): continue
+        if re.match(r"^(a|à) (vigilar|surveiller)", frag, re.I): continue
+        ERR.append(f"9 mot banni {m.group(0)!r} sur {p} : ...{t[max(0,m.start()-70):m.start()+40]}")
+print("9. vocabulaire de surveillance hors negation legale : OK")
+
+# --- 10. sitemap et liens internes -----------------------------------------
+ck(len(LOCS) == len(set(LOCS)), "10 doublon dans le sitemap")
+CONNUS = {u.replace(D, "") for u in LOCS} | {"/"}
+morts = set()
+for p, h in PAGES.items():
+    for href in re.findall(r'href="(/[^"#?]*?)"', h):
+        if href.startswith(("/img/", "/police/", "/app.", "/manifeste")) or href.endswith(".pdf"): continue
+        if href not in CONNUS: morts.add(f"{href} (depuis {p})")
+ck(not morts, f"10 liens internes hors sitemap : {sorted(morts)[:5]}")
+print(f"10. sitemap sans doublon, {len(LOCS)} adresses, aucun lien interne inconnu : OK")
+
+print()
+if ERR:
+    print(f"=== {len(ERR)} DEFAUT(S) ===")
+    for e in ERR[:40]: print("  -", e)
+    sys.exit(1)
+print("=== 10 controles passes sur les 63 pages servies. ===")
