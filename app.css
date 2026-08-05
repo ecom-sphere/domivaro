@@ -868,9 +868,6 @@ p:last-child{margin-bottom:0}
 
 /* CORRECTIF BARRE ------------------------------------------------------
    La barre passait sur 2 lignes entre 880 et 1240 px depuis l'ajout de la
-   6e entree et du numero. Palier porte de 1240 a 1360 px le 05/08 : en
-   espagnol les libelles sont plus longs et la barre debordait de 20 px a
-   1280 px, largeur d'ecran d'ordinateur portable la plus courante.
    6e entree et du numero : elle grandissait et le titre du hero passait
    dessous. Regle : la barre ne se replie JAMAIS, elle se resserre. */
 .nav{flex-wrap:nowrap}
@@ -879,7 +876,7 @@ p:last-child{margin-bottom:0}
 .marque b{white-space:nowrap}
 .lsel summary b{white-space:nowrap}
 
-@media (min-width:881px) and (max-width:1360px){
+@media (min-width:881px) and (max-width:1240px){
   .tel-nav{display:none}
   .nav-liens{gap:1.15rem}
   .nav-liens a{font-size:0.875rem}
