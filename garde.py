@@ -219,9 +219,33 @@ _f = _u.urlopen(D + "/police/fraunces.woff2", timeout=45).read()
 ck(len(_f) < 20000, f"17 fraunces.woff2 pese {len(_f)} octets")
 print(f"17. police du logotype : {len(_f)} octets : OK")
 
+# --- 18. les 3 rapports d exemple parlent comme les pages --------------------
+PDF = {"fr": "/rapport-exemple-domivaro.pdf", "es": "/informe-ejemplo-domivaro.pdf",
+       "en": "/sample-report-domivaro.pdf"}
+BANPDF = {
+ "fr": [],
+ "es": [r"F[ÓO]RMULA", r"aire acondicionado", r"Persianas sur", r"Persiana suroeste",
+        r"Filtros del aire", r"\d{1,3} \d{3} ?€"],
+ "en": [r"[Uu]tility room", r"safety group", r"rising salt", r"\d{1,3},\d{3} ?€", r"\d+ €"],
+}
+try:
+    import io, pdfplumber
+    for lg, u in PDF.items():
+        brut = urllib.request.urlopen(D + u, timeout=45).read()
+        with pdfplumber.open(io.BytesIO(brut)) as doc:
+            t = "\n".join((p.extract_text() or "") for p in doc.pages)
+        ck(len(t) > 3000, f"18 rapport {lg} illisible ou vide")
+        for rx in BANPDF[lg]:
+            m = re.findall(rx, t)
+            ck(not m, f"18 [{lg}] le rapport dit {sorted(set(m))[:2]} la ou les pages disent autre chose")
+        ck("38" in t, f"18 rapport {lg} sans les 38 points")
+    print("18. les 3 rapports d exemple emploient le vocabulaire des pages : OK")
+except ImportError:
+    print("18. rapports d exemple : NON VERIFIE (pdfplumber absent)")
+
 print()
 if ERR:
     print(f"=== {len(ERR)} DEFAUT(S) ===")
     for e in ERR[:40]: print("  -", e)
     sys.exit(1)
-print("=== 17 controles passes sur les 63 pages servies. ===")
+print("=== 18 controles passes sur les 63 pages servies. ===")
