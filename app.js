@@ -83,14 +83,18 @@
     try { refus = localStorage.getItem('dv-langue-refus'); } catch (e) { refus = null; }
     if (!cible || voulue === courante || refus === voulue) return;
 
-    boite.querySelector('.sug-t').textContent = cible.t;
+    var titre = boite.querySelector('.sug-t');
+    titre.textContent = cible.t;
+    titre.setAttribute('lang', voulue);
+    boite.setAttribute('role', 'status');
     var oui = boite.querySelector('.sug-oui');
     oui.textContent = cible.o;
     oui.href = cible.u;
     oui.setAttribute('hreflang', voulue);
     oui.setAttribute('lang', voulue);
     var non = boite.querySelector('.sug-non');
-    non.textContent = window.SUG[courante] ? window.SUG[courante].n : 'x';
+    non.textContent = cible.n || (window.SUG[courante] ? window.SUG[courante].n : 'x');
+    non.setAttribute('lang', voulue);
     non.addEventListener('click', function () {
       boite.hidden = true;
       try { localStorage.setItem('dv-langue-refus', voulue); } catch (e) {}
