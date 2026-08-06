@@ -1107,15 +1107,48 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
    plus la largeur, l ecart se resserre, et le telephone sort de la barre : il
    reste dans le pied et sur la page contact, et le bouton d appel a l action
    garde sa place. */
-@media (min-width:941px) and (max-width:1460px){
-  .tel-nav{display:none}
+/* BARRE : DES SEUILS PAR LANGUE, MESURES, PAS UNE PLAGE UNIQUE.
+   Le 06/08 j ai etendu une plage resserree jusqu a 1460 px pour regler le
+   debordement espagnol, et j ai masque le numero de telephone en francais sur
+   des ecrans qui avaient largement la place. Faute corrigee : chaque langue a
+   ses propres seuils, mesures au navigateur avec la barre complete.
+   Largeur demandee par la barre complete : fr 1320, es 1368, en 1210 px.
+   Sans le libelle de langue : fr 1252, es 1305, en 1151 px.
+   Avec l icone de telephone seule : fr 1129, es 1181, en 1028 px. */
+
+/* 1. sous ces largeurs, le libelle de langue sort (le globe suffit) */
+@media (min-width:941px){
+  html[lang="fr"] .lsel summary b{display:none}
+  html[lang="es"] .lsel summary b{display:none}
+  html[lang="en"] .lsel summary b{display:none}
+}
+@media (min-width:1330px){ html[lang="fr"] .lsel summary b{display:inline} }
+@media (min-width:1440px){ html[lang="es"] .lsel summary b{display:inline} }
+@media (min-width:1220px){ html[lang="en"] .lsel summary b{display:inline} }
+
+/* 2. sous ces largeurs, le numero sort et l icone reste cliquable */
+@media (min-width:941px){
+  .tel-nav{display:inline-flex}
+  html[lang="fr"] .tel-nav b{display:none}
+  html[lang="es"] .tel-nav b{display:none}
+  html[lang="en"] .tel-nav b{display:none}
+}
+@media (min-width:1265px){ html[lang="fr"] .tel-nav b{display:inline} }
+@media (min-width:1320px){ html[lang="es"] .tel-nav b{display:inline} }
+@media (min-width:1165px){ html[lang="en"] .tel-nav b{display:inline} }
+
+/* 3. sous ces largeurs, l ecart et la taille des libelles se resserrent */
+@media (min-width:941px) and (max-width:1140px){
   .nav-liens{gap:.62rem}
   .nav-liens a{font-size:13px}
   .nav{padding-inline:clamp(1rem, 2.2vw, 1.6rem)}
-  /* le globe suffit a designer le selecteur de langue : le nom de la langue
-     coute 60 a 70 px, et c est ce qui faisait deborder l espagnol. */
-  .lsel summary b{display:none}
 }
+@media (min-width:941px) and (max-width:1200px){
+  html[lang="es"] .nav-liens{gap:.62rem}
+  html[lang="es"] .nav-liens a{font-size:13px}
+  html[lang="es"] .nav{padding-inline:clamp(1rem, 2.2vw, 1.6rem)}
+}
+
 /* Le bloc de marque a grandi de 16 pourcent le 05/08. */
 @media (min-width:941px) and (max-width:1400px){
   .nav-liens{gap:1rem}
