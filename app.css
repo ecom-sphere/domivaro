@@ -194,8 +194,12 @@ p:last-child{margin-bottom:0}
 }
 .marque{display:flex; align-items:center; gap:0.294em; text-decoration:none; color:inherit;
   font-size:1.45rem; line-height:1}
-.marque svg{height:1.47em; width:auto; flex:none; display:block; color:var(--teja-600);
+/* REGLE DU LOGOTYPE : la maison prend l encre de son fond, la cle garde
+   toujours la couleur chaude. Sur clair : maison navy, cle terracotta.
+   Sur sombre : maison blanche, cle or. Le dessin ne change jamais. */
+.marque svg{height:1.47em; width:auto; flex:none; display:block; color:var(--azul-900);
   stroke-width:11.6}
+.marque .cle{stroke:var(--teja-600)}
 /* LOGOTYPE SUR FOND SOMBRE. Le trait faisait 2,6 px a cote d un mot plein :
    la maison pesait 4 fois moins que le texte. Elle prend le blanc du mot, la
    cle garde l or et devient l accent. Le dessin n a pas bouge d un point. */
