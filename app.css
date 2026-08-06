@@ -1355,3 +1355,10 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 
 .av-depart{display:block; margin-top:.45rem; color:oklch(0.470 0.095 80); font-size:var(--t0)}
 :is(.drench,.drench-noir) .av-depart{color:oklch(0.845 0.095 82)}
+
+/* Credit photo sous la legende. Les images des fiches communes sont de vraies
+   photographies sous licence CC BY ou CC BY-SA : le credit est obligatoire et
+   doit rester lisible. Mesure en pixels rendus : a 0,78 em et 62 %
+   d opacite le credit tombait a 3,25:1, sous le seuil AA, et a 12,48 px, sous
+   le plancher de 13 px du site. A 0,83 em et 80 % il est a 5,11:1 et 13,28 px. */
+figcaption .credit{display:block;margin-top:.3rem;font-size:0.83em;opacity:0.8;letter-spacing:.01em}
