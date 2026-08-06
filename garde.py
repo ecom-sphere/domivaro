@@ -9,9 +9,13 @@ lettres, hreflang, plancher typographique. A relancer avant chaque annonce.
 import json, re, sys, time, urllib.request
 from collections import Counter
 D = "https://domivaro.speed-ecom.eu"
-SLUGS = ["busot","el-campello","mutxamel","aigues","sant-joan-d-alacant",
-         "xixona","alicante","villajoyosa","relleu","benidorm","alfas-del-pi",
-         "finestrat","la-nucia","altea"]
+SLUGS = ["busot", "el-campello", "mutxamel",
+         "aigues", "sant-joan-d-alacant", "xixona",
+         "sant-vicent-del-raspeig", "alicante", "agost",
+         "villajoyosa", "relleu", "orxeta",
+         "benidorm", "torre-de-les-macanes", "alfas-del-pi",
+         "finestrat", "la-nucia", "sella",
+         "altea"]
 U = {"fr": "/zones/%s/", "es": "/es/zonas/%s/", "en": "/en/areas/%s/"}
 ERR = []
 def ck(c, m):
@@ -271,7 +275,7 @@ for u, siege in ZON.items():
     ck(g, f"19 grille de communes absente sur {u}")
     if not g: continue
     dt = re.findall(r'data-t="([^"]+)"', g.group(1))
-    ck(len(dt) == 14, f"19 {len(dt)} temps de trajet sur {u}, 14 attendus")
+    ck(len(dt) == 19, f"19 {len(dt)} temps de trajet sur {u}, 19 attendus")
     ck(dt[0] == siege, f"19 premier temps de {u} = {dt[0]!r}, {siege!r} attendu")
     minutes = [int(x.split("\u00a0")[0]) for x in dt[1:]]
     ck(minutes == sorted(minutes), f"19 temps de trajet non croissants sur {u} : {minutes}")
@@ -279,8 +283,8 @@ for u, siege in ZON.items():
     for x, nom in zip(dt, re.findall(r'class="zm-m">([^<]+)</text>', h)):
         ck(x == nom, f"19 la grille dit {x!r} et le dessin {nom!r} sur {u}")
     tot_t += len(dt)
-ck(tot_t == 42, f"19 {tot_t} temps de trajet au total, 42 attendus")
-print("19. titres sous 60 signes, descriptions sous 160, 42 temps de trajet conformes au dessin : OK")
+ck(tot_t == 57, f"19 {tot_t} temps de trajet au total, 57 attendus")
+print("19. titres sous 60 signes, descriptions sous 160, 57 temps de trajet conformes au dessin : OK")
 
 # --- 20. la reponse publique promise existe, et la methode de verification ---
 AVIS = {"/avis/": ("Réponse de Domivaro", "Comment ces avis sont vérifiés", "La langue d'origine"),
