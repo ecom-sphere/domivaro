@@ -9,8 +9,9 @@ lettres, hreflang, plancher typographique. A relancer avant chaque annonce.
 import json, re, sys, time, urllib.request
 from collections import Counter
 D = "https://domivaro.speed-ecom.eu"
-SLUGS = ["altea","albir","alfas-del-pi","la-nucia","polop","calpe","benissa",
-         "moraira","benitachell","javea","denia"]
+SLUGS = ["busot","el-campello","mutxamel","aigues","sant-joan-d-alacant",
+         "xixona","alicante","villajoyosa","relleu","benidorm","alfas-del-pi",
+         "finestrat","la-nucia","altea"]
 U = {"fr": "/zones/%s/", "es": "/es/zonas/%s/", "en": "/en/areas/%s/"}
 ERR = []
 def ck(c, m):
@@ -59,14 +60,24 @@ for s in SLUGS:
     ck(n["fr"] == n["es"] == n["en"], f"2 CHIFFRES divergents sur {s} : fr={n['fr']} es={n['es']} en={n['en']}")
 print("2. valeurs chiffrees des 11 fiches identiques dans les 3 langues : OK")
 
-# --- 3. les pourcentages se recalculent depuis le nombre de ventes ----------
+# --- 3. le pourcentage de logements se recalcule depuis les 2 nombres publies
+# L ancienne version verifiait un pourcentage d acheteurs neerlandais adosse a
+# un nombre de ventes : les deux etaient inventes, la source citee ne publiant
+# rien au niveau communal. On verifie desormais la seule chose verifiable, et
+# elle l est entierement depuis la page : part = non principaux / parc total.
 for s in SLUGS:
     h = PAGES[U["fr"] % s]
-    p = float(re.search('chiffre">([\\d,]+)[  ]%<', h).group(1).replace(",", "."))
-    v = int(re.search(r"sur (?:les )?(\d+) ventes", h).group(1))
-    e = round(p * v / 100)
-    ck(abs(round(100 * e / v, 1) - p) < 1e-9, f"3 pourcentage non recalculable sur {s} : {p} % de {v} ventes")
-print("3. les 11 pourcentages se recalculent a l entier pres : OK")
+    m = re.search(r'chiffre">([\d,]+)[\u00a0 ]%</span><p class="k">des logements [^<]*?soit '
+                  r'([\d\u00a0 ]+) sur ([\d\u00a0 ]+)<', h)
+    ck(m, f"3 bloc de logements illisible sur {s}")
+    if not m: continue
+    p = float(m.group(1).replace(",", "."))
+    a = int(re.sub(r"[^\d]", "", m.group(2)))
+    t = int(re.sub(r"[^\d]", "", m.group(3)))
+    ck(a < t, f"3 {a} logements non principaux sur un parc de {t} a {s}")
+    ck(abs(round(100 * a / t, 1) - p) < 1e-9,
+       f"3 part non recalculable sur {s} : page {p} %, calcul {round(100*a/t,1)} % ({a}/{t})")
+print(f"3. les {len(SLUGS)} parts de logements se recalculent depuis la page : OK")
 
 # --- 4. un seul mot par objet et par langue --------------------------------
 LEX = {
@@ -260,7 +271,7 @@ for u, siege in ZON.items():
     ck(g, f"19 grille de communes absente sur {u}")
     if not g: continue
     dt = re.findall(r'data-t="([^"]+)"', g.group(1))
-    ck(len(dt) == 11, f"19 {len(dt)} temps de trajet sur {u}, 11 attendus")
+    ck(len(dt) == 14, f"19 {len(dt)} temps de trajet sur {u}, 14 attendus")
     ck(dt[0] == siege, f"19 premier temps de {u} = {dt[0]!r}, {siege!r} attendu")
     minutes = [int(x.split("\u00a0")[0]) for x in dt[1:]]
     ck(minutes == sorted(minutes), f"19 temps de trajet non croissants sur {u} : {minutes}")
@@ -268,8 +279,8 @@ for u, siege in ZON.items():
     for x, nom in zip(dt, re.findall(r'class="zm-m">([^<]+)</text>', h)):
         ck(x == nom, f"19 la grille dit {x!r} et le dessin {nom!r} sur {u}")
     tot_t += len(dt)
-ck(tot_t == 33, f"19 {tot_t} temps de trajet au total, 33 attendus")
-print("19. titres sous 60 signes, descriptions sous 160, 33 temps de trajet conformes au dessin : OK")
+ck(tot_t == 42, f"19 {tot_t} temps de trajet au total, 42 attendus")
+print("19. titres sous 60 signes, descriptions sous 160, 42 temps de trajet conformes au dessin : OK")
 
 # --- 20. la reponse publique promise existe, et la methode de verification ---
 AVIS = {"/avis/": ("Réponse de Domivaro", "Comment ces avis sont vérifiés", "La langue d'origine"),
