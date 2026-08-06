@@ -81,6 +81,21 @@
       "source": "/en/areas/",
       "destination": "/en/our-area/",
       "permanent": true
+    },
+    {
+      "source": "/zones/:c(albir|polop|calpe|benissa|moraira|benitachell|javea|denia)/",
+      "destination": "/nos-zones/",
+      "permanent": true
+    },
+    {
+      "source": "/es/zonas/:c(albir|polop|calpe|benissa|moraira|benitachell|javea|denia)/",
+      "destination": "/es/nuestras-zonas/",
+      "permanent": true
+    },
+    {
+      "source": "/en/areas/:c(albir|polop|calpe|benissa|moraira|benitachell|javea|denia)/",
+      "destination": "/en/our-area/",
+      "permanent": true
     }
   ]
 }
