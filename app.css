@@ -174,6 +174,10 @@ main > section:not(.drench):not(.drench-noir):not(.pli-photo):not(.ban)
    ligne de texte. La section qui entre prend le palier en dessous : 280 px. */
 main > section:is(.drench,.drench-noir) + section:not(.drench):not(.drench-noir):not(.pli-photo),
 main > section:not(.drench):not(.drench-noir):not(.pli-photo) + section:is(.drench,.drench-noir){padding-top:var(--sp-xl)}
+/* Une photographie pleine largeur est un bloc fort : elle se detache toute
+   seule, elle n a pas besoin de la respiration maximale devant elle. Mesure du
+   06/08 : 157 px de vide a 1118 px sous une simple note de 40 px de haut. */
+main > section:not(.drench):not(.drench-noir):not(.pli-photo):not(.ban):has(+ .pli-photo){padding-bottom:var(--sp-xl)}
 /* la premiere section de contenu suit la bande de titre : on entre plus vite
    dans le sujet, 238 px devenaient une page d attente. */
 main > .ban + section:not(.pli-photo){padding-top:var(--sp-xl)}
@@ -689,7 +693,10 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 ::selection{background:color-mix(in oklch, var(--teja-500) 30%, transparent)}
 
 /* ------------------------------------------------------- 19. petit écran */
-@media (max-width:880px){
+/* 940 et non 880 : avec 7 entrees, les libelles espagnols (El metodo, Los
+   precios, Quienes somos, Nuestras zonas, Consejos) ne tiennent pas en ligne
+   sous 940 px. Mesure du 06/08 : 51 px de debordement a 881. */
+@media (max-width:940px){
   .burger{display:block}
   .nav-liens{
     position:fixed; inset:var(--navh, 60px) 0 auto 0; z-index:var(--z-menu);
@@ -875,6 +882,20 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
    encres de fond clair. Mesure du 06/08 sur les pages Conseils : le libelle
    tombait a 1,01:1 et le chiffre a 2,28:1. Les encres claires du site sont
    reprises telles quelles. */
+/* TABLEAU POSE SUR FOND NAVY. Meme faute que les blocs de faits : le tableau
+   garde ses encres de fond clair, donc les intitules de ligne deviennent du
+   navy sur du navy. Signale par Cedric sur l article prix le 06/08, la page
+   n etait pas dans le peri metre de ma 1re mesure de contraste. */
+:is(.drench,.drench-noir) .prix caption{color:color-mix(in oklch, #fff 70%, var(--azul-300))}
+:is(.drench,.drench-noir) .prix th,
+:is(.drench,.drench-noir) .prix td{border-bottom-color:color-mix(in oklch, #fff 20%, transparent)}
+:is(.drench,.drench-noir) .prix thead th{color:color-mix(in oklch, #fff 74%, var(--azul-300));
+  border-bottom-color:color-mix(in oklch, #fff 34%, transparent)}
+:is(.drench,.drench-noir) .prix tbody th{color:#fff}
+:is(.drench,.drench-noir) .prix tbody th small{color:color-mix(in oklch, #fff 72%, var(--azul-300))}
+:is(.drench,.drench-noir) .prix td{color:color-mix(in oklch, #fff 88%, var(--azul-300))}
+:is(.drench,.drench-noir) .prix .p{color:oklch(0.800 0.115 52)}
+:is(.drench,.drench-noir) .prix tr[data-phare]{background:color-mix(in oklch, #fff 8%, transparent)}
 :is(.drench,.drench-noir) .faits{border-top-color:color-mix(in oklch, #fff 22%, transparent)}
 :is(.drench,.drench-noir) .faits > div{border-bottom-color:color-mix(in oklch, #fff 22%, transparent)}
 @media (min-width:760px){
@@ -936,7 +957,7 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 .tel-nav svg{width:16px; height:16px; opacity:.8; flex:none}
 .tel-nav b{font-weight:600; font-variant-numeric:tabular-nums; letter-spacing:-0.005em}
 @media (max-width:1180px){.tel-nav b{display:none} .tel-nav{padding-inline:0.5rem}}
-@media (max-width:880px){.tel-nav b{display:inline}}
+@media (max-width:940px){.tel-nav b{display:inline}}
 .pied-tel{margin-top:1.1rem; font-size:var(--t-1); line-height:1.8}
 .pied-tel a{text-decoration:none; color:#fff; font-variant-numeric:tabular-nums}
 .pied-tel a:hover{text-decoration:underline; text-underline-offset:3px}
@@ -1050,7 +1071,7 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 /* CIBLES TACTILES. Sous 880 px, tout element actionnable fait au moins 44 px
    de haut, seuil des recommandations Apple. Mesure avant : 178 cibles sous 44,
    dont le bouton de menu a 37x37, qui est le controle principal du mobile. */
-@media (max-width:880px){
+@media (max-width:940px){
   .burger{width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center}
   .nav .marque{min-height:44px}
   .avis figcaption a{min-height:44px}
@@ -1080,17 +1101,26 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 .marque b{white-space:nowrap}
 .lsel summary b{white-space:nowrap}
 
-@media (min-width:881px) and (max-width:1240px){
-  .tel-nav{display:inline-flex}
-  .tel-nav b{display:none}
-  .nav-liens{gap:1.15rem}
-  .nav-liens a{font-size:var(--t-1)}
+/* PLAGE TABLETTE ET PETIT PORTABLE. La barre porte 7 entrees depuis l ajout
+   des Conseils, et l espagnol a les libelles les plus longs : mesure du 06/08,
+   elle debordait de 22 px en 1024 et de 97 px en 1100. Ici la police ne suit
+   plus la largeur, l ecart se resserre, et le telephone sort de la barre : il
+   reste dans le pied et sur la page contact, et le bouton d appel a l action
+   garde sa place. */
+@media (min-width:941px) and (max-width:1460px){
+  .tel-nav{display:none}
+  .nav-liens{gap:.62rem}
+  .nav-liens a{font-size:13px}
+  .nav{padding-inline:clamp(1rem, 2.2vw, 1.6rem)}
+  /* le globe suffit a designer le selecteur de langue : le nom de la langue
+     coute 60 a 70 px, et c est ce qui faisait deborder l espagnol. */
+  .lsel summary b{display:none}
 }
 /* Le bloc de marque a grandi de 16 pourcent le 05/08. */
-@media (min-width:881px) and (max-width:1400px){
+@media (min-width:941px) and (max-width:1400px){
   .nav-liens{gap:1rem}
 }
-@media (min-width:881px) and (max-width:1080px){
+@media (min-width:941px) and (max-width:1080px){
   .nav{gap:0.7rem; padding-inline:1.2rem}
   .nav-liens{gap:0.72rem}
   .nav-liens a{font-size:var(--t-2)}
@@ -1104,7 +1134,7 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
    l aria-label du resume. Le numero, present dans le pied et sur chaque
    page de contact, quitte la barre. Reste apres correctif : -3,5 px au
    pire, en espagnol a 881 px. */
-@media (min-width:881px) and (max-width:1010px){
+@media (min-width:941px) and (max-width:1010px){
   .lsel summary b{display:none}
   .tel-nav{display:none}
   .nav-liens{gap:0.62rem}
