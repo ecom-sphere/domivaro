@@ -604,6 +604,69 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
   .js-mo [data-mo][data-d="2"]{transition-delay:.20s}
   .js-mo [data-mo][data-d="3"]{transition-delay:.30s}
 
+  /* ---- 17 bis. Le mouvement au service de la hierarchie, 06/08 -------------
+     Constat : 801 marqueurs d apparition sur le site, souvent 6 ou 7 dans une
+     seule section. Quand tout entre, plus rien n est important, et le lecteur
+     attend son texte au lieu de le lire.
+     EFFET 1, degraisser. Dans une meme section, seuls les 2 premiers blocs
+     marques respirent, le titre et son chapeau. A partir du 3e, le contenu est
+     simplement la. Fait en CSS, sans toucher aux 76 pages, donc reversible. */
+  .js-mo [data-mo] ~ [data-mo] ~ [data-mo]{opacity:1; transform:none; transition:none}
+
+  /* EFFET 2, les preuves chiffrees se lisent l une apres l autre. Les blocs de
+     faits portent les seuls chiffres opposables du site (600 000 EUR, 38
+     points, 7 jours) : l oeil doit s y poser dans l ordre, pas les recevoir
+     d un coup. Pas de compteur qui defile : un chiffre d assurance qui
+     s anime se lit comme un argument, pas comme une preuve. */
+  /* SUR par construction : on ne masque un enfant QUE s il a un ancetre
+     marque, ou s il est lui-meme le bloc marque. Sans cette precaution, un
+     bloc pose dans une section sans marqueur reste invisible pour toujours,
+     ce qui est arrive aux 3 etapes du protocole le 06/08. */
+  .js-mo [data-mo] .faits > div,
+  .js-mo .faits[data-mo] > div{opacity:0; transform:translateY(14px);
+    transition:opacity .7s var(--e-quart), transform .7s var(--e-quart)}
+  .js-mo [data-mo].vu .faits > div,
+  .js-mo .faits[data-mo].vu > div{opacity:1; transform:none}
+  .js-mo .faits > div:nth-child(2){transition-delay:.12s}
+  .js-mo .faits > div:nth-child(3){transition-delay:.24s}
+
+  /* EFFET 3, le protocole est une sequence, ses etapes entrent dans l ordre.
+     C est la seule animation du site qui porte un sens : avant, pendant, apres. */
+  .js-mo [data-mo] .flow > div,
+  .js-mo .flow[data-mo] > div{opacity:0; transform:translateY(16px);
+    transition:opacity .75s var(--e-quart), transform .75s var(--e-quart)}
+  .js-mo [data-mo].vu .flow > div,
+  .js-mo .flow[data-mo].vu > div{opacity:1; transform:none}
+  .js-mo .flow > div:nth-child(2){transition-delay:.14s}
+  .js-mo .flow > div:nth-child(3){transition-delay:.28s}
+  .js-mo .flow > div:nth-child(4){transition-delay:.42s}
+  .js-mo .flow > div:nth-child(n+5){transition-delay:.5s}
+
+  /* EFFET 5, les micro-interactions s ouvrent au lieu d apparaitre.
+     @starting-style est ignore par les navigateurs qui ne le connaissent pas :
+     ils gardent le comportement actuel, rien ne casse. */
+  .lsel-menu{transition:opacity .18s var(--e-quart), transform .18s var(--e-quart)}
+  @starting-style{
+    .lsel[open] .lsel-menu{opacity:0; transform:translateY(-6px)}
+  }
+  .sug:not([hidden]){transition:opacity .28s var(--e-quart), transform .28s var(--e-quart)}
+  @starting-style{
+    .sug:not([hidden]){opacity:0; transform:translateY(10px)}
+  }
+}
+
+/* EFFET 4, la continuite entre 2 pages. Le logotype et la barre restent en
+   place pendant la navigation au lieu de clignoter : le site se lit comme un
+   lieu, pas comme une suite de documents. Amelioration progressive pure, et
+   desactivee des que le visiteur demande moins de mouvement. */
+@media (prefers-reduced-motion: no-preference){
+  @view-transition{navigation:auto}
+  ::view-transition-old(root){animation:vtSort .16s var(--e-quart) both}
+  ::view-transition-new(root){animation:vtEntre .26s var(--e-quart) both}
+  @keyframes vtSort{to{opacity:0}}
+  @keyframes vtEntre{from{opacity:0; transform:translateY(8px)}}
+  .nav, .pied{view-transition-name:none}
+
   /* Le hero : la photo se pose, elle n'apparaît pas. */
   .js-mo .hero-img{transform:scale(1.075); transition:transform 2.4s var(--e-expo)}
   .js-mo .hero-img.vu{transform:scale(1)}
