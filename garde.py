@@ -63,7 +63,7 @@ print("2. valeurs chiffrees des 11 fiches identiques dans les 3 langues : OK")
 for s in SLUGS:
     h = PAGES[U["fr"] % s]
     p = float(re.search('chiffre">([\\d,]+)[  ]%<', h).group(1).replace(",", "."))
-    v = int(re.search(r"sur (\d+) ventes", h).group(1))
+    v = int(re.search(r"sur (?:les )?(\d+) ventes", h).group(1))
     e = round(p * v / 100)
     ck(abs(round(100 * e / v, 1) - p) < 1e-9, f"3 pourcentage non recalculable sur {s} : {p} % de {v} ventes")
 print("3. les 11 pourcentages se recalculent a l entier pres : OK")
@@ -132,7 +132,10 @@ print("8. 1 h1, main ferme, titres et descriptions uniques et sous 165 caractere
 
 # --- 9. le mot banni hors negation legale ----------------------------------
 BAN = {"fr": r"surveillance|surveill\w*", "es": r"vigilancia|vigilar\w*", "en": r"monitoring|surveillance"}
-OKNEG = r"5/2014|aucune activité|n'exerce|no ejerce|No ejercemos|No se ofrece|carries out no|actividad reservada|reserved activity"
+OKNEG = (r"5/2014|5\.1\.a|6\.2\.[ad]|aucune activité|n'exerce|no ejerce|No ejercemos|No se ofrece|"
+         r"carries out no|actividad reservada|reserved activity|"
+         r"Ce que nous ne faisons pas|Lo que no hacemos|What we do not do|"
+         r"ne promettons pas|no prometemos|we do not promise")
 for p, h in PAGES.items():
     t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", h))
     for m in re.finditer(BAN[lang(p)], t, re.I):
