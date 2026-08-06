@@ -910,6 +910,17 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 .prix-cta .badge{display:block; font-style:normal; font-size:var(--t-micro); font-weight:700;
   letter-spacing:.06em; text-transform:uppercase; color:var(--teja-700); margin-bottom:.4rem}
 .prix-cta .pp{font-size:var(--t-1); color:var(--ink-2)}
+/* Les 4 encadres de formule sont des liens : ils portent desormais un bouton
+   explicite, mesure a 44 px de haut. */
+.prix-cta em{display:inline-flex; align-items:center; justify-content:center; font-style:normal;
+  margin-top:0.85rem; padding:0.55rem 1.05rem; border-radius:8px; min-height:44px;
+  font-size:var(--t-1); font-weight:600; letter-spacing:-0.005em; text-align:center;
+  color:var(--teja-700); box-shadow:inset 0 0 0 1.5px var(--ligne-f);
+  transition:background .2s var(--e-quart), box-shadow .2s var(--e-quart), color .2s var(--e-quart)}
+.prix-cta em.cta-plein{background:var(--teja-700); color:#fff; box-shadow:none}
+.prix-cta .btn:hover em{box-shadow:inset 0 0 0 1.5px var(--teja-600); color:var(--teja-700)}
+.prix-cta .btn:hover em.cta-plein{background:var(--teja-600); color:#fff}
+
 
 /* Les 38 points, publies. Numerotation continue sur 6 familles. */
 .p38{list-style:none; margin-top:var(--sp-l); display:grid; gap:var(--sp-m)}
