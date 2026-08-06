@@ -246,9 +246,51 @@ try:
 except ImportError:
     print("18. rapports d exemple : NON VERIFIE (pdfplumber absent)")
 
+# --- 19. titres sous 60 signes, temps de trajet sur les 3 pages de zone ------
+for p, h in PAGES.items():
+    t = re.search(r"<title>(.*?)</title>", h, re.S).group(1)
+    ck(len(t) <= 60, f"19 titre de {len(t)} signes sur {p} : {t[:60]}")
+    d = re.search(r'name="description" content="([^"]*)"', h).group(1)
+    ck(len(d) <= 160, f"19 description de {len(d)} signes sur {p}")
+ZON = {"/nos-zones/": "Siège", "/es/nuestras-zonas/": "Sede", "/en/our-area/": "Base"}
+tot_t = 0
+for u, siege in ZON.items():
+    h = PAGES[u]
+    g = re.search(r'<div class="zones"[^>]*>(.*?)</div>', h, re.S)
+    ck(g, f"19 grille de communes absente sur {u}")
+    if not g: continue
+    dt = re.findall(r'data-t="([^"]+)"', g.group(1))
+    ck(len(dt) == 11, f"19 {len(dt)} temps de trajet sur {u}, 11 attendus")
+    ck(dt[0] == siege, f"19 premier temps de {u} = {dt[0]!r}, {siege!r} attendu")
+    minutes = [int(x.split("\u00a0")[0]) for x in dt[1:]]
+    ck(minutes == sorted(minutes), f"19 temps de trajet non croissants sur {u} : {minutes}")
+    # le meme temps que sur le dessin
+    for x, nom in zip(dt, re.findall(r'class="zm-m">([^<]+)</text>', h)):
+        ck(x == nom, f"19 la grille dit {x!r} et le dessin {nom!r} sur {u}")
+    tot_t += len(dt)
+ck(tot_t == 33, f"19 {tot_t} temps de trajet au total, 33 attendus")
+print("19. titres sous 60 signes, descriptions sous 160, 33 temps de trajet conformes au dessin : OK")
+
+# --- 20. la reponse publique promise existe, et la methode de verification ---
+AVIS = {"/avis/": ("Réponse de Domivaro", "Comment ces avis sont vérifiés", "La langue d'origine"),
+        "/es/opiniones/": ("Respuesta de Domivaro", "Cómo verificamos estas opiniones", "El idioma original"),
+        "/en/reviews/": ("Domivaro&#x27;s reply|Domivaro's reply", "How these reviews are checked", "The original language")}
+for u, (rep, meth, lang_) in AVIS.items():
+    h = PAGES[u]
+    nrep = h.count('class="av-rep"')
+    ck(nrep == 1, f"20 {nrep} reponse(s) publique(s) sur {u}")
+    ck(re.search(rep, h), f"20 signature de la reponse absente sur {u}")
+    ck(meth in h, f"20 methode de verification absente sur {u}")
+    ck(lang_ in h, f"20 mention de la langue d origine absente sur {u}")
+    net = h.count('class="et5"')
+    ck(net == 12, f"20 {net} blocs d etoiles sur {u}, 12 attendus")
+    quatre = len(re.findall(r'<div class="et5"[^>]*>(?:(?!</div>).)*?</div>', h, re.S))
+    ck(quatre == 12, f"20 {quatre} blocs d etoiles fermes sur {u}")
+print("20. reponse publique, methode de verification et langue d origine sur les 3 pages d avis : OK")
+
 print()
 if ERR:
     print(f"=== {len(ERR)} DEFAUT(S) ===")
     for e in ERR[:40]: print("  -", e)
     sys.exit(1)
-print("=== 18 controles passes sur les 63 pages servies. ===")
+print("=== 20 controles passes sur les 63 pages servies. ===")
