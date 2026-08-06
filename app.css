@@ -548,6 +548,60 @@ main > .pli-photo:first-child{padding-top:calc(var(--navh, 60px) + 1.6rem)}
 .prix tr[data-phare] td:last-child{box-shadow:1.1rem 0 0 color-mix(in oklch, var(--teja-600) 7%, transparent)}
 .prix tr[data-phare] .p{color:var(--teja-700)}
 
+/* --------------------------------------------- 14 ter. LE BLOG CONSEILS
+   Une liste de titres n est pas un blog. Les cartes portent une image, une
+   categorie, une date et un temps de lecture, comme sur les blogs qui
+   travaillent vraiment. Le gabarit reprend les jetons du site : rien de neuf
+   dans le vocabulaire, seulement un assemblage de plus. */
+.cartes{display:grid; gap:var(--sp-l); grid-template-columns:1fr; margin-top:var(--sp-l)}
+/* en tete de section, la grille n ajoute pas sa marge au padding : 182 px
+   de vide entre la bande de titre et la 1re vignette, mesure le 06/08. */
+.shell > .cartes:first-child{margin-top:0}
+@media (min-width:760px){.cartes{grid-template-columns:repeat(2, 1fr)}}
+@media (min-width:1180px){.cartes{grid-template-columns:repeat(3, 1fr)}}
+.carte{display:flex; flex-direction:column; min-width:0}
+.carte-img{display:block; border-radius:12px; overflow:hidden; background:var(--azul-950);
+  box-shadow:0 18px 40px -24px color-mix(in oklch, var(--azul-950) 46%, transparent)}
+.carte-img img{width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover;
+  transition:transform .5s var(--e-quart)}
+@media (prefers-reduced-motion: no-preference){
+  .carte-img:hover img, .carte-img:focus-visible img{transform:scale(1.03)}
+}
+.carte-meta{display:flex; flex-wrap:wrap; align-items:center; gap:.42rem; margin:1rem 0 .55rem;
+  font-size:var(--t-micro); letter-spacing:.02em; text-transform:uppercase; font-weight:600;
+  color:var(--ink-3); line-height:1.35}
+/* en 3 colonnes la ligne de meta est serree : la categorie passe seule au
+   dessus plutot que de casser la date en 2. */
+@media (min-width:1180px) and (max-width:1400px){
+  .carte-meta{gap:.34rem}
+  .carte-meta .carte-cat{flex:0 0 100%}
+  .carte-meta .carte-cat + span[aria-hidden]{display:none}
+}
+.carte-cat{color:var(--teja-700)}
+.carte-meta span[aria-hidden]{opacity:.5}
+.carte h2{font-size:var(--t3); line-height:1.16; letter-spacing:-0.02em;
+  font-variation-settings:'wdth' 108; margin:0 0 .6rem; text-wrap:balance}
+.carte h2 a{color:inherit; text-decoration:none}
+.carte h2 a:hover{color:var(--teja-700)}
+.carte p{font-size:var(--t0); line-height:1.6; color:var(--ink-2); margin:0 0 .9rem; max-width:46ch}
+.carte .lien-fleche{margin-top:auto; align-self:flex-start}
+/* L image de tete d un article : pleine colonne, sous la bande de titre. */
+.art-hero{margin:0 0 var(--sp-l); border-radius:12px; overflow:hidden;
+  box-shadow:0 22px 50px -28px color-mix(in oklch, var(--azul-950) 50%, transparent)}
+.art-hero img{width:100%; height:auto; display:block; aspect-ratio:16/9; object-fit:cover}
+.art-hero figcaption{font-size:var(--t-fine); color:var(--ink-3); padding:.85rem .1rem 0; max-width:72ch}
+/* Le bloc de suite : ce qu on lit apres, jamais un cul-de-sac. */
+.suite{border-top:1px solid var(--ligne); padding-top:var(--sp-m); margin-top:var(--sp-l)}
+.suite h2{font-size:var(--t2); margin:0 0 var(--sp-s)}
+.suite ul{list-style:none; padding:0; margin:0; display:grid; gap:.8rem}
+@media (min-width:760px){.suite ul{grid-template-columns:repeat(2,1fr); gap:1.1rem}}
+.suite li{margin:0}
+.suite a{display:block; text-decoration:none; color:inherit; border-left:2px solid var(--teja-600);
+  padding:.15rem 0 .15rem .9rem}
+.suite a b{display:block; font-size:var(--t1); font-weight:650; line-height:1.3; margin-bottom:.2rem}
+.suite a span{font-size:var(--t-fine); color:var(--ink-3); line-height:1.5}
+.suite a:hover b{color:var(--teja-700)}
+
 /* --------------------------------------------------- 15. zones, langues */
 .zones{display:flex; flex-wrap:wrap; gap:0.55rem; margin-top:var(--sp-m)}
 .zones > a{text-decoration:none; 
