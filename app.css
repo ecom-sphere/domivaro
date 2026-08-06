@@ -77,7 +77,15 @@
   --t6:2.0273rem
   /* echelle 1,125, base 16px, plancher 13px */;
 
+  /* ECHELLE DE RESPIRATION, 7 paliers. Il n y en avait que 3 pour 11 types
+     de section : entre 70 et 168 px a 1440 il n existait aucun palier, et la
+     bande de titre vivait hors echelle. Les 3 jetons d origine sont conserves
+     tels quels, 4 s ajoutent autour. Rapport d environ 1,5 entre 2 paliers. */
+  --sp-2xs:  .5rem;
+  --sp-xs:   clamp(.7rem, .58rem + .5vw, 1rem);
+  --sp-s:    clamp(1.05rem, .88rem + .7vw, 1.5rem);
   --sp-pli:  clamp(5.5rem, 3.2rem + 9.5vw, 10.5rem);
+  --sp-xl:   clamp(3.8rem, 2.5rem + 5.2vw, 7rem);
   --sp-l:    clamp(2.6rem, 1.8rem + 3.2vw, 4.4rem);
   --sp-m:    clamp(1.5rem, 1.2rem + 1.3vw, 2.1rem);
 
@@ -150,6 +158,9 @@ p:last-child{margin-bottom:0}
 .shell{width:min(100% - 2.6rem, var(--shell)); margin-inline:auto}
 .pli{padding-block:var(--sp-pli)}
 .pli-court{padding-block:var(--sp-l)}
+/* 2 sections courtes consecutives disent la meme chose : elles se
+   rapprochent, au lieu de 2 respirations pleines bout a bout. */
+.pli-court + .pli-court{padding-top:var(--sp-m)}
 
 /* Plis gorgés de bleu : la couleur porte la marque, sans neutres autour. */
 .drench{background:var(--azul-900); color:#fff}
@@ -166,8 +177,11 @@ p:last-child{margin-bottom:0}
   display:flex; align-items:center; justify-content:space-between;
   gap:1rem; padding:0.95rem clamp(1.3rem, 4vw, 2.6rem);
   color:#fff;
-  transition:background .45s var(--e-quart), backdrop-filter .45s var(--e-quart),
-             color .45s var(--e-quart), box-shadow .45s var(--e-quart);
+  /* 0,22 s et non 0,45 s : pendant la bascule, le fond et l encre se croisent,
+     et une transition longue laisse une fenetre ou les libelles sont peu
+     lisibles. Le fondu reste doux, la fenetre devient imperceptible. */
+  transition:background .22s var(--e-quart), backdrop-filter .22s var(--e-quart),
+             color .22s var(--e-quart), box-shadow .22s var(--e-quart);
 }
 /* ECRAN DE PROTECTION. La barre est transparente au-dessus du pli, posee sur
    une photographie dont la luminance monte a 1,00 sous les libelles : du blanc
@@ -186,7 +200,11 @@ p:last-child{margin-bottom:0}
 
 .nav[data-pose="pose"] .btn-plein{background:var(--teja-700); font-size:var(--t0); font-weight:600}
 .nav[data-pose="pose"]{
-  background:color-mix(in oklch, var(--clair) 88%, transparent);
+  /* 88 % laissait lire le texte du corps a travers la barre : le flou d arriere
+     plan ne rattrape pas 12 % de transparence sur du texte contraste.
+     Mesure du 06/08 sur une page Conseils. 96 % garde la matiere sans laisser
+     passer les mots. */
+  background:color-mix(in oklch, var(--clair) 96%, transparent);
   backdrop-filter:saturate(1.6) blur(14px);
   -webkit-backdrop-filter:saturate(1.6) blur(14px);
   color:var(--ink);
@@ -282,6 +300,10 @@ p:last-child{margin-bottom:0}
   display:flex; align-items:center;
   overflow:hidden; isolation:isolate; color:#fff;
 }
+/* En tete de page (les 33 fiches de commune), la section photo passe sous la
+   barre fixe : sur un ecran de 320 par 720, le fil d Ariane demarrait 44 px
+   sous la barre. Meme garde que le hero et que la bande de titre. */
+main > .pli-photo:first-child{padding-top:calc(var(--navh, 60px) + 1.6rem)}
 .pli-photo img{
   position:absolute; inset:0; z-index:var(--z-fond);
   width:100%; height:100%; object-fit:cover;
@@ -335,7 +357,7 @@ p:last-child{margin-bottom:0}
 
 /* ------------------------------------------------- 8. en-tête de pli */
 .tete{max-width:22ch}
-.tete + .lede{margin-top:1.35rem}
+.tete + .lede{margin-top:var(--sp-s)}
 
 /* --------------------------------------------------- 9. les situations */
 .situ{
@@ -765,6 +787,17 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
   font-variation-settings:'wdth' 114; letter-spacing:-0.03em; line-height:1; margin-bottom:0.55rem;
   font-variant-numeric:tabular-nums; color:var(--teja-700)}
 .faits .k{font-size:var(--t-body); color:var(--ink-2); line-height:1.5; max-width:32ch; margin:0}
+/* Le bloc de faits pose sur un fond navy : sans ces 3 lignes il garde ses
+   encres de fond clair. Mesure du 06/08 sur les pages Conseils : le libelle
+   tombait a 1,01:1 et le chiffre a 2,28:1. Les encres claires du site sont
+   reprises telles quelles. */
+:is(.drench,.drench-noir) .faits{border-top-color:color-mix(in oklch, #fff 22%, transparent)}
+:is(.drench,.drench-noir) .faits > div{border-bottom-color:color-mix(in oklch, #fff 22%, transparent)}
+@media (min-width:760px){
+  :is(.drench,.drench-noir) .faits > div + div{border-left-color:color-mix(in oklch, #fff 22%, transparent)}
+}
+:is(.drench,.drench-noir) .faits .v{color:oklch(0.800 0.115 52)}
+:is(.drench,.drench-noir) .faits .k{color:color-mix(in oklch, #fff 84%, var(--azul-300))}
 
 
 /* ============================ 23. AVIS CLIENTS ============================ */
@@ -838,12 +871,16 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 /* Case de consentement du formulaire. */
 .form-consent label{display:flex; gap:.75rem; align-items:flex-start; cursor:pointer;
   font-size:var(--t-fine); color:var(--ink-2); line-height:1.55}
-.form-consent input{width:1.15rem; height:1.15rem; margin-top:.18rem; flex:none;
+.form-consent input{width:1.5rem; height:1.5rem; margin-top:.02rem; flex:none;
   accent-color:var(--teja-600); cursor:pointer}
 .form-consent label:has(input:focus-visible){outline:2px solid var(--teja-600); outline-offset:4px}
 
 /* Bandeau de titre des pages interieures. Porte le h1 et le fil d'Ariane. */
-.ban{background:var(--azul-950); color:var(--clair); padding:clamp(4.5rem,9vw,7.5rem) 0 clamp(3rem,6vw,4.5rem)}
+/* Le haut de la bande tient compte de la barre fixe, comme le hero : sans
+   cette garde, le fil d Ariane demarrait 2 px sous la barre en 390 et le titre
+   7 px dessous en 1300 par 610. Mesure du 06/08, au chargement, sans defilement. */
+.ban{background:var(--azul-950); color:var(--clair);
+  padding:max(clamp(4.5rem,9vw,7.5rem), calc(var(--navh, 60px) + 2.2rem)) 0 var(--sp-l)}
 .ban h1{font-size:clamp(2.1rem, 1.1rem + 3.9vw, 3.9rem); line-height:1.04; letter-spacing:-0.028em;
   font-variation-settings:'wdth' 112; max-width:19ch; margin:0 0 1.1rem; text-wrap:balance}
 .ban-lede{font-size:clamp(1.02rem, 0.96rem + 0.36vw, 1.22rem); line-height:1.58; max-width:51ch;
@@ -851,9 +888,14 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 .ariane{display:flex; gap:.55rem; align-items:center; margin-bottom:1.6rem;
   font-size:var(--t-micro); letter-spacing:.04em; text-transform:uppercase; font-weight:600}
 .ariane a{color:color-mix(in oklch, var(--clair) 62%, transparent); text-decoration:none}
+/* meme minimum de 24 px pour les liens du fil d Ariane. */
+:is(.ariane, .fil) a{padding-block:.16rem}
 .ariane a:hover{color:var(--clair)}
 .ariane span{color:color-mix(in oklch, var(--clair) 34%, transparent)}
 .ariane b{color:oklch(0.820 0.120 74); font-weight:600}
+/* La ligne de date sous le chapeau : .fine est une encre pensee pour fond
+   clair, elle tombait a 3,07:1 sur le navy de la bande. Mesure du 06/08. */
+.ban .fine{color:color-mix(in oklch, #fff 72%, var(--azul-300))}
 
 /* ---------------------------------------------------- 14 bis. la FAQ */
 .faq{margin-top:var(--sp-l); border-top:1px solid var(--ligne)}
@@ -948,6 +990,9 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 .nav{flex-wrap:nowrap}
 .nav-liens{flex-wrap:nowrap}
 .nav-liens a{white-space:nowrap}
+/* zone cliquable portee a 24 px, minimum AA : les libelles etaient
+   hauts de 21 a 23 px. Mesure du 06/08. Le dessin ne bouge pas. */
+.nav-liens > a, .marque{padding-block:.16rem}
 .marque b{white-space:nowrap}
 .lsel summary b{white-space:nowrap}
 
@@ -1062,7 +1107,7 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 .zmap a{cursor:pointer}
 .zmap a:hover .zm-p, .zmap a:hover .zm-s{fill:var(--teja-700)}
 .zm-n{font-family:inherit; font-size:15px; font-weight:600; line-height:1; fill:var(--ink)}
-.zm-m{font-family:inherit; font-size:12px; font-weight:400; line-height:1; fill:var(--ink-2)}
+.zm-m{font-family:inherit; font-size:13px; font-weight:400; line-height:1; fill:var(--ink-2)}
 .zmap figcaption{color:var(--ink-2); font-size:var(--t-1); margin-top:.6rem}
 /* Sous 760 px le dessin rend ses etiquettes a 8,16 px : illisible. On le
    retire et on pose les memes temps de trajet sur la grille de communes,
