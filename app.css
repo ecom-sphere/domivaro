@@ -158,9 +158,30 @@ p:last-child{margin-bottom:0}
 .shell{width:min(100% - 2.6rem, var(--shell)); margin-inline:auto}
 .pli{padding-block:var(--sp-pli)}
 .pli-court{padding-block:var(--sp-l)}
-/* 2 sections courtes consecutives disent la meme chose : elles se
-   rapprochent, au lieu de 2 respirations pleines bout a bout. */
-.pli-court + .pli-court{padding-top:var(--sp-m)}
+/* LE CUMUL DES RESPIRATIONS. Mesure du 06/08 sur la page entiere, en
+   cherchant les bandes de pixels ou rien n est peint : 2 sections de meme
+   fond qui se suivent additionnaient leur respiration, soit 336 px de vide
+   a 1300 px de large, et jusqu a 368 px. L oeil y lit une page cassee, pas
+   une respiration. Les 174 enchainements clair vers clair ne cumulent plus :
+   l espace devient celui de la section qui se termine. Les changements de
+   fond (navy, photo, bande) gardent leur respiration pleine, car la le vide
+   n est pas vide : il porte la couleur. */
+main > section:not(.drench):not(.drench-noir):not(.pli-photo):not(.ban)
+  + section:not(.drench):not(.drench-noir):not(.pli-photo):not(.ban){padding-top:0}
+/* CHANGEMENT DE FOND. Ici le vide n est pas vide, il porte la couleur, donc
+   on ne le supprime pas : on le resserre. 2 respirations pleines dos a dos
+   faisaient 336 px a 1300, soit 42 pourcent d un ecran de portable sans une
+   ligne de texte. La section qui entre prend le palier en dessous : 280 px. */
+main > section:is(.drench,.drench-noir) + section:not(.drench):not(.drench-noir):not(.pli-photo),
+main > section:not(.drench):not(.drench-noir):not(.pli-photo) + section:is(.drench,.drench-noir){padding-top:var(--sp-xl)}
+/* la premiere section de contenu suit la bande de titre : on entre plus vite
+   dans le sujet, 238 px devenaient une page d attente. */
+main > .ban + section:not(.pli-photo){padding-top:var(--sp-xl)}
+/* une section majeure qui suit une section courte reprend un peu d air */
+main > .pli-court + .pli:not(.drench):not(.drench-noir){padding-top:var(--sp-l)}
+/* une figure collee au bord de sa section n ajoute pas sa marge au padding */
+main figure:first-child{margin-top:0}
+main figure:last-child{margin-bottom:0}
 
 /* Plis gorgés de bleu : la couleur porte la marque, sans neutres autour. */
 .drench{background:var(--azul-900); color:#fff}
