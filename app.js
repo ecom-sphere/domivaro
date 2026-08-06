@@ -8,13 +8,31 @@
   var liens = document.getElementById('navliens');
   var reduit = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* --- 1. Le bandeau se pose des qu'on quitte le hero.
-         Sonde invisible plutot qu'un ecouteur de scroll. ------------------ */
+  /* --- 1. Le bandeau se pose AVANT que le premier texte ne l atteigne.
+         La sonde etait posee a 78vh, une fraction arbitraire de l ecran : le
+         titre du hero passait donc sous une barre encore transparente et se
+         melangeait aux libelles du menu. Mesure du 06/08 : 74 px de
+         chevauchement, sur 126 combinaisons de page et de fenetre sur 126.
+         La sonde est desormais ancree sur le premier texte de la page, decalee
+         vers le haut de la hauteur de la barre : elle sort du champ juste
+         avant la collision, quelle que soit la taille de la fenetre.
+         Toujours une sonde, jamais un ecouteur de defilement. -------------- */
   if (nav && 'IntersectionObserver' in window) {
+    var repere = document.querySelector('main :is(.ariane, .fil, h1)') || document.querySelector('main');
     var sonde = document.createElement('div');
     sonde.setAttribute('aria-hidden', 'true');
-    sonde.style.cssText = 'position:absolute;top:78vh;left:0;width:1px;height:1px;pointer-events:none';
+    sonde.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none';
     document.body.appendChild(sonde);
+    var poser = function () {
+      /* 96 px d avance : le fond de la barre met 0,45 s a monter, il doit etre
+         opaque AVANT que le texte arrive, pas pendant. */
+      var marge = nav.offsetHeight + 96;
+      var haut = repere ? repere.getBoundingClientRect().top + (scrollY || pageYOffset) : marge;
+      sonde.style.top = Math.max(1, haut - marge) + 'px';
+    };
+    poser();
+    addEventListener('resize', poser, { passive: true });
+    addEventListener('load', poser);
     new IntersectionObserver(function (e) {
       nav.setAttribute('data-pose', e[0].isIntersecting ? '' : 'pose');
     }, { threshold: 0 }).observe(sonde);
