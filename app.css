@@ -184,6 +184,20 @@ main > section:is(.drench,.drench-noir){padding-block:var(--sp-xl)}
    bleu de la bande de titre, et le raccord se resserre. */
 main > .ban:has(+ .drench){padding-bottom:var(--sp-l)}
 main > .ban + .drench{background:var(--azul-950); padding-top:var(--sp-l)}
+/* LA COUTURE ENTRE 2 BANDES. Mesure du 08/08 sur les 96 pages : 15 fois une
+   bande rgb(0,42,84) suivie d une bande rgb(0,42,84), soit 160 px de bleu sans
+   un signe entre 2 sections. On reprend le filet teja deja employe au-dessus
+   des colonnes de chiffres, a la largeur du contenu et non bord a bord : la
+   coupure se lit comme un choix. La bande de titre est exclue, son bleu est
+   volontairement continu depuis le lot 62 c. */
+main > section:is(.drench,.drench-noir):not(.ban)
+  + section:is(.drench,.drench-noir):not(.ban){position:relative}
+main > section:is(.drench,.drench-noir):not(.ban)
+  + section:is(.drench,.drench-noir):not(.ban)::before{
+  content:""; position:absolute; top:0; left:50%; transform:translateX(-50%);
+  width:min(100% - 2.6rem, var(--shell)); height:1px;
+  background:color-mix(in oklch, var(--teja-600) 55%, transparent);
+}
 /* Une photographie pleine largeur est un bloc fort : elle se detache toute
    seule, elle n a pas besoin de la respiration maximale devant elle. Mesure du
    06/08 : 157 px de vide a 1118 px sous une simple note de 40 px de haut. */
@@ -382,7 +396,15 @@ main > .pli-photo:first-child{padding-top:calc(var(--navh, 60px) + 1.6rem)}
 .btn-fant{background:transparent; color:inherit; box-shadow:inset 0 0 0 1.5px color-mix(in oklch, currentColor 42%, transparent)}
 .btn-fant:hover{background:color-mix(in oklch, currentColor 11%, transparent); transform:translateY(-2px)}
 .btn:focus-visible{outline:2.5px solid var(--teja-500); outline-offset:3px}
-@media (prefers-reduced-motion: reduce){.btn:hover{transform:none}}
+/* LE RETOUR AU DOIGT. Releve du 08/08 : 0 regle :active sur tout le site.
+   Sur un telephone, appuyer sur un bouton ne produisait rien jusqu au
+   changement de page. 90 ms suffisent : c est un accuse de reception, pas
+   une animation. La translation du survol est conservee pour que les 2
+   etats se composent au lieu de se chasser. */
+.btn{transition:transform .35s var(--e-expo), background .25s var(--e-quart),
+     box-shadow .35s var(--e-expo)}
+.btn:active{transform:translateY(-1px) scale(.972); transition-duration:.09s}
+@media (prefers-reduced-motion: reduce){.btn:hover,.btn:active{transform:none}}
 
 .lien-fleche{
   display:inline-flex; align-items:center; gap:0.42rem;
@@ -703,17 +725,23 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
   .js-mo .hero h1,
   .js-mo .hero .lede,
   .js-mo .hero .hero-actions,
-  .js-mo .hero .hero-pied{animation:monte .9s var(--e-expo) backwards}
+  .js-mo .hero .hero-pied{animation:monte .62s var(--e-expo) backwards}
   .js-mo .hero .lede{animation-delay:.12s}
   .js-mo .hero .hero-actions{animation-delay:.22s}
   .js-mo .hero .hero-pied{animation-delay:.32s}
-  @keyframes monte{from{opacity:0; transform:translateY(22px)} to{opacity:1; transform:none}}
+  @keyframes monte{from{opacity:0; transform:translateY(18px); filter:blur(5px)} to{opacity:1; transform:none; filter:none}}
 
-  .js-mo [data-mo]{opacity:0; transform:translateY(20px); transition:opacity .85s var(--e-quart), transform .85s var(--e-quart)}
-  .js-mo [data-mo].vu{opacity:1; transform:none}
-  .js-mo [data-mo][data-d="1"]{transition-delay:.10s}
-  .js-mo [data-mo][data-d="2"]{transition-delay:.20s}
-  .js-mo [data-mo][data-d="3"]{transition-delay:.30s}
+  /* 520 ms et non 850 : mesure du 08/08, a 850 ms plus 300 ms de retard le
+     3e bloc finissait d arriver 1,15 s apres son entree dans l ecran, donc
+     hors champ pour qui fait defiler. Le flou n est pose que sur les blocs
+     legers : anime sur une figure ou un tableau pleine largeur, il cree une
+     couche GPU de la taille de l ecran et saccade. */
+  .js-mo [data-mo]{opacity:0; transform:translateY(16px); transition:opacity .52s var(--e-quart), transform .52s var(--e-quart)}
+  .js-mo [data-mo]:not(:has(picture)):not(:has(table)):not(figure):not(picture):not(table){filter:blur(5px); transition:opacity .52s var(--e-quart), transform .52s var(--e-quart), filter .52s var(--e-quart)}
+  .js-mo [data-mo].vu{opacity:1; transform:none; filter:none}
+  .js-mo [data-mo][data-d="1"]{transition-delay:.08s}
+  .js-mo [data-mo][data-d="2"]{transition-delay:.16s}
+  .js-mo [data-mo][data-d="3"]{transition-delay:.24s}
 
   /* ---- 17 bis. Le mouvement au service de la hierarchie, 06/08 -------------
      Constat : 801 marqueurs d apparition sur le site, souvent 6 ou 7 dans une
@@ -722,7 +750,7 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
      EFFET 1, degraisser. Dans une meme section, seuls les 2 premiers blocs
      marques respirent, le titre et son chapeau. A partir du 3e, le contenu est
      simplement la. Fait en CSS, sans toucher aux 76 pages, donc reversible. */
-  .js-mo [data-mo] ~ [data-mo] ~ [data-mo]{opacity:1; transform:none; transition:none}
+  .js-mo [data-mo] ~ [data-mo] ~ [data-mo]{opacity:1; transform:none; filter:none; transition:none}
 
   /* EFFET 2, les preuves chiffrees se lisent l une apres l autre. Les blocs de
      faits portent les seuls chiffres opposables du site (600 000 EUR, 38
@@ -734,20 +762,22 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
      bloc pose dans une section sans marqueur reste invisible pour toujours,
      ce qui est arrive aux 3 etapes du protocole le 06/08. */
   .js-mo [data-mo] .faits > div,
-  .js-mo .faits[data-mo] > div{opacity:0; transform:translateY(14px);
-    transition:opacity .7s var(--e-quart), transform .7s var(--e-quart)}
+  .js-mo .faits[data-mo] > div{opacity:0; transform:translateY(12px); filter:blur(4px);
+    transition:opacity .48s var(--e-quart), transform .48s var(--e-quart),
+               filter .48s var(--e-quart)}
   .js-mo [data-mo].vu .faits > div,
-  .js-mo .faits[data-mo].vu > div{opacity:1; transform:none}
+  .js-mo .faits[data-mo].vu > div{opacity:1; transform:none; filter:none}
   .js-mo .faits > div:nth-child(2){transition-delay:.12s}
   .js-mo .faits > div:nth-child(3){transition-delay:.24s}
 
   /* EFFET 3, le protocole est une sequence, ses etapes entrent dans l ordre.
      C est la seule animation du site qui porte un sens : avant, pendant, apres. */
   .js-mo [data-mo] .flow > div,
-  .js-mo .flow[data-mo] > div{opacity:0; transform:translateY(16px);
-    transition:opacity .75s var(--e-quart), transform .75s var(--e-quart)}
+  .js-mo .flow[data-mo] > div{opacity:0; transform:translateY(13px); filter:blur(4px);
+    transition:opacity .5s var(--e-quart), transform .5s var(--e-quart),
+               filter .5s var(--e-quart)}
   .js-mo [data-mo].vu .flow > div,
-  .js-mo .flow[data-mo].vu > div{opacity:1; transform:none}
+  .js-mo .flow[data-mo].vu > div{opacity:1; transform:none; filter:none}
   .js-mo .flow > div:nth-child(2){transition-delay:.14s}
   .js-mo .flow > div:nth-child(3){transition-delay:.28s}
   .js-mo .flow > div:nth-child(4){transition-delay:.42s}
