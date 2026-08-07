@@ -1343,6 +1343,25 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
   font-variant-numeric:tabular-nums}
 .av-meta .av-lang{margin-top:0}
 
+/* Une figure vectorielle : elle prend la colonne, respire comme une
+   photographie, et son texte reste net a toutes les tailles puisqu il n est
+   pas une image. Le fond clair la detache du blanc de la page sans cadre. */
+.fg{margin:var(--sp-l) 0 0; max-width:100%}
+.fg svg{width:100%; height:auto; display:block; border-radius:12px;
+  background:var(--sur-1); padding:0.6rem 0.2rem}
+.fg figcaption{margin:1rem 0 0; font-size:var(--t-fine); line-height:1.62;
+  color:var(--ink-2); max-width:66ch}
+/* MESURE DU 08/08 A 390 px : le dessin tombait a 356 px de large et son texte
+   a 4 px, donc illisible. Un schema qui retrecit jusqu a disparaitre ne vaut
+   rien. Sous 760 px il garde une largeur lisible et se fait defiler du doigt.
+   Le conteneur porte tabindex pour que le clavier puisse le parcourir aussi,
+   et un role de groupe nomme pour que le lecteur d ecran l annonce. */
+@media (max-width:760px){
+  .fg{overflow-x:auto; overscroll-behavior-x:contain}
+  .fg svg{min-width:660px}
+  .fg:focus-visible{outline:2.5px solid var(--teja-500); outline-offset:3px}
+}
+
 /* Le coffre a cles : la preuve du protocole, pas un document. */
 /* Mesure du 07/08 a 1440 px : la photographie tenait 860 px sur une
    colonne de 1220 et laissait 360 px de vide a sa droite, ce qui se lit
