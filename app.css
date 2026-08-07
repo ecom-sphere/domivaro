@@ -78,8 +78,8 @@
   --sp-2xs:  .5rem;
   --sp-xs:   clamp(.7rem, .58rem + .5vw, 1rem);
   --sp-s:    clamp(1.05rem, .88rem + .7vw, 1.5rem);
-  --sp-pli:  clamp(5.5rem, 3.2rem + 9.5vw, 10.5rem);
-  --sp-xl:   clamp(3.8rem, 2.5rem + 5.2vw, 7rem);
+  --sp-pli:  clamp(3.6rem, 2.2rem + 5.6vw, 6.5rem);
+  --sp-xl:   clamp(2.8rem, 1.9rem + 3.4vw, 5rem);
   --sp-l:    clamp(2.6rem, 1.8rem + 3.2vw, 4.4rem);
   --sp-m:    clamp(1.5rem, 1.2rem + 1.3vw, 2.1rem);
 
@@ -167,7 +167,23 @@ main > section:not(.drench):not(.drench-noir):not(.pli-photo):not(.ban)
    faisaient 336 px a 1300, soit 42 pourcent d un ecran de portable sans une
    ligne de texte. La section qui entre prend le palier en dessous : 280 px. */
 main > section:is(.drench,.drench-noir) + section:not(.drench):not(.drench-noir):not(.pli-photo),
-main > section:not(.drench):not(.drench-noir):not(.pli-photo) + section:is(.drench,.drench-noir){padding-top:var(--sp-xl)}
+main > section:not(.drench):not(.drench-noir):not(.pli-photo) + section:is(.drench,.drench-noir),
+/* 2 bandes de couleur dos a dos cumulaient 336 px, mesure du 07/08 a
+   1440 px sur 4 enchainements : la bande qui entre prend le meme palier
+   que tout autre changement de fond, la lisiere de couleur suffit. */
+main > section:is(.drench,.drench-noir) + section:is(.drench,.drench-noir){padding-top:var(--sp-xl)}
+/* CENTRER LE CONTENU DANS LA COULEUR. Mesure du 07/08 a 1440 px : une bande
+   portait 80 px en haut et 104 px en bas, son contenu flottait 24 px trop
+   haut. Sur fond clair personne ne le voit, sur une bande pleine si. La bande
+   prend le meme palier des 2 cotes ; l enchainement, lui, ne bouge pas. */
+main > section:is(.drench,.drench-noir){padding-block:var(--sp-xl)}
+/* UNE SEULE OUVERTURE SOMBRE. Mesure du 07/08 en pixels rendus sur
+   /la-methode/ : rgb(0,25,56) pour la bande de titre puis rgb(0,42,84) pour
+   la bande qui suit, soit 2 bleus trop voisins pour se lire comme 2 blocs et
+   trop distincts pour se lire comme un seul. La bande qui suit reprend le
+   bleu de la bande de titre, et le raccord se resserre. */
+main > .ban:has(+ .drench){padding-bottom:var(--sp-l)}
+main > .ban + .drench{background:var(--azul-950); padding-top:var(--sp-l)}
 /* Une photographie pleine largeur est un bloc fort : elle se detache toute
    seule, elle n a pas besoin de la respiration maximale devant elle. Mesure du
    06/08 : 157 px de vide a 1118 px sous une simple note de 40 px de haut. */
@@ -1288,7 +1304,10 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 .av-meta .av-lang{margin-top:0}
 
 /* Le coffre a cles : la preuve du protocole, pas un document. */
-.coffre{margin:var(--sp-l) 0 0; max-width:min(100%, 860px)}
+/* Mesure du 07/08 a 1440 px : la photographie tenait 860 px sur une
+   colonne de 1220 et laissait 360 px de vide a sa droite, ce qui se lit
+   comme une mise en page inachevee. Elle prend la colonne entiere. */
+.coffre{margin:var(--sp-l) 0 0; max-width:100%}
 .coffre img{width:100%; height:auto; display:block; aspect-ratio:3/2; object-fit:cover; border-radius:12px;
   box-shadow:0 18px 40px -22px color-mix(in oklch, var(--azul-950) 46%, transparent)}
 .coffre figcaption{margin:1rem 0 0; font-size:var(--t-fine); line-height:1.62; color:var(--ink-2); max-width:66ch}
