@@ -34,6 +34,7 @@ def lang(p): return "es" if p.startswith("/es/") else "en" if p.startswith("/en/
 # --- 1. jetons, cadratins, domaine mort ------------------------------------
 for p, h in PAGES.items():
     ck("%(" not in h, f"1 jeton de gabarit sur {p}")
+    ck(not re.search(r"\{[A-Z_]{2,}\}|\{\{", h), f"1 jeton de gabarit a accolades sur {p}")
     ck("—" not in h and "–" not in h, f"1 tiret cadratin sur {p}")
     ck(len(re.findall(r"domivaro\.com", h)) == h.count("contact@domivaro.com"), f"1 domaine mort sur {p}")
 print("1. jetons, tirets cadratins, domaine mort : OK")
@@ -303,9 +304,24 @@ for u, (rep, meth, lang_) in AVIS.items():
     ck(quatre == 12, f"20 {quatre} blocs d etoiles fermes sur {u}")
 print("20. reponse publique, methode de verification et langue d origine sur les 3 pages d avis : OK")
 
+# --- 21. la home liste exactement les memes communes que la page des zones --
+# Le 07/08/2026 la home n en listait que 14 sur 19 : 5 fiches etaient orphelines
+# depuis l accueil, et le champ commune du formulaire ne les proposait pas.
+HOME = {"fr": ("/", "/nos-zones/", "/zones/"),
+        "es": ("/es/", "/es/nuestras-zonas/", "/es/zonas/"),
+        "en": ("/en/", "/en/our-area/", "/en/areas/")}
+for lg, (accueil, page_zones, prefixe) in HOME.items():
+    rx = re.compile(r'href="(' + re.escape(prefixe) + r'[a-z0-9-]+/)"')
+    sur_accueil = set(rx.findall(PAGES[accueil]))
+    sur_zones = set(rx.findall(PAGES[page_zones]))
+    ck(len(sur_zones) == 19, f"21 [{lg}] {len(sur_zones)} communes sur la page des zones, 19 attendues")
+    ck(sur_accueil == sur_zones,
+       f"21 [{lg}] la home et la page des zones divergent : {sorted(sur_zones ^ sur_accueil)}")
+print("21. la home liste les 19 memes communes que la page des zones, dans les 3 langues : OK")
+
 print()
 if ERR:
     print(f"=== {len(ERR)} DEFAUT(S) ===")
     for e in ERR[:40]: print("  -", e)
     sys.exit(1)
-print("=== 20 controles passes sur les 63 pages servies. ===")
+print("=== 21 controles passes sur les 63 pages servies. ===")
