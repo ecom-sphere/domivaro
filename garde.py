@@ -91,7 +91,11 @@ LEX = {
         ("les 38 points", [r"38 checkpoints", r"38 points"]), ("formule phare", [r"[Mm]ost chosen", r"[Mm]ost popular"]),
         ("visite offerte", [r"check visit", r"first inspection"]),
         ("syndic", [r"building managers", r"residents association"]), ("armoire a cles", [r"sealed safe", r"sealed key cabinet"])],
- "es": [("armoire a cles", [r"caja fuerte", r"caja sellada", r"armario de llaves"]),
+ # "caja fuerte sellada" et non "caja fuerte" seul : en espagnol, un coffre-fort
+ # domestique ou un article d assurance cite legitimement une "caja fuerte" pour
+ # les bijoux, objet different de l armoire a cles. Les variantes anglaise et
+ # francaise portent deja la meme qualification, "sealed" et "scelle".
+ "es": [("armoire a cles", [r"caja fuerte sellada", r"caja sellada", r"armario de llaves"]),
         ("formule", [r"la fórmula", r"el plan"]), ("statut du rapport", [r"a resolver", r"a tratar"])],
  "fr": [("armoire a cles", [r"coffre scellé", r"armoire à clés"])],
 }
