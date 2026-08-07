@@ -241,36 +241,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://domivaro.speed-ecom.eu/zones/altea/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/altea/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/altea/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/altea/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/altea/"/>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/zones/alfas-del-pi/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/alfas-del-pi/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/alfas-del-pi/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/alfas-del-pi/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/alfas-del-pi/"/>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/zones/la-nucia/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/la-nucia/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/la-nucia/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/la-nucia/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/la-nucia/"/>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://domivaro.speed-ecom.eu/mentions-legales/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/mentions-legales/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/aviso-legal/"/>
@@ -329,66 +299,6 @@
     <lastmod>2026-08-04</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/es/zonas/altea/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/altea/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/altea/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/altea/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/altea/"/>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/en/areas/altea/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/altea/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/altea/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/altea/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/altea/"/>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/es/zonas/alfas-del-pi/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/alfas-del-pi/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/alfas-del-pi/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/alfas-del-pi/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/alfas-del-pi/"/>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/en/areas/alfas-del-pi/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/alfas-del-pi/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/alfas-del-pi/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/alfas-del-pi/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/alfas-del-pi/"/>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/es/zonas/la-nucia/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/la-nucia/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/la-nucia/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/la-nucia/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/la-nucia/"/>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/en/areas/la-nucia/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/la-nucia/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/la-nucia/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/la-nucia/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/la-nucia/"/>
-    <lastmod>2026-08-05</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://domivaro.speed-ecom.eu/conseils/</loc>
@@ -601,26 +511,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://domivaro.speed-ecom.eu/zones/benidorm/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/benidorm/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/benidorm/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/benidorm/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/benidorm/"/>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/zones/finestrat/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/finestrat/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/finestrat/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/finestrat/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/finestrat/"/>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://domivaro.speed-ecom.eu/es/zonas/busot/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/busot/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/busot/"/>
@@ -706,26 +596,6 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/relleu/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/relleu/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/relleu/"/>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/es/zonas/benidorm/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/benidorm/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/benidorm/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/benidorm/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/benidorm/"/>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/es/zonas/finestrat/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/finestrat/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/finestrat/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/finestrat/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/finestrat/"/>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -821,26 +691,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://domivaro.speed-ecom.eu/en/areas/benidorm/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/benidorm/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/benidorm/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/benidorm/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/benidorm/"/>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/en/areas/finestrat/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/finestrat/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/finestrat/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/finestrat/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/finestrat/"/>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://domivaro.speed-ecom.eu/zones/sant-vicent-del-raspeig/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/sant-vicent-del-raspeig/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/sant-vicent-del-raspeig/"/>
@@ -876,16 +726,6 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/torre-de-les-macanes/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/torre-de-les-macanes/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/torre-de-les-macanes/"/>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/zones/sella/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/sella/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/sella/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/sella/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/sella/"/>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -931,16 +771,6 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://domivaro.speed-ecom.eu/es/zonas/sella/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/sella/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/sella/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/sella/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/sella/"/>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://domivaro.speed-ecom.eu/en/areas/sant-vicent-del-raspeig/</loc>
     <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/sant-vicent-del-raspeig/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/sant-vicent-del-raspeig/"/>
@@ -976,16 +806,6 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/torre-de-les-macanes/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/torre-de-les-macanes/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/torre-de-les-macanes/"/>
-    <lastmod>2026-08-06</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://domivaro.speed-ecom.eu/en/areas/sella/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/zones/sella/"/>
-    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/zonas/sella/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/areas/sella/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/areas/sella/"/>
     <lastmod>2026-08-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
