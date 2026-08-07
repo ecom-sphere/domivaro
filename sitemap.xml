@@ -990,4 +990,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/conseils/regle-90-180-jours-espagne/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/regle-90-180-jours-espagne/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/regla-90-180-dias-espana/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/90-180-day-rule-spain/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/90-180-day-rule-spain/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/es/consejos/regla-90-180-dias-espana/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/regle-90-180-jours-espagne/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/regla-90-180-dias-espana/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/90-180-day-rule-spain/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/90-180-day-rule-spain/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/en/advice/90-180-day-rule-spain/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/regle-90-180-jours-espagne/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/regla-90-180-dias-espana/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/90-180-day-rule-spain/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/90-180-day-rule-spain/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
