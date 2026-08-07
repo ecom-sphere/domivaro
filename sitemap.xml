@@ -1050,4 +1050,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/conseils/cout-annuel-residence-secondaire-espagne/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/cout-annuel-residence-secondaire-espagne/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/coste-anual-segunda-residencia-espana/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/annual-cost-second-home-spain/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/annual-cost-second-home-spain/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/es/consejos/coste-anual-segunda-residencia-espana/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/cout-annuel-residence-secondaire-espagne/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/coste-anual-segunda-residencia-espana/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/annual-cost-second-home-spain/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/annual-cost-second-home-spain/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/en/advice/annual-cost-second-home-spain/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/cout-annuel-residence-secondaire-espagne/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/coste-anual-segunda-residencia-espana/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/annual-cost-second-home-spain/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/annual-cost-second-home-spain/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
