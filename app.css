@@ -195,7 +195,10 @@ main > .ban + section:not(.pli-photo){padding-top:var(--sp-xl)}
 main > .pli-court + .pli:not(.drench):not(.drench-noir){padding-top:var(--sp-l)}
 /* une figure collee au bord de sa section n ajoute pas sa marge au padding */
 main figure:first-child{margin-top:0}
-main figure:last-child{margin-bottom:0}
+/* Mesure du 07/08 : cette regle annulait aussi les 70 px sous la
+   photographie d en-tete d article, dont l ombre portee descend a 44 px.
+   Le bloc EN BREF demarrait donc dans l ombre. L en-tete est exclu. */
+main figure:not(.art-hero):last-child{margin-bottom:0}
 
 /* Plis gorgés de bleu : la couleur porte la marque, sans neutres autour. */
 .drench{background:var(--azul-900); color:#fff}
@@ -610,7 +613,10 @@ main > .pli-photo:first-child{padding-top:calc(var(--navh, 60px) + 1.6rem)}
 @media (prefers-reduced-motion: no-preference){
   .carte-img:hover img, .carte-img:focus-visible img{transform:scale(1.03)}
 }
-.carte-meta{display:flex; flex-wrap:wrap; align-items:center; gap:.42rem; margin:1rem 0 .55rem;
+/* .carte .carte-meta et non .carte-meta : la regle .carte p, plus bas dans
+   la feuille, porte une specificite de 0-1-1 contre 0-1-0 et ecrasait la
+   marge haute. Mesure du 07/08 : 0 px de vide sous l image de carte. */
+.carte .carte-meta{display:flex; flex-wrap:wrap; align-items:center; gap:.42rem; margin:var(--sp-s) 0 .55rem;
   font-size:var(--t-micro); letter-spacing:.02em; text-transform:uppercase; font-weight:600;
   color:var(--ink-3); line-height:1.35}
 /* en 3 colonnes la ligne de meta est serree : la categorie passe seule au
