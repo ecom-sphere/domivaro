@@ -316,14 +316,14 @@ for u, (rep, meth, lang_) in AVIS.items():
     ck(meth in h, f"20 methode de verification absente sur {u}")
     ck(lang_ in h, f"20 mention de la langue d origine absente sur {u}")
     net = h.count('class="et5"')
-    ck(net == 18, f"20 {net} blocs d etoiles sur {u}, 18 attendus")
+    ck(net == 24, f"20 {net} blocs d etoiles sur {u}, 24 attendus")
     quatre = len(re.findall(r'<div class="et5"[^>]*>(?:(?!</div>).)*?</div>', h, re.S))
-    ck(quatre == 18, f"20 {quatre} blocs d etoiles fermes sur {u}")
-    # 16 avis a 5 etoiles et 2 a 4 : la moyenne de 4,9 annoncee doit tenir
+    ck(quatre == 24, f"20 {quatre} blocs d etoiles fermes sur {u}")
+    # 21 avis a 5 etoiles et 3 a 4 : la moyenne de 4,9 annoncee doit tenir
     etl = re.findall(r'<div class="et5"[^>]*>(.*?)</div>', h, re.S)
     c5 = sum(1 for x in etl if x.count("<svg") == 5)
     c4 = sum(1 for x in etl if x.count("<svg") == 4)
-    ck((c5, c4) == (16, 2), f"20 {c5} avis a 5 etoiles et {c4} a 4 sur {u}, 16 et 2 attendus")
+    ck((c5, c4) == (21, 3), f"20 {c5} avis a 5 etoiles et {c4} a 4 sur {u}, 21 et 3 attendus")
     moy = round((5 * c5 + 4 * c4) / max(1, c5 + c4), 1)
     ck(moy == 4.9, f"20 moyenne reelle de {moy} sur {u}, 4,9 annoncee")
 print("20. reponse publique, methode de verification et langue d origine sur les 3 pages d avis : OK")
