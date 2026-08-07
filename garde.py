@@ -125,6 +125,12 @@ for p, h in PAGES.items():
     # la marque a deja disparu et l exemption ne s applique jamais.
     hc = re.sub(r'<i[^>]*lang="es"[^>]*>.*?</i>', " ", h, flags=re.S)
     t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", re.sub(r"<script.*?</script>", " ", hc, flags=re.S)))
+    # "neuf" en francais est aussi le nom du logement neuf. On ne l exempte que
+    # dans ce sens, repere par son entourage : "neuf mois" reste une faute.
+    if lang(p) == "fr":
+        t = re.sub(r"\b(?:le|du|au|dans le)\s+neufs?\b|\bneufs?\s+ou\s+ancien\b"
+                   r"|\b(?:logement|bien|programme)s?\s+neufs?\b|\bneuf\s*(?=:)",
+                   " ", t, flags=re.I)
     m = re.findall(MOTS[lang(p)], t, re.I)
     ck(not m, f"5 nombre en toutes lettres sur {p} : {sorted(set(m))}")
 print("5. aucun nombre en toutes lettres : OK")
