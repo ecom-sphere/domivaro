@@ -960,4 +960,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/conseils/frais-achat-maison-espagne-alicante/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/frais-achat-maison-espagne-alicante/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/gastos-compra-vivienda-alicante/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/buying-costs-spain-alicante/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/buying-costs-spain-alicante/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/es/consejos/gastos-compra-vivienda-alicante/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/frais-achat-maison-espagne-alicante/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/gastos-compra-vivienda-alicante/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/buying-costs-spain-alicante/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/buying-costs-spain-alicante/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/en/advice/buying-costs-spain-alicante/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/frais-achat-maison-espagne-alicante/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/gastos-compra-vivienda-alicante/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/buying-costs-spain-alicante/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/buying-costs-spain-alicante/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
