@@ -111,7 +111,12 @@ MOTS = {"fr": r"\b(deux|trois|quatre|cinq|six|sept|huit|neuf|dix|douze|quinze|vi
         "es": r"\b(dos|tres|cuatro|cinco|seis|siete|ocho|nueve|diez|doce|quince|veinte)\b",
         "en": r"\b(two|three|four|five|six|seven|eight|nine|ten|twelve|fifteen|twenty)\b"}
 for p, h in PAGES.items():
-    t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", re.sub(r"<script.*?</script>", " ", h, flags=re.S)))
+    # Une citation litterale d un texte de loi espagnol est marquee par
+    # <i lang="es">. On ne reecrit pas la loi : cuatro anos reste cuatro anos.
+    # Le retrait se fait sur le HTML, avant la suppression des balises, sinon
+    # la marque a deja disparu et l exemption ne s applique jamais.
+    hc = re.sub(r'<i[^>]*lang="es"[^>]*>.*?</i>', " ", h, flags=re.S)
+    t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", re.sub(r"<script.*?</script>", " ", hc, flags=re.S)))
     m = re.findall(MOTS[lang(p)], t, re.I)
     ck(not m, f"5 nombre en toutes lettres sur {p} : {sorted(set(m))}")
 print("5. aucun nombre en toutes lettres : OK")
