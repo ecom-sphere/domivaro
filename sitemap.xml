@@ -900,4 +900,34 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/conseils/clause-inoccupation-assurance-habitation-espagne/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/clause-inoccupation-assurance-habitation-espagne/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/clausula-desocupacion-seguro-hogar-espana/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/unoccupancy-clause-spanish-home-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/unoccupancy-clause-spanish-home-insurance/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/es/consejos/clausula-desocupacion-seguro-hogar-espana/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/clause-inoccupation-assurance-habitation-espagne/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/clausula-desocupacion-seguro-hogar-espana/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/unoccupancy-clause-spanish-home-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/unoccupancy-clause-spanish-home-insurance/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://domivaro.speed-ecom.eu/en/advice/unoccupancy-clause-spanish-home-insurance/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://domivaro.speed-ecom.eu/conseils/clause-inoccupation-assurance-habitation-espagne/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://domivaro.speed-ecom.eu/es/consejos/clausula-desocupacion-seguro-hogar-espana/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://domivaro.speed-ecom.eu/en/advice/unoccupancy-clause-spanish-home-insurance/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://domivaro.speed-ecom.eu/en/advice/unoccupancy-clause-spanish-home-insurance/"/>
+    <lastmod>2026-08-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
