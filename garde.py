@@ -5,6 +5,14 @@ successifs ont trouve a la main : chiffres divergents entre langues, lexique
 a plusieurs mots, jetons de gabarit, tirets cadratins, nombres en toutes
 lettres, hreflang, plancher typographique. A relancer avant chaque annonce.
    python3 garde.py
+
+07/08/2026, incident a retenir. Un envoi de 9 fichiers cree 9 commits,
+donc 9 constructions Vercel qui s annulent entre elles. Ce jour la, la
+construction du dernier commit s est terminee AVANT celle d un commit
+anterieur, et l alias de production a fini sur l anterieur : le site
+servait 4 fichiers sur 9 dans une version perimee, avec un code 200 sur
+les 4. Seule la comparaison SHA-256 entre le local et le servi l a vu.
+Ne jamais conclure a partir d un code 200. Comparer les octets.
 """
 import json, re, sys, time, urllib.request
 from collections import Counter
