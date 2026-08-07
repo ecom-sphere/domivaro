@@ -9,13 +9,13 @@ lettres, hreflang, plancher typographique. A relancer avant chaque annonce.
 import json, re, sys, time, urllib.request
 from collections import Counter
 D = "https://domivaro.speed-ecom.eu"
+# 13 communes depuis le lot 51 : au-dela de 35 minutes de Busot, une maison
+# isolee prend plus de temps de route que de temps utile pour une equipe de 2.
 SLUGS = ["busot", "el-campello", "mutxamel",
          "aigues", "sant-joan-d-alacant", "xixona",
          "sant-vicent-del-raspeig", "alicante", "agost",
          "villajoyosa", "relleu", "orxeta",
-         "benidorm", "torre-de-les-macanes", "alfas-del-pi",
-         "finestrat", "la-nucia", "sella",
-         "altea"]
+         "torre-de-les-macanes"]
 U = {"fr": "/zones/%s/", "es": "/es/zonas/%s/", "en": "/en/areas/%s/"}
 ERR = []
 def ck(c, m):
@@ -175,7 +175,7 @@ print(f"10. sitemap sans doublon, {len(LOCS)} adresses, aucun lien interne incon
 
 # --- 11. typographie : espaces insecables poses, aucun espace secable restant --
 insec = sum(h.count("\u00a0") for h in PAGES.values())
-ck(insec >= 320, f"11 seulement {insec} espaces insecables sur les 63 pages")
+ck(insec >= 320, f"11 seulement {insec} espaces insecables sur les {len(PAGES)} pages")
 for p, h in PAGES.items():
     corps = " ".join(re.split(r"<[^>]+>", re.sub(r"<script.*?</script>|<style.*?</style>", " ", h, flags=re.S)))
     fuite = re.findall(r"\d (?:€|%|m²|km)", corps)
@@ -221,7 +221,7 @@ for b in blocs:
     xd = re.search(r'hreflang="x-default" href="([^"]+)"', b)
     ck(en_ and xd and en_.group(1) == xd.group(1),
        f"15 x-default different de l alternate anglais : {re.search(r'<loc>([^<]+)', b).group(1)}")
-print("15. x-default du sitemap identique a l alternate anglais sur les 63 adresses : OK")
+print(f"15. x-default du sitemap identique a l alternate anglais sur les {len(LOCS)} adresses : OK")
 
 # --- 16. les alt ne decrivent pas ce que l image ne montre pas ---------------
 INTERDIT = [(r"volets fermés|shutters closed|contraventanas cerradas", "volets fermes sur une image qui en montre d ouverts"),
@@ -276,7 +276,7 @@ for u, siege in ZON.items():
     ck(g, f"19 grille de communes absente sur {u}")
     if not g: continue
     dt = re.findall(r'data-t="([^"]+)"', g.group(1))
-    ck(len(dt) == 19, f"19 {len(dt)} temps de trajet sur {u}, 19 attendus")
+    ck(len(dt) == 13, f"19 {len(dt)} temps de trajet sur {u}, 13 attendus")
     ck(dt[0] == siege, f"19 premier temps de {u} = {dt[0]!r}, {siege!r} attendu")
     minutes = [int(x.split("\u00a0")[0]) for x in dt[1:]]
     ck(minutes == sorted(minutes), f"19 temps de trajet non croissants sur {u} : {minutes}")
@@ -284,8 +284,8 @@ for u, siege in ZON.items():
     for x, nom in zip(dt, re.findall(r'class="zm-m">([^<]+)</text>', h)):
         ck(x == nom, f"19 la grille dit {x!r} et le dessin {nom!r} sur {u}")
     tot_t += len(dt)
-ck(tot_t == 57, f"19 {tot_t} temps de trajet au total, 57 attendus")
-print("19. titres sous 60 signes, descriptions sous 160, 57 temps de trajet conformes au dessin : OK")
+ck(tot_t == 39, f"19 {tot_t} temps de trajet au total, 39 attendus")
+print("19. titres sous 60 signes, descriptions sous 160, 39 temps de trajet conformes au dessin : OK")
 
 # --- 20. la reponse publique promise existe, et la methode de verification ---
 AVIS = {"/avis/": ("Réponse de Domivaro", "Comment ces avis sont vérifiés", "La langue d'origine"),
@@ -314,14 +314,14 @@ for lg, (accueil, page_zones, prefixe) in HOME.items():
     rx = re.compile(r'href="(' + re.escape(prefixe) + r'[a-z0-9-]+/)"')
     sur_accueil = set(rx.findall(PAGES[accueil]))
     sur_zones = set(rx.findall(PAGES[page_zones]))
-    ck(len(sur_zones) == 19, f"21 [{lg}] {len(sur_zones)} communes sur la page des zones, 19 attendues")
+    ck(len(sur_zones) == 13, f"21 [{lg}] {len(sur_zones)} communes sur la page des zones, 13 attendues")
     ck(sur_accueil == sur_zones,
        f"21 [{lg}] la home et la page des zones divergent : {sorted(sur_zones ^ sur_accueil)}")
-print("21. la home liste les 19 memes communes que la page des zones, dans les 3 langues : OK")
+print("21. la home liste les 13 memes communes que la page des zones, dans les 3 langues : OK")
 
 print()
 if ERR:
     print(f"=== {len(ERR)} DEFAUT(S) ===")
     for e in ERR[:40]: print("  -", e)
     sys.exit(1)
-print("=== 21 controles passes sur les 63 pages servies. ===")
+print(f"=== 21 controles passes sur les {len(PAGES)} pages servies. ===")
