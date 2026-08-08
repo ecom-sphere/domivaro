@@ -362,7 +362,9 @@ for p, h in PAGES.items():
     t = PY_REPR.findall(vu)
     ck(not t, f"22 structure Python affichee sur {p} : {sorted(set(t))[:3]}")
 # une ligne de sources cite par des liens, sinon c est le meme accident.
-# 36 lignes : les 33 fiches de conseils, plus les 3 pages de la premiere visite.
+# 39 lignes depuis le lot de la comparaison de prix du 08/08/2026 : les 33 fiches
+# de conseils, les 3 pages de la premiere visite, et les 3 pages de prix, qui
+# nomment desormais Property Care et Tummers Invest et lient leurs tarifs.
 # Le lien peut etre interne, la page des prix se cite elle-meme : on cherche
 # donc une ancre, pas rel="noopener" qui ne sert qu aux liens sortants.
 n_src = 0
@@ -371,7 +373,7 @@ for p, h in PAGES.items():
         n_src += 1
         ck("<a href=" in bloc, f"22 ligne de sources sans aucun lien sur {p}")
         ck("[(" not in bloc, f"22 liste brute dans la ligne de sources de {p}")
-ck(n_src == 36, f"22 {n_src} lignes de sources trouvees, 36 attendues")
+ck(n_src == 39, f"22 {n_src} lignes de sources trouvees, 39 attendues")
 print(f"22. aucune structure Python affichee, {n_src} lignes de sources citent par des liens : OK")
 
 # --- 23. un seul nombre d avis sur tout le site ----------------------------
