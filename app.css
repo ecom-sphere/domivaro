@@ -177,13 +177,6 @@ main > section:is(.drench,.drench-noir) + section:is(.drench,.drench-noir){paddi
    haut. Sur fond clair personne ne le voit, sur une bande pleine si. La bande
    prend le meme palier des 2 cotes ; l enchainement, lui, ne bouge pas. */
 main > section:is(.drench,.drench-noir){padding-block:var(--sp-xl)}
-/* UNE SEULE OUVERTURE SOMBRE. Mesure du 07/08 en pixels rendus sur
-   /la-methode/ : rgb(0,25,56) pour la bande de titre puis rgb(0,42,84) pour
-   la bande qui suit, soit 2 bleus trop voisins pour se lire comme 2 blocs et
-   trop distincts pour se lire comme un seul. La bande qui suit reprend le
-   bleu de la bande de titre, et le raccord se resserre. */
-main > .ban:has(+ .drench){padding-bottom:var(--sp-l)}
-main > .ban + .drench{background:var(--azul-950); padding-top:var(--sp-l)}
 /* LA COUTURE ENTRE 2 BANDES. Mesure du 08/08 sur les 96 pages : 15 fois une
    bande rgb(0,42,84) suivie d une bande rgb(0,42,84), soit 160 px de bleu sans
    un signe entre 2 sections. On reprend le filet teja deja employe au-dessus
