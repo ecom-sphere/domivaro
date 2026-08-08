@@ -374,9 +374,51 @@ for p, h in PAGES.items():
 ck(n_src == 36, f"22 {n_src} lignes de sources trouvees, 36 attendues")
 print(f"22. aucune structure Python affichee, {n_src} lignes de sources citent par des liens : OK")
 
+# --- 23. un seul nombre d avis sur tout le site ----------------------------
+# Le 08/08 le site en annoncait 3 : 24 temoignages publies, 18 dans le titre de
+# la page des avis et dans son reviewCount, 12 dans celui des 60 autres pages
+# et dans le bloc de chiffres de l accueil. Le controle 20 comptait bien les
+# blocs, personne ne les comparait aux nombres ecrits ailleurs.
+AVIS = {"fr": ("/avis/", "/"), "es": ("/es/opiniones/", "/es/"), "en": ("/en/reviews/", "/en/")}
+_ref = None
+for lg, (page_avis, accueil) in AVIS.items():
+    n = len(re.findall(r"<blockquote>", PAGES[page_avis]))
+    ck(n > 0, f"23 [{lg}] aucun temoignage compte sur {page_avis}")
+    if _ref is None:
+        _ref = n
+    ck(n == _ref, f"23 [{lg}] {n} temoignages sur {page_avis}, {_ref} dans les autres langues")
+    # le titre de la page annonce ce nombre
+    _t = re.search(r"<h1[^>]*>(.*?)</h1>", PAGES[page_avis], re.S)
+    _t = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", "", _t.group(1))) if _t else ""
+    ck(re.search(r"\b%d\b" % n, _t),
+       f"23 [{lg}] le titre de {page_avis} n annonce pas {n} : {_t.strip()[:70]}")
+    # le bloc de chiffres de l accueil, sa repartition et sa moyenne
+    _s = re.search(r"<b>4[.,]9</b><span>([^<]+)</span>", PAGES[accueil])
+    ck(_s, f"23 [{lg}] bloc de chiffres introuvable sur {accueil}")
+    if _s:
+        _n = [int(x) for x in re.findall(r"\d+", _s.group(1))]
+        ck(_n and _n[0] == n, f"23 [{lg}] l accueil annonce {_n[:1]} avis, {n} publies")
+        # les 3 nombres suivants sont : combien a 5 etoiles, puis a 4
+        if len(_n) >= 4:
+            c5, c4 = _n[1], _n[3]
+            ck(c5 + c4 == n, f"23 [{lg}] {c5} + {c4} ne font pas {n}")
+            ck(round((c5 * 5 + c4 * 4) / n, 1) == 4.9,
+               f"23 [{lg}] la moyenne annoncee 4,9 ne se recalcule pas depuis {c5} et {c4}")
+# et chaque page qui declare un reviewCount declare le meme
+_rc = {}
+for p, h in PAGES.items():
+    for v in re.findall(r'"reviewCount"\s*:\s*"?(\d+)"?', h):
+        _rc.setdefault(int(v), []).append(p)
+ck(list(_rc) == [_ref],
+   f"23 reviewCount divergents : {[(k, len(v), v[0]) for k, v in _rc.items()]}")
+ck(len(_rc.get(_ref, [])) == 63,
+   f"23 {len(_rc.get(_ref, []))} pages declarent un reviewCount, 63 attendues")
+print(f"23. un seul nombre d avis partout : {_ref}, dans le titre, "
+      f"le bloc de chiffres et les 63 reviewCount : OK")
+
 print()
 if ERR:
     print(f"=== {len(ERR)} DEFAUT(S) ===")
     for e in ERR[:40]: print("  -", e)
     sys.exit(1)
-print(f"=== 22 controles passes sur les {len(PAGES)} pages servies. ===")
+print(f"=== 23 controles passes sur les {len(PAGES)} pages servies. ===")
