@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+
+# Derive de garde.py par outils/faire_garde_local.py, jamais edite a la main.
+garde_local.py
+
+# Sorties regenerables des instruments : on versionne l instrument, pas sa sortie.
+outils/*.txt
+
+# Scripts de lot, a usage unique. Leur effet est ecrit dans le depot lui-meme et
+# leurs comptages sont consignes dans system_changelog. On ne les versionne pas
+# pour ne pas empiler des dizaines de fichiers morts dans outils/.
+outils/lot_*.py
