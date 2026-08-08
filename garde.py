@@ -349,9 +349,34 @@ for lg, (accueil, page_zones, prefixe) in HOME.items():
        f"21 [{lg}] la home et la page des zones divergent : {sorted(sur_zones ^ sur_accueil)}")
 print("21. la home liste les 13 memes communes que la page des zones, dans les 3 langues : OK")
 
+# --- 22. aucune structure Python imprimee dans le texte visible ------------
+# Le 08/08/2026, 15 pages affichaient leur ligne de sources sous la forme
+# "Sources : [('Loi organique 4/2000...', 'https://www.boe.es/...'), (...)]".
+# Une liste de couples avait ete passee telle quelle a un constructeur qui
+# attendait du HTML. Le controle 1 ne pouvait pas la voir : aucune accolade,
+# aucun pour-cent. On cherche la signature dans le texte que le lecteur lit,
+# script et style retires pour ne pas confondre avec le JSON-LD.
+PY_REPR = re.compile(r"\[\(['\"]|['\"]\), \(['\"]|\{['\"][a-z_]+['\"]: |<(?:built-in|function|object) at 0x")
+for p, h in PAGES.items():
+    vu = " ".join(re.split(r"<[^>]+>", re.sub(r"<script.*?</script>|<style.*?</style>", " ", h, flags=re.S)))
+    t = PY_REPR.findall(vu)
+    ck(not t, f"22 structure Python affichee sur {p} : {sorted(set(t))[:3]}")
+# une ligne de sources cite par des liens, sinon c est le meme accident.
+# 36 lignes : les 33 fiches de conseils, plus les 3 pages de la premiere visite.
+# Le lien peut etre interne, la page des prix se cite elle-meme : on cherche
+# donc une ancre, pas rel="noopener" qui ne sert qu aux liens sortants.
+n_src = 0
+for p, h in PAGES.items():
+    for bloc in re.findall(r'<p class="fine"[^>]*>(?:Sources|Fuentes)\s*:.*?</p>', h, re.S):
+        n_src += 1
+        ck("<a href=" in bloc, f"22 ligne de sources sans aucun lien sur {p}")
+        ck("[(" not in bloc, f"22 liste brute dans la ligne de sources de {p}")
+ck(n_src == 36, f"22 {n_src} lignes de sources trouvees, 36 attendues")
+print(f"22. aucune structure Python affichee, {n_src} lignes de sources citent par des liens : OK")
+
 print()
 if ERR:
     print(f"=== {len(ERR)} DEFAUT(S) ===")
     for e in ERR[:40]: print("  -", e)
     sys.exit(1)
-print(f"=== 21 controles passes sur les {len(PAGES)} pages servies. ===")
+print(f"=== 22 controles passes sur les {len(PAGES)} pages servies. ===")
