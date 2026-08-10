@@ -248,7 +248,7 @@ print(f"15. x-default du sitemap identique a l alternate anglais sur les {len(LO
 
 # --- 16. les alt ne decrivent pas ce que l image ne montre pas ---------------
 INTERDIT = [(r"volets fermés|shutters closed|contraventanas cerradas", "volets fermes sur une image qui en montre d ouverts"),
-            (r"(Fabrizio|Krystelle).{0,30}(sur la terrasse|en la terraza|on the terrace)", "portrait annonce sur une terrasse")]
+            (r"(Fabrizio|Krystel).{0,30}(sur la terrasse|en la terraza|on the terrace)", "portrait annonce sur une terrasse")]
 for p, h in PAGES.items():
     for a in re.findall(r'alt="([^"]*)"', h):
         for rx, quoi in INTERDIT:
@@ -418,9 +418,23 @@ ck(len(_rc.get(_ref, [])) == 63,
 print(f"23. un seul nombre d avis partout : {_ref}, dans le titre, "
       f"le bloc de chiffres et les 63 reviewCount : OK")
 
+# --- 24. le prenom de la gerante ------------------------------------------
+# Confirme par ecrit le 10/08 : Krystel, 1 seul L, pas de E final. Le site a
+# ecrit Krystelle pendant tout son developpement, 343 fois. Seul le deployeur
+# regardait Christelle, et rien ne regardait la production. Les 2 graphies
+# fautives sont refusees ici, sur le texte VISIBLE : les noms de fichiers des
+# photographies restent en krystelle minuscule et ne concernent pas le lecteur.
+for p, h in PAGES.items():
+    vu = " ".join(re.split(r"<[^>]+>", re.sub(r"<script.*?</script>|<style.*?</style>", " ", h, flags=re.S)))
+    for faux in ("Christelle", "Krystelle", "Cristelle", "Kristel"):
+        ck(faux not in vu, f"24 {faux} au lieu de Krystel sur {p}")
+_k = sum(len(re.findall(r"\bKrystel\b", h)) for h in PAGES.values())
+ck(_k >= 300, f"24 seulement {_k} occurrences de Krystel, le prenom a disparu")
+print(f"24. le prenom s ecrit Krystel partout, {_k} occurrences, aucune graphie fautive : OK")
+
 print()
 if ERR:
     print(f"=== {len(ERR)} DEFAUT(S) ===")
     for e in ERR[:40]: print("  -", e)
     sys.exit(1)
-print(f"=== 23 controles passes sur les {len(PAGES)} pages servies. ===")
+print(f"=== 24 controles passes sur les {len(PAGES)} pages servies. ===")

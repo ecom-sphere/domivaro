@@ -17,7 +17,7 @@ Ce que le script refuse, sans exception :
   2. un jeton de gabarit %( restant dans un HTML produit ;
   3. un tiret cadratin ou demi-cadratin dans un HTML modifie ;
   4. un nombre ecrit en toutes lettres dans un HTML modifie ;
-  5. le prenom Christelle au lieu de Krystelle ;
+  5. le prenom Christelle ou Krystelle au lieu de Krystel ;
   6. un fichier vide, ou non lisible en UTF-8 ;
   7. un arbre local en retard sur origin/main.
 
@@ -81,9 +81,9 @@ def controler(rel, source):
         if n:
             refus.append(f"{rel} : {n} tiret(s) {nom}")
 
-    n = visible.count("Christelle")
+    n = visible.count("Christelle") + visible.count("Krystelle")
     if n:
-        refus.append(f"{rel} : {n} fois Christelle au lieu de Krystelle")
+        refus.append(f"{rel} : {n} fois Christelle ou Krystelle au lieu de Krystel")
 
     minuscule = visible.lower()
     trouves = [m.group(0) for m in re.finditer(r"\b(?:%s)\b" % NOMBRES, minuscule)
@@ -161,7 +161,7 @@ def main():
 
     print(f"{len(html)} fichier(s) HTML controles : "
           f"0 jeton de gabarit, 0 tiret cadratin, 0 nombre en toutes lettres, "
-          f"0 Christelle.")
+          f"0 Christelle et 0 Krystelle.")
 
     if sec:
         print("\n--sec : controle seul, manifeste non imprime.")
