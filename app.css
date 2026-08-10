@@ -1189,14 +1189,25 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
 
 
 /* Les 38 points, publies. Numerotation continue sur 6 familles. */
-.p38{list-style:none; margin-top:var(--sp-l); display:grid; gap:var(--sp-m)}
+/* Mesure du 10/08 : list-style:none retire la puce, pas le retrait. Le
+   navigateur pose padding-inline-start:40px sur .p38 ET sur le ol de chaque
+   famille, soit 80 px. Le bloc demarrait donc 80 px a droite du reste de la
+   page a 1440 px, et il ne restait que 232 px de colonne de texte a 390 px,
+   ou 37 des 38 points passaient sur 2 lignes et 19 sur 3. */
+.p38{list-style:none; margin-top:var(--sp-l); display:grid; gap:var(--sp-m); padding-inline-start:0}
 @media (min-width:900px){.p38{grid-template-columns:1fr 1fr; gap:var(--sp-m) clamp(2rem,4vw,3.4rem)}}
 .p38-f h3{font-size:var(--t-micro); font-weight:600; letter-spacing:.06em; text-transform:uppercase;
   color:var(--teja-700); margin-bottom:.9rem; padding-bottom:.6rem; border-bottom:1px solid var(--ligne)}
-.p38-f ol{list-style:none; display:grid; gap:.62rem}
+.p38-f ol{list-style:none; display:grid; gap:.62rem; padding-inline-start:0}
 .p38-f li{display:flex; gap:.85rem; font-size:var(--t-fine); line-height:1.5; color:var(--ink-2)}
 .p38-n{flex:none; width:1.9rem; font-variant-numeric:tabular-nums; font-weight:600;
   color:var(--ink-2)}
+/* 2 chiffres n ont pas besoin de 30 px sur un telephone : chaque pixel rendu
+   a la colonne de texte est une ligne de moins par point. */
+@media (max-width:560px){
+  .p38-f li{gap:.6rem}
+  .p38-n{width:1.55rem}
+}
 
 /* CIBLES TACTILES. Sous 880 px, tout element actionnable fait au moins 44 px
    de haut, seuil des recommandations Apple. Mesure avant : 178 cibles sous 44,
