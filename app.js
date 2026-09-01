@@ -179,6 +179,56 @@
     });
   })();
 
+  /* --- 8. La bulle "Une question ?" (lot 89, demande de Krystel). Un premier
+         accueil en 5 choix qui renvoient vers les pages, et WhatsApp pour
+         parler a Fabrizio et Krystel. Pas de robot, pas de stockage. -------- */
+  (function () {
+    if (document.getElementById('form-contact')) return;
+    var lg = (document.documentElement.lang || 'fr').slice(0, 2);
+    var T = {
+      fr: { b: 'Une question ?', t: 'Bonjour, comment pouvons-nous vous aider ?', s: 'Choisissez ce qui vous correspond, ou écrivez-nous directement.',
+            w: 'Parler avec Fabrizio et Krystel sur WhatsApp', x: 'Fermer',
+            l: [['Je souhaite confier le suivi de ma maison', '/la-premiere-visite/'], ['Je voudrais connaître les tarifs', '/les-prix/'],
+                ['Je voudrais savoir ce qui est contrôlé', '/la-methode/'], ['Je souhaite réserver une visite', '/contact/'], ['J\'ai une autre question', '/contact/#faq']],
+            m: 'Bonjour, j\'ai une question au sujet de ma maison.' },
+      es: { b: '¿Alguna pregunta?', t: 'Hola, ¿cómo podemos ayudarle?', s: 'Elija lo que le corresponda, o escríbanos directamente.',
+            w: 'Hablar con Fabrizio y Krystel por WhatsApp', x: 'Cerrar',
+            l: [['Quiero que cuiden de mi casa', '/es/la-primera-visita/'], ['Quiero conocer los precios', '/es/los-precios/'],
+                ['Quiero saber qué se revisa', '/es/el-metodo/'], ['Quiero reservar una visita', '/es/contacto/'], ['Tengo otra pregunta', '/es/contacto/#faq']],
+            m: 'Hola, tengo una pregunta sobre mi casa.' },
+      en: { b: 'A question?', t: 'Hello, how can we help?', s: 'Pick what fits, or write to us directly.',
+            w: 'Talk to Fabrizio and Krystel on WhatsApp', x: 'Close',
+            l: [['I would like my house looked after', '/en/the-first-visit/'], ['I would like to know the prices', '/en/pricing/'],
+                ['I would like to know what is checked', '/en/the-method/'], ['I would like to book a visit', '/en/contact/'], ['I have another question', '/en/contact/#faq']],
+            m: 'Hello, I have a question about my house.' }
+    };
+    var t = T[lg] || T.fr;
+    var w = document.createElement('div');
+    w.className = 'bulle';
+    var ul = '';
+    t.l.forEach(function (x) { ul += '<li><a href="' + x[1] + '">' + x[0] + '</a></li>'; });
+    w.innerHTML =
+      '<div class="bulle-p" id="bulle-p" role="dialog" aria-labelledby="bulle-t" hidden>' +
+        '<button class="bulle-x" type="button" aria-label="' + t.x + '">&times;</button>' +
+        '<h2 id="bulle-t">' + t.t + '</h2><p>' + t.s + '</p><ul>' + ul + '</ul>' +
+        '<a class="btn btn-vert" rel="noopener" href="https://wa.me/34611420873?text=' + encodeURIComponent(t.m) + '">' + t.w + '</a>' +
+      '</div>' +
+      '<button class="bulle-b" type="button" aria-expanded="false" aria-controls="bulle-p">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.5-4.5A8 8 0 1 1 21 12z"/></svg>' +
+        '<span>' + t.b + '</span></button>';
+    document.body.appendChild(w);
+    var p = w.querySelector('.bulle-p'), b = w.querySelector('.bulle-b');
+    var ouvrir = function (o) {
+      p.hidden = !o;
+      b.setAttribute('aria-expanded', o ? 'true' : 'false');
+      if (o) p.querySelector('a').focus(); else b.focus();
+    };
+    b.addEventListener('click', function () { ouvrir(p.hidden); });
+    w.querySelector('.bulle-x').addEventListener('click', function () { ouvrir(false); });
+    document.addEventListener('click', function (e) { if (!p.hidden && !w.contains(e.target)) ouvrir(false); });
+    addEventListener('keydown', function (e) { if (e.key === 'Escape' && !p.hidden) ouvrir(false); });
+  })();
+
   /* --- 4. Revelations. Le contenu est deja visible : on n'ajoute .js-mo que si
          l'observateur existe, et un filet de securite reaffiche tout au bout de
          2 s au cas ou l'observateur ne se declencherait jamais (onglet cache,

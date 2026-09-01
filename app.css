@@ -1438,3 +1438,50 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
    d opacite le credit tombait a 3,25:1, sous le seuil AA, et a 12,48 px, sous
    le plancher de 13 px du site. A 0,83 em et 80 % il est a 5,11:1 et 13,28 px. */
 figcaption .credit{display:block;margin-top:.3rem;font-size:0.83em;opacity:0.8;letter-spacing:.01em}
+
+/* --------------------------------------------- 12. lot 89, retours de Krystel du 01/09/2026 */
+/* Le lien "et 10 autres communes" du hero prend la couleur des puces. */
+.hero-pied a{color:inherit; text-decoration:underline; text-underline-offset:0.2em; text-decoration-color:color-mix(in oklch, #fff 45%, transparent)}
+.hero-pied a:hover{color:#fff}
+
+/* Le detail de chaque formule, et les 6 categories du rapport : des <details>, lisibles sans JS. */
+.faq.formules{margin-top:var(--sp-m)}
+.faq ul, .fam-pts{margin:0 0 1.6rem; padding:0 0 0 1.2rem; max-width:57ch; font-size:var(--t-body); line-height:1.66; color:var(--ink-2)}
+.faq ul li, .fam-pts li{margin:0 0 .35rem}
+.fam-acc{border-top:1px solid var(--ligne)}
+.fam-acc details{border-bottom:1px solid var(--ligne)}
+.fam-acc summary{display:flex; gap:1rem; align-items:baseline; padding:.75rem 0; cursor:pointer; list-style:none}
+.fam-acc summary::-webkit-details-marker{display:none}
+.fam-acc summary b{flex:1}
+.fam-acc summary svg{width:18px; height:18px; flex:none; align-self:center; color:var(--teja-600); transition:transform .26s var(--e-quart)}
+.fam-acc details[open] summary svg{transform:rotate(45deg)}
+.fam-acc summary:hover b{color:var(--teja-700)}
+.fam-pts{padding-left:0; list-style:none; counter-reset:pt}
+.fam-pts li{padding-left:2.4rem; position:relative}
+.fam-pts li::before{counter-increment:pt; content:counter(pt, decimal-leading-zero); position:absolute; left:0; top:.12em;
+  font-size:var(--t-micro); font-weight:700; letter-spacing:.04em; color:var(--teja-600)}
+@media (max-width:720px){.fam-acc summary{flex-wrap:wrap; gap:.1rem 1rem}}
+@media (prefers-reduced-motion:reduce){.fam-acc summary svg{transition:none}}
+
+/* La bulle "Une question ?" : un bouton fixe en bas a gauche, un petit panneau de 5 choix et WhatsApp.
+   Construite par app.js, absente sans JavaScript : le pied de page porte deja les 3 voies de contact. */
+.bulle{position:fixed; left:1rem; bottom:1rem; z-index:var(--z-collant); font-family:inherit}
+.bulle-b{display:inline-flex; align-items:center; gap:.55rem; padding:.8rem 1.15rem; border:0; border-radius:999px; cursor:pointer;
+  background:var(--azul-900); color:#fff; font-size:var(--t0); font-weight:600; letter-spacing:-0.005em;
+  box-shadow:0 12px 30px -10px color-mix(in oklch, var(--azul-950) 60%, transparent)}
+.bulle-b svg{width:20px; height:20px; flex:none}
+.bulle-b:hover{background:var(--azul-800)}
+.bulle-p{position:absolute; left:0; bottom:calc(100% + .7rem); width:min(22rem, calc(100vw - 2rem));
+  padding:1.1rem 1.1rem 1rem; border-radius:14px; background:#fff; color:var(--ink);
+  box-shadow:0 22px 50px -14px color-mix(in oklch, var(--azul-950) 45%, transparent); border:1px solid var(--ligne)}
+.bulle-p[hidden]{display:none}
+.bulle-p h2{font-size:var(--t1); margin:0 0 .25rem; letter-spacing:-0.012em}
+.bulle-p p{margin:0 0 .8rem; font-size:var(--t-fine); color:var(--ink-3)}
+.bulle-p ul{list-style:none; margin:0 0 .9rem; padding:0; display:grid; gap:.3rem}
+.bulle-p ul a{display:block; padding:.6rem .75rem; border-radius:8px; background:var(--sur-1); color:var(--ink); text-decoration:none; font-size:var(--t0)}
+.bulle-p ul a:hover{background:color-mix(in oklch, var(--azul-900) 10%, transparent)}
+.bulle-p .btn{width:100%; justify-content:center}
+.bulle-x{position:absolute; top:.55rem; right:.55rem; width:32px; height:32px; border:0; border-radius:50%; background:transparent; color:var(--ink-3); cursor:pointer; font-size:1.3rem; line-height:1}
+.bulle-x:hover{background:var(--sur-1); color:var(--ink)}
+@media (max-width:720px){.bulle{left:.75rem; bottom:.75rem} .bulle-b span{display:none} .bulle-b{padding:.85rem}}
+@media print{.bulle{display:none}}
