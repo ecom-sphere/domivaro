@@ -722,16 +722,19 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
   .js-mo .hero .lede{animation-delay:.12s}
   .js-mo .hero .hero-actions{animation-delay:.22s}
   .js-mo .hero .hero-pied{animation-delay:.32s}
-  @keyframes monte{from{opacity:0; transform:translateY(18px); filter:blur(5px)} to{opacity:1; transform:none; filter:none}}
+  @keyframes monte{from{opacity:0; transform:translateY(18px)} to{opacity:1; transform:none}}
 
   /* 520 ms et non 850 : mesure du 08/08, a 850 ms plus 300 ms de retard le
      3e bloc finissait d arriver 1,15 s apres son entree dans l ecran, donc
-     hors champ pour qui fait defiler. Le flou n est pose que sur les blocs
-     legers : anime sur une figure ou un tableau pleine largeur, il cree une
-     couche GPU de la taille de l ecran et saccade. */
+     hors champ pour qui fait defiler.
+     Lot 93, 02/09 : plus de flou, plus de :has(). Le selecteur
+     [data-mo]:not(:has(picture)):not(:has(table)) obligeait le moteur a
+     redescendre dans chaque bloc marque a chaque recalcul de style, et le
+     filter:blur creait une couche par bloc : Lighthouse mesurait 1,6 s de
+     style et layout sur l accueil en mobile simule. Opacite et translation
+     suffisent, elles sont composees sur le GPU sans recalcul. */
   .js-mo [data-mo]{opacity:0; transform:translateY(16px); transition:opacity .52s var(--e-quart), transform .52s var(--e-quart)}
-  .js-mo [data-mo]:not(:has(picture)):not(:has(table)):not(figure):not(picture):not(table){filter:blur(5px); transition:opacity .52s var(--e-quart), transform .52s var(--e-quart), filter .52s var(--e-quart)}
-  .js-mo [data-mo].vu{opacity:1; transform:none; filter:none}
+  .js-mo [data-mo].vu{opacity:1; transform:none}
   .js-mo [data-mo][data-d="1"]{transition-delay:.08s}
   .js-mo [data-mo][data-d="2"]{transition-delay:.16s}
   .js-mo [data-mo][data-d="3"]{transition-delay:.24s}
@@ -743,7 +746,7 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
      EFFET 1, degraisser. Dans une meme section, seuls les 2 premiers blocs
      marques respirent, le titre et son chapeau. A partir du 3e, le contenu est
      simplement la. Fait en CSS, sans toucher aux 76 pages, donc reversible. */
-  .js-mo [data-mo] ~ [data-mo] ~ [data-mo]{opacity:1; transform:none; filter:none; transition:none}
+  .js-mo [data-mo] ~ [data-mo] ~ [data-mo]{opacity:1; transform:none; transition:none}
 
   /* EFFET 2, les preuves chiffrees se lisent l une apres l autre. Les blocs de
      faits portent les seuls chiffres opposables du site (600 000 EUR, 38
@@ -755,22 +758,20 @@ html:has(.sug:not([hidden])) .pied{padding-bottom:9rem}
      bloc pose dans une section sans marqueur reste invisible pour toujours,
      ce qui est arrive aux 3 etapes du protocole le 06/08. */
   .js-mo [data-mo] .faits > div,
-  .js-mo .faits[data-mo] > div{opacity:0; transform:translateY(12px); filter:blur(4px);
-    transition:opacity .48s var(--e-quart), transform .48s var(--e-quart),
-               filter .48s var(--e-quart)}
+  .js-mo .faits[data-mo] > div{opacity:0; transform:translateY(12px);
+    transition:opacity .48s var(--e-quart), transform .48s var(--e-quart)}
   .js-mo [data-mo].vu .faits > div,
-  .js-mo .faits[data-mo].vu > div{opacity:1; transform:none; filter:none}
+  .js-mo .faits[data-mo].vu > div{opacity:1; transform:none}
   .js-mo .faits > div:nth-child(2){transition-delay:.12s}
   .js-mo .faits > div:nth-child(3){transition-delay:.24s}
 
   /* EFFET 3, le protocole est une sequence, ses etapes entrent dans l ordre.
      C est la seule animation du site qui porte un sens : avant, pendant, apres. */
   .js-mo [data-mo] .flow > div,
-  .js-mo .flow[data-mo] > div{opacity:0; transform:translateY(13px); filter:blur(4px);
-    transition:opacity .5s var(--e-quart), transform .5s var(--e-quart),
-               filter .5s var(--e-quart)}
+  .js-mo .flow[data-mo] > div{opacity:0; transform:translateY(13px);
+    transition:opacity .5s var(--e-quart), transform .5s var(--e-quart)}
   .js-mo [data-mo].vu .flow > div,
-  .js-mo .flow[data-mo].vu > div{opacity:1; transform:none; filter:none}
+  .js-mo .flow[data-mo].vu > div{opacity:1; transform:none}
   .js-mo .flow > div:nth-child(2){transition-delay:.14s}
   .js-mo .flow > div:nth-child(3){transition-delay:.28s}
   .js-mo .flow > div:nth-child(4){transition-delay:.42s}
