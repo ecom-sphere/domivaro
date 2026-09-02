@@ -30,7 +30,12 @@
       var haut = repere ? repere.getBoundingClientRect().top + (scrollY || pageYOffset) : marge;
       sonde.style.top = Math.max(1, haut - marge) + 'px';
     };
-    poser();
+    /* Lot 92 : la premiere pose attend le premier rendu. Appelee en synchrone
+       pendant le script differe, getBoundingClientRect forcait un reflow de
+       190 ms sur l accueil (Lighthouse, 02/09/2026). Le fond de la barre
+       n en depend pas : au chargement, le haut de page est visible et la
+       barre est transparente de toute facon. */
+    requestAnimationFrame(poser);
     addEventListener('resize', poser, { passive: true });
     addEventListener('load', poser);
     new IntersectionObserver(function (e) {

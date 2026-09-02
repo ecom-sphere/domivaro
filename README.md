@@ -39,3 +39,8 @@ Presentation aux associes : entreprise, CIF, avis et coordonnees simules mais
 credibles, voulus ainsi. Ne pas retirer le contenu de demonstration.
 Les 12 valeurs d'entreprise (CIF, registre, assurance, gerants) apparaissent
 dans les mentions legales des 3 langues et le JSON-LD de chaque page.
+
+## Feuille de style
+
+`app.css` est PRODUIT depuis `app.src.css` par `python3 outils/css_servi.py`
+(commentaires et lignes vides retires). On edite app.src.css, jamais app.css.
