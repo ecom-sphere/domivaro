@@ -395,6 +395,7 @@ main > .pli-photo:first-child{padding-top:calc(var(--navh, 60px) + 1.6rem)}
   background:var(--ligne); border:1px solid var(--ligne)}
 @media (min-width:700px){.garanties{grid-template-columns:1fr 1fr}}
 @media (min-width:1060px){.garanties{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:700px){.garanties.g3{grid-template-columns:repeat(3,1fr)}}
 .gar{background:var(--clair); padding:1.9rem 1.6rem}
 .gk{display:block; font-size:var(--t-micro); font-weight:600; letter-spacing:0.05em;
   text-transform:uppercase; color:var(--teja-700); margin-bottom:0.7rem}
