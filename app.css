@@ -1073,13 +1073,14 @@ figcaption .credit{display:block;margin-top:.3rem;font-size:0.83em;opacity:0.8;l
   font-size:var(--t-micro); font-weight:700; letter-spacing:.04em; color:var(--teja-600)}
 @media (max-width:720px){.fam-acc summary{flex-wrap:wrap; gap:.1rem 1rem}}
 @media (prefers-reduced-motion:reduce){.fam-acc summary svg{transition:none}}
-.bulle{position:fixed; left:1rem; bottom:1rem; z-index:var(--z-collant); font-family:inherit}
+.bulle{position:fixed; right:1rem; bottom:1rem; z-index:var(--z-voile); font-family:inherit}
+html:has(.sug:not([hidden])) .bulle{bottom:8.4rem}
 .bulle-b{display:inline-flex; align-items:center; gap:.55rem; padding:.8rem 1.15rem; border:0; border-radius:999px; cursor:pointer;
   background:var(--azul-900); color:#fff; font-size:var(--t0); font-weight:600; letter-spacing:-0.005em;
   box-shadow:0 12px 30px -10px color-mix(in oklch, var(--azul-950) 60%, transparent)}
 .bulle-b svg{width:20px; height:20px; flex:none}
 .bulle-b:hover{background:var(--azul-800)}
-.bulle-p{position:absolute; left:0; bottom:calc(100% + .7rem); width:min(22rem, calc(100vw - 2rem));
+.bulle-p{position:absolute; right:0; bottom:calc(100% + .7rem); width:min(22rem, calc(100vw - 2rem));
   padding:1.1rem 1.1rem 1rem; border-radius:14px; background:#fff; color:var(--ink);
   box-shadow:0 22px 50px -14px color-mix(in oklch, var(--azul-950) 45%, transparent); border:1px solid var(--ligne)}
 .bulle-p[hidden]{display:none}
@@ -1091,5 +1092,5 @@ figcaption .credit{display:block;margin-top:.3rem;font-size:0.83em;opacity:0.8;l
 .bulle-p .btn{width:100%; justify-content:center}
 .bulle-x{position:absolute; top:.55rem; right:.55rem; width:32px; height:32px; border:0; border-radius:50%; background:transparent; color:var(--ink-3); cursor:pointer; font-size:1.3rem; line-height:1}
 .bulle-x:hover{background:var(--sur-1); color:var(--ink)}
-@media (max-width:720px){.bulle{left:.75rem; bottom:.75rem} .bulle-b span{display:none} .bulle-b{padding:.85rem}}
+@media (max-width:720px){.bulle{right:.75rem; bottom:.75rem} .bulle-b span{display:none} .bulle-b{padding:.85rem}}
 @media print{.bulle{display:none}}
